@@ -4,7 +4,7 @@ These pages are rebuilt from the "Ebook website with Stripe integration" Claude 
 
 | File | GHL page |
 |---|---|
-| `sales-page.html` | Sales page, with countdown, Stripe checkout, waitlist form and FAQ |
+| `sales-page.html` | Sales page, with Stripe checkout and FAQ |
 | `thank-you-page.html` | Page buyers land on after paying in Stripe |
 | `ebook-cover.jpg` | Cover image for the sales page (upload to GHL Media) |
 
@@ -16,6 +16,7 @@ These pages are rebuilt from the "Ebook website with Stripe integration" Claude 
 5. Preview on desktop and mobile, then publish.
 
 ## Things you can edit
-- At the bottom of `sales-page.html` you can change `STRIPE_URL` (the checkout link, used by both "Checkout with Stripe" buttons) and `DROP_DATE` (the countdown target).
-- The waitlist uses your existing GHL form `NOQoT7c8flLRRBk2bUkt`. To use a different form, swap the ID in the `<iframe>`.
+- At the bottom of `sales-page.html` you can change `STRIPE_URL`, the checkout link that every buy button uses.
 - All styles are scoped under `.bob` / `.bobty`, so they won't break the rest of your GHL site.
+
+The live Vercel copies are in `public/ebook/` and are served at `/ebook` and `/ebook/thank-you`.
