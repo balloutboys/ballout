@@ -71,12 +71,13 @@
   .bob .hero h1 { font-size: clamp(52px, 6.4vw, 96px); line-height: .92; letter-spacing: -.02em; text-transform: uppercase; margin-top: 20px; }
   .bob .hero h1 span { color: var(--a700); }
   .bob .hero .lede { font-size: 19px; line-height: 1.5; max-width: 46ch; color: var(--n800); margin-top: 24px; }
-  .bob .countdown { margin-top: 36px; padding: 22px 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
-  .bob .countdown .cd-label { grid-column: 1 / -1; font-family: var(--fh); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--n600); margin-bottom: 8px; }
-  .bob .countdown .unit { text-align: center; border-right: 1px solid var(--divider); }
-  .bob .countdown .unit:last-of-type { border-right: 0; }
-  .bob .countdown .num { font-family: var(--fh); font-size: clamp(32px, 5vw, 44px); line-height: 1; }
-  .bob .countdown .unit div:last-child { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--n600); }
+  .bob .stats { margin-top: 36px; padding: 22px 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .bob .stats .st-label { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-family: var(--fh); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--a700); margin-bottom: 8px; }
+  .bob .stats .st-label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #3f9d63; }
+  .bob .stats .unit { text-align: center; border-right: 1px solid var(--divider); padding: 0 4px; }
+  .bob .stats .unit:last-of-type { border-right: 0; }
+  .bob .stats .num { font-family: var(--fh); font-size: clamp(28px, 4.4vw, 40px); line-height: 1.05; }
+  .bob .stats .unit div:last-child { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--n600); }
   .bob .ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
   .bob .ctas small { font-size: 13px; color: var(--n600); }
   .bob .cover { margin: 0; padding: 14px; }
@@ -119,10 +120,6 @@
   .bob .buy .btn { width: 100%; padding: 20px 28px; font-size: 17px; }
   .bob .buy small { font-size: 13px; color: var(--n600); }
 
-  .bob .waitlist { margin-top: 40px; border: 1px solid var(--divider); padding: clamp(20px, 3vw, 32px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px; align-items: center; }
-  .bob .waitlist h3 { font-size: 28px; text-transform: uppercase; }
-  .bob .waitlist p { margin-top: 8px; font-size: 16px; color: var(--n800); }
-  .bob .waitlist iframe { width: 100%; min-height: 260px; border: 1px solid var(--divider); background: var(--surface); display: block; }
 
   .bob .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1px; background: var(--divider); border-bottom: 1px solid var(--divider); }
   .bob .faq > div { background: var(--bg); padding: 26px; }
@@ -157,25 +154,24 @@
       <h1>How to move like a pro<br><span>before you're a pro</span></h1>
       <p class="lede">How to move like a pro baseball player in high school and college — mentality, nutrition, the weight room, discipline, money, God and your friend circle.</p>
 
-      <div class="bp countdown">
+      <div class="bp stats">
         <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
-        <div class="cd-label">Drops August 21 — <span id="bob-cd-label">Countdown to drop</span></div>
-        <div class="unit"><div class="num" id="bob-d">00</div><div>Days</div></div>
-        <div class="unit"><div class="num" id="bob-h">00</div><div>Hours</div></div>
-        <div class="unit"><div class="num" id="bob-m">00</div><div>Minutes</div></div>
-        <div class="unit"><div class="num" id="bob-s">00</div><div>Seconds</div></div>
+        <div class="st-label">Out now — instant access</div>
+        <div class="unit"><div class="num">05</div><div>Sections</div></div>
+        <div class="unit"><div class="num">$29.99</div><div>One time</div></div>
+        <div class="unit"><div class="num">Skool</div><div>Community</div></div>
       </div>
 
       <div class="ctas">
-        <a class="btn btn-primary bp" href="#bob-get">Preorder — $29.99<i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></a>
-        <a class="btn btn-secondary" href="#bob-waitlist">Join the waitlist</a>
+        <a class="btn btn-primary bp" href="#bob-get">Buy now — $29.99<i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></a>
+        <a class="btn btn-secondary" href="#bob-inside">See what's inside</a>
         <small>Includes Skool community access</small>
       </div>
     </div>
 
     <figure class="bp cover">
       <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
-      <img src="/ebook/cover.jpg" alt="How To Move Like A Pro Before You're A Pro — cover" width="1252" height="1604">
+      <img src="/ebook/cover.jpg" alt="How To Move Like A Pro Before You're A Pro — cover" width="1320" height="1699">
       <figcaption><span>Fig. 01 — Cover</span><span>PDF · EPUB</span></figcaption>
     </figure>
   </section>
@@ -222,18 +218,18 @@
     <div class="bp offer">
       <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
       <div>
-        <div class="eyebrow">Preorder · ships August 21</div>
+        <div class="eyebrow">Available now · instant access</div>
         <h2>The playbook<br>+ the community</h2>
         <ul>
           <li>The full ebook, five sections</li>
-          <li>Early access to the Skool community, before the drop</li>
+          <li>Access to the Skool community</li>
           <li>Entry into the raffle for a free BallOutBoys tee</li>
-          <li>Delivered to your inbox on drop day</li>
+          <li>Sent to your inbox right after checkout</li>
         </ul>
         <div class="bp bonus">
           <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
-          <div class="eyebrow">Preorder bonus</div>
-          <div class="t">Every preorder is entered to win a free shirt from balloutboysmerch.com</div>
+          <div class="eyebrow">Bonus</div>
+          <div class="t">Every order is entered to win a free shirt from balloutboysmerch.com</div>
         </div>
       </div>
       <div class="buy">
@@ -241,17 +237,6 @@
         <a class="btn btn-primary bp bob-stripe" href="#" target="_blank" rel="noopener">Checkout with Stripe<i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></a>
         <small>Secure checkout by Stripe. Card, Apple Pay and Google Pay.</small>
       </div>
-    </div>
-  </section>
-
-  <!-- WAITLIST (your existing GHL form) -->
-  <section id="bob-waitlist" class="wrap">
-    <div class="waitlist">
-      <div>
-        <h3>Not ready yet?</h3>
-        <p>Get on the waitlist and I'll send the drop link on August 21.</p>
-      </div>
-      <iframe src="https://api.leadconnectorhq.com/widget/form/NOQoT7c8flLRRBk2bUkt" id="inline-NOQoT7c8flLRRBk2bUkt" title="Waitlist signup" data-layout="{'id':'INLINE'}" data-form-id="NOQoT7c8flLRRBk2bUkt"></iframe>
     </div>
   </section>
 
@@ -267,7 +252,7 @@
   <section id="bob-faq" class="wrap sec">
     <div class="sec-head"><h2>FAQ</h2></div>
     <div class="faq">
-      <div><h3>When does it drop?</h3><p>August 21. All preorders get the download link the morning of the 21st and get early access to the Skool community.</p></div>
+      <div><h3>How do I get it?</h3><p>Right after checkout, your ebook and your Skool community access link are sent to the email you paid with.</p></div>
       <div><h3>Who is it for?</h3><p>If pro ball is the goal, the habits start now. Built for high school and college players ready to train, eat, and move like the next level is already theirs.</p></div>
       <div><h3>What's included?</h3><p>The ebook plus a Skool community access link, sent directly to your email for a $29.99 one-time fee.</p></div>
       <div><h3>How do I pay?</h3><p>Checkout runs on Stripe — Card, Apple Pay or Google Pay.</p></div>
@@ -277,36 +262,18 @@
   <footer class="foot">
     <div class="wrap">
       <div class="brand">BallOutBoys Athletics · Metro Atlanta</div>
-      <a class="bob-stripe" href="#" target="_blank" rel="noopener">Preorder $29.99</a>
+      <a class="bob-stripe" href="#" target="_blank" rel="noopener">Buy now $29.99</a>
       <span>Edition 01 · 2026</span>
     </div>
   </footer>
 </div>
 
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <script>
 (function () {
   /* ===== EDIT ME ===== */
-  var STRIPE_URL = "https://buy.stripe.com/8x25kD8lUds60O1aze3VC05";
-  var DROP_DATE  = "2026-08-21T09:00:00-04:00"; /* countdown target (Eastern time) */
+  var STRIPE_URL = "https://buy.stripe.com/aFa5kD9pY5ZE9kx7n23VC07";
   /* =================== */
-
   document.querySelectorAll(".bob-stripe").forEach(function (a) { a.href = STRIPE_URL; });
-
-  var target = new Date(DROP_DATE).getTime();
-  var el = function (id) { return document.getElementById(id); };
-  var pad = function (n) { return String(n).padStart(2, "0"); };
-  function tick() {
-    var ms = Math.max(0, target - Date.now());
-    el("bob-d").textContent = pad(Math.floor(ms / 86400000));
-    el("bob-h").textContent = pad(Math.floor(ms / 3600000) % 24);
-    el("bob-m").textContent = pad(Math.floor(ms / 60000) % 60);
-    el("bob-s").textContent = pad(Math.floor(ms / 1000) % 60);
-    el("bob-cd-label").textContent = ms === 0 ? "Available now" : "Countdown to drop";
-    if (ms === 0) clearInterval(timer);
-  }
-  var timer = setInterval(tick, 1000);
-  tick();
 })();
 </script>
 </body>
