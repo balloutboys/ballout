@@ -1,0 +1,111 @@
+<!--
+  BallOutBoys Athletics — ebook preorder THANK YOU page
+  GoHighLevel: paste this whole file into ONE "Custom JS/HTML" (Code) element
+  inside a full-width section with 0 padding. Set that section's background to #1d2d3d.
+
+  EDIT BEFORE PUBLISHING:
+    SALES_PAGE_URL -> the URL of your GHL sales page ("Back to the book" link)
+
+  Point your Stripe Payment Link here: Stripe Dashboard > Payment Links > your link >
+  After payment > "Don't show confirmation page" > redirect to this page's URL.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  .bobty {
+    --bg: #f2f2f3; --a200: #d6ebff; --a300: #b5d9fd; --a400: #94bce3;
+    --a600: #597ea3; --a700: #416180; --a800: #2c455d; --a900: #1d2d3d; --accent: #5980a6;
+    --fh: "Barlow Condensed", system-ui, sans-serif;
+    --fb: "Barlow", system-ui, sans-serif;
+    font-family: var(--fb); background: var(--a900); color: var(--bg);
+    min-height: 100vh; display: flex; flex-direction: column;
+    font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  .bobty *, .bobty *::before, .bobty *::after { box-sizing: border-box; }
+  .bobty h1, .bobty h2 { font-family: var(--fh); font-weight: 600; line-height: 1.12; letter-spacing: -.015em; margin: 0; color: inherit; }
+  .bobty p { margin: 0; }
+  .bobty a { color: var(--a300); text-decoration: none; }
+  .bobty a:hover { color: var(--a200); }
+  .bobty .cap { font-family: var(--fh); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
+
+  .bobty .top { padding: 18px 24px; border-bottom: 1px solid var(--a800); font-family: var(--fh); font-size: 15px; letter-spacing: .1em; text-transform: uppercase; }
+  .bobty .top span { color: var(--a300); }
+  .bobty main { flex: 1; max-width: 1000px; width: 100%; margin: 0 auto; padding: clamp(48px, 8vw, 96px) 24px; }
+  .bobty .kicker { display: flex; align-items: center; gap: 10px; font-family: var(--fh); font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--a300); }
+  .bobty .kicker::before { content: ""; width: 28px; height: 1px; background: var(--a300); display: block; }
+  .bobty h1 { font-size: clamp(44px, 7vw, 88px); line-height: .94; text-transform: uppercase; letter-spacing: -.02em; margin-top: 20px; }
+  .bobty .lede { font-size: 20px; line-height: 1.5; max-width: 52ch; color: var(--a200); margin-top: 22px; }
+
+  .bobty .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; margin-top: 48px; }
+  .bobty .bp { position: relative; border: 1px solid var(--a700); }
+  .bobty .bp > .c { position: absolute; width: 11px; height: 11px; color: var(--a300); }
+  .bobty .bp > .c::before, .bobty .bp > .c::after { content: ""; position: absolute; background: currentColor; }
+  .bobty .bp > .c::before { left: 5px; top: 0; width: 1px; height: 100%; }
+  .bobty .bp > .c::after { top: 5px; left: 0; width: 100%; height: 1px; }
+  .bobty .bp > .tl { top: -6px; left: -6px; } .bobty .bp > .tr { top: -6px; right: -6px; }
+  .bobty .bp > .bl { bottom: -6px; left: -6px; } .bobty .bp > .br { bottom: -6px; right: -6px; }
+  .bobty .card { padding: 26px; }
+  .bobty .card .n { font-family: var(--fh); font-size: 32px; line-height: 1; color: var(--a400); }
+  .bobty .card h2 { font-size: 24px; text-transform: uppercase; margin: 14px 0 8px; }
+  .bobty .card p { margin-bottom: 20px; font-size: 16px; line-height: 1.5; color: var(--a200); }
+  .bobty .stack { display: grid; gap: 10px; justify-items: start; }
+  .bobty .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--fh); font-weight: 600; font-size: 14px;
+    line-height: 1.2; letter-spacing: .08em; text-transform: uppercase; padding: 14px 22px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); transition: background .15s; }
+  .bobty .btn:hover { background: var(--a600); color: var(--bg); }
+
+  .bobty .info { border-top: 1px solid var(--a800); margin-top: 48px; padding-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; }
+  .bobty .info .k { font-family: var(--fh); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--a400); }
+  .bobty .info .v { font-size: 16px; color: var(--a200); margin-top: 4px; }
+
+  .bobty blockquote { margin: 56px 0 0; max-width: 34ch; font-family: var(--fh); font-weight: 400; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.06; text-transform: uppercase; }
+  .bobty .by { font-family: var(--fh); font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--a400); margin-top: 18px; }
+
+  .bobty footer { border-top: 1px solid var(--a800); padding: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; max-width: 1000px; width: 100%; margin: 0 auto; }
+  .bobty footer .brand { color: var(--a400); margin-right: auto; }
+</style>
+
+<div class="bobty">
+  <div class="top">BallOutBoys <span>Athletics</span></div>
+
+  <main>
+    <div class="kicker">Payment received</div>
+    <h1>You're in.<br>Let's work.</h1>
+    <p class="lede">Thank you for preordering How To Move Like A Pro Before You're A Pro. The ebook hits your inbox the morning of August 21. Two things are live for you right now.</p>
+
+    <div class="cards">
+      <div class="bp card">
+        <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        <div class="n">01</div>
+        <h2>Early access to Skool</h2>
+        <p>Your access is open now, ahead of the drop. Join on the web with the same email you checked out with, then grab the app.</p>
+        <div class="stack">
+          <a class="btn bp" href="https://www.skool.com/the-rotational-force-blueprint-4992/classroom/623a61f2" target="_blank" rel="noopener">Join the community<i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></a>
+          <a class="cap" href="https://apps.apple.com/app/id6447270545" target="_blank" rel="noopener">Get the Skool app →</a>
+        </div>
+      </div>
+      <div class="bp card">
+        <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        <div class="n">02</div>
+        <h2>You're in the shirt raffle</h2>
+        <p>Every preorder is entered to win a free shirt from balloutboysmerch.com. The winner gets an email — watch your inbox.</p>
+        <a class="cap" href="https://balloutboysmerch.com" target="_blank" rel="noopener">See the merch →</a>
+      </div>
+    </div>
+
+    <div class="info">
+      <div><div class="k">Your receipt</div><div class="v">Emailed by Stripe. Check spam if you don't see it.</div></div>
+      <div><div class="k">Delivery</div><div class="v">Ebook link sent the morning of August 21.</div></div>
+      <div><div class="k">Questions</div><div class="v">Reply to your receipt email and I'll get back to you.</div></div>
+    </div>
+
+    <blockquote>Ball out at all times. You never know who's watching.</blockquote>
+    <div class="by">Ned Flemister Jr</div>
+  </main>
+
+  <footer>
+    <div class="cap brand">BallOutBoys Athletics · Metro Atlanta</div>
+    <a class="cap" href="SALES_PAGE_URL">Back to the book</a>
+  </footer>
+</div>
