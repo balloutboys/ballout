@@ -5,7 +5,8 @@ import { site } from "@/site.config";
 /** Muted, looping highlight clips that only play while on screen. */
 export default function Highlights() {
   const ref = useRef<HTMLDivElement>(null);
-  const clips = site.heroHighlights;
+  const [first, ...rest] = site.heroHighlights;
+  const clips = first ? [{ src: first, tall: false }, ...site.portraitClips.map((src) => ({ src, tall: true })), ...rest.map((src) => ({ src, tall: false }))] : [];
 
   useEffect(() => {
     const vids = ref.current?.querySelectorAll("video");
@@ -27,8 +28,8 @@ export default function Highlights() {
           <h2 className="h-lg">Game <span className="accent">film</span></h2>
         </div>
         <div className="clips" ref={ref}>
-          {clips.map((src) => (
-            <video key={src} src={src} poster={src.replace(/\.mp4$/, ".jpg")} muted loop playsInline preload="none" aria-label="BallOutBoys athlete game highlight" />
+          {clips.map(({ src, tall }) => (
+            <video key={src} className={tall ? "tall" : undefined} src={src} poster={src.replace(/\.mp4$/, ".jpg")} muted loop playsInline preload="none" aria-label="BallOutBoys athlete game highlight" />
           ))}
         </div>
       </div>

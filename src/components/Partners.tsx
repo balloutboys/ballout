@@ -5,7 +5,7 @@ export default function Partners() {
   return (
     <section className="section tight">
       <div className="wrap">
-        <p className="center eyebrow" style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>Partners</p>
+        <p className="center eyebrow" style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>Sponsors</p>
         <div className="partners">
           {site.partners.map((p) => {
             const tile = (

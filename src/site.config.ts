@@ -85,6 +85,9 @@ export const site = {
     "/media/athletes/diving-stop.jpg",
   ],
 
+  /** Vertical (phone) clips. They show as tall tiles in the Highlights section only. */
+  portraitClips: ["/media/highlights/cage-swing.mp4"] as string[],
+
   /** Merch lookbook photos (merch page + home merch card). */
   merchPhotos: [
     { src: "/media/merch/black-tee.jpg", alt: "BallOutBoys black globe tee" },
@@ -99,7 +102,7 @@ export const site = {
     { src: "/media/athletes/team-finalist.jpg", title: "Perfect Game Sunday Series", detail: "Finalist" },
   ],
 
-  /** Partner / sponsor logos shown on the home page. bg = tile color behind the logo. */
+  /** Sponsor logos shown on the home page. bg = tile color behind the logo. */
   partners: [
     { name: "Midnight Vending LLC", src: "/media/partners/midnight-vending.png", bg: "#000000" },
     { name: "ECS Agency", src: "/media/partners/ecs-agency.jpg", bg: "#fbfaf6" },
