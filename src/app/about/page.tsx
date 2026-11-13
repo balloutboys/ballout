@@ -26,6 +26,8 @@ export default function AboutPage() {
           <div className="stack reveal">
             <span className="eyebrow">Our story</span>
             <h2 className="h-lg">From the cage to <span className="accent">pro ball</span> and back</h2>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={site.coachPhoto} alt={`${site.coach}, founder of ${site.name}`} className="coach-photo" />
           </div>
           <div className="stack reveal" style={{ fontSize: 18, color: "#d3dae4" }}>
             <p>After graduating college, {site.coach}, our founder, worked a year as a baseball trainer at D-BAT back home in Georgia, then quit to chase the dream of playing pro ball, grinding through indy ball on and off for two years.</p>

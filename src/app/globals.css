@@ -384,3 +384,4 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .merch-seal img { width: 96px; opacity: 0.9; }
 .page-head .head-art[src*="logo-merch"] { transform: translateY(-50%); width: min(460px, 38vw); }
 @media (max-width: 760px) { .page-head .head-art[src*="logo-merch"] { transform: none; width: 260px; } }
+.coach-photo { width: 100%; max-width: 440px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 16px; border: 1px solid var(--line); margin-top: 28px; }

@@ -6,6 +6,7 @@
 export const site = {
   name: "BallOutBoys Athletics",
   coach: "Coach Ned",
+  coachPhoto: "/media/merch/multicolor-tee.jpg",
   shortName: "BallOutBoys",
   tagline: "Baseball & softball player development",
   location: "Metro Atlanta, GA",
@@ -30,7 +31,7 @@ export const site = {
     lessonsBooking: "https://balloutboys.as.me",
     merchStore: "https://balloutboysmerch.com",
     // Your Google Business reviews link (shows a "Read on Google" button). Leave "" to hide.
-    googleReviews: "",
+    googleReviews: "https://share.google/WstQeSODwrDuPo35r",
     // Where the summer program "Reserve a spot" buttons go.
     summerSignup: "https://calendly.com/balloutboysathletics/summer-pogram",
   },
@@ -99,7 +100,6 @@ export const site = {
     { src: "/media/merch/stick-talk-tee.jpg", alt: "Stick Talk youth tee" },
     { src: "/media/merch/gods-favorite-tee.jpg", alt: "God's Favorite tee" },
     { src: "/media/merch/multicolor-tee-bw.jpg", alt: "BallOutBoys multicolor tee" },
-    { src: "/media/merch/globe-tee-field.jpg", alt: "BallOutBoys globe tee on the field" },
   ],
 
   /** Team results with photos (home + about pages). */
