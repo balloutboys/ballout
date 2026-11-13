@@ -47,6 +47,7 @@ export const site = {
     "/media/highlights/base-hit.mp4",
     "/media/highlights/night-game-pitch.mp4",
     "/media/highlights/day-game-at-bat.mp4",
+    "/media/highlights/day-at-bat-2.mp4",
   ] as string[],
 
   /**
