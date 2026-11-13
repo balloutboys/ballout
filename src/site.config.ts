@@ -79,10 +79,6 @@ export const site = {
   /** Photos that rotate behind the home page headline until heroHighlights videos are added. */
   heroPhotos: [
     "/media/athletes/power-swing.jpg",
-    "/media/athletes/pop-up-catch.jpg",
-    "/media/athletes/infield-throw.jpg",
-    "/media/athletes/slide-second.jpg",
-    "/media/athletes/diving-stop.jpg",
   ],
 
   /** Vertical (phone) clips. They show as tall tiles in the Highlights section only. */

@@ -121,12 +121,10 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--fh); font-weight: 800; line-heigh
   opacity: 0; transition: opacity 1.2s ease;
 }
 .hero-media video.on, .hero-media .hero-img.on { opacity: 1; }
-.hero-media .hero-img { background-size: cover; background-position: center; animation: kenburns 14s ease-in-out infinite alternate; }
+.hero-media .hero-img { background-size: cover; background-position: center;  }
 @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, -1%); } }
 .hero-shade { position: absolute; inset: 0; z-index: 2;
-  background:
-    linear-gradient(180deg, rgba(6,8,12,0.6) 0%, rgba(6,8,12,0) 16%, rgba(6,8,12,0) 72%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(6,8,12,0.82) 0%, rgba(6,8,12,0.55) 34%, rgba(6,8,12,0.1) 62%, rgba(6,8,12,0) 75%);
+  background: linear-gradient(180deg, rgba(6,8,12,0) 88%, var(--bg) 100%);
 }
 .hero-media.is-video .hero-shade {
   background:
@@ -134,7 +132,7 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--fh); font-weight: 800; line-heigh
     linear-gradient(90deg, rgba(6,8,12,0.88) 0%, rgba(6,8,12,0.55) 45%, rgba(6,8,12,0.25) 80%);
 }
 @media (max-width: 760px) {
-  .hero-shade { background: linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.15) 25%, rgba(6,8,12,0.7) 60%, var(--bg) 100%); }
+  .hero-shade { background: linear-gradient(180deg, rgba(6,8,12,0) 70%, var(--bg) 100%); }
 }
 .hero-content .h-xl, .hero-content .lead, .hero-tag { text-shadow: 0 2px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5); }
 .hero-fallback { position: absolute; inset: 0; overflow: hidden;
@@ -373,3 +371,9 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .clips video.tall { grid-row: span 2; height: 100%; aspect-ratio: auto; object-position: 35% 40%; }
 .clips video:last-child:not(.tall) { grid-column: span 2; }
 @media (max-width: 760px) { .clips { grid-template-columns: 1fr 1fr; grid-auto-flow: dense; } .clips video:first-child, .clips video:last-child:not(.tall) { grid-column: span 2; grid-row: auto; } .clips video.tall { grid-row: span 2; } .clips video:not(.tall):not(:first-child) { height: 100%; } }
+
+/* Hero over bright photo: keep text and buttons legible without darkening the photo */
+.hero-content .h-xl, .hero-content .lead, .hero-tag { text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.8); }
+.hero-content .lead { color: #fff; }
+.hero .btn-ghost { background: rgba(6,8,12,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-color: rgba(255,255,255,0.5); }
+.header:not(.scrolled):not(.open) .nav a { text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
