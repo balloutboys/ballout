@@ -41,6 +41,9 @@ export const site = {
    *   "/media/highlights/hitting-1.mp4"
    * Keep each clip short (5-10s), muted, under ~8 MB. They crossfade in order.
    */
+  /** What plays behind the home headline: "photos" (bright, rotating heroPhotos) or "videos" (heroHighlights). */
+  heroMode: "photos" as "photos" | "videos",
+
   heroHighlights: [
     "/media/highlights/night-at-bat.mp4",
     "/media/highlights/game-at-bat.mp4",
@@ -76,9 +79,9 @@ export const site = {
   /** Photos that rotate behind the home page headline until heroHighlights videos are added. */
   heroPhotos: [
     "/media/athletes/power-swing.jpg",
-    "/media/athletes/night-swing.jpg",
-    "/media/athletes/slide-second.jpg",
+    "/media/athletes/pop-up-catch.jpg",
     "/media/athletes/infield-throw.jpg",
+    "/media/athletes/slide-second.jpg",
     "/media/athletes/diving-stop.jpg",
   ],
 

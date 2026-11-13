@@ -7,7 +7,7 @@ import { site } from "@/site.config";
  * Falls back to athlete photos, then to an animated brand background.
  */
 export default function HighlightReel() {
-  const clips = site.heroHighlights;
+  const clips = site.heroMode === "videos" ? site.heroHighlights : [];
   const photos = site.heroPhotos.length ? site.heroPhotos : site.athletePhotos.map((p) => p.src);
   const [i, setI] = useState(0);
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -27,7 +27,7 @@ export default function HighlightReel() {
   const next = () => setI((n) => (n + 1) % clips.length);
 
   return (
-    <div className="hero-media" aria-hidden="true">
+    <div className={`hero-media${clips.length ? " is-video" : ""}`} aria-hidden="true">
       {clips.length > 0 ? (
         clips.map((src, n) => (
           <video

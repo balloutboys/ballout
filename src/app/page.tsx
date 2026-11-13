@@ -5,6 +5,7 @@ import Founders from "@/components/Founders";
 import Partners from "@/components/Partners";
 import Wins from "@/components/Wins";
 import Reviews from "@/components/Reviews";
+import Highlights from "@/components/Highlights";
 import { CtaBand, Gallery, Marquee } from "@/components/Blocks";
 import { Arrow, External } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -63,6 +64,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Highlights />
 
       <Founders />
 

@@ -118,17 +118,25 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--fh); font-weight: 800; line-heigh
 .hero-media { position: absolute; inset: 0; z-index: -2; background: #05070a; }
 .hero-media video, .hero-media .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transition: opacity 1.2s ease; filter: saturate(0.85) contrast(1.05);
+  opacity: 0; transition: opacity 1.2s ease;
 }
 .hero-media video.on, .hero-media .hero-img.on { opacity: 1; }
 .hero-media .hero-img { background-size: cover; background-position: center; animation: kenburns 14s ease-in-out infinite alternate; }
 @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, -1%); } }
 .hero-shade { position: absolute; inset: 0; z-index: 2;
   background:
-    linear-gradient(180deg, rgba(6,8,12,0.8) 0%, rgba(6,8,12,0.45) 30%, rgba(6,8,12,0.65) 62%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(6,8,12,0.88) 0%, rgba(6,8,12,0.55) 45%, rgba(6,8,12,0.25) 80%),
-    linear-gradient(0deg, rgba(0,60,133,0.22), rgba(0,60,133,0.22));
+    linear-gradient(180deg, rgba(6,8,12,0.6) 0%, rgba(6,8,12,0) 16%, rgba(6,8,12,0) 72%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(6,8,12,0.82) 0%, rgba(6,8,12,0.55) 34%, rgba(6,8,12,0.1) 62%, rgba(6,8,12,0) 75%);
 }
+.hero-media.is-video .hero-shade {
+  background:
+    linear-gradient(180deg, rgba(6,8,12,0.8) 0%, rgba(6,8,12,0.45) 30%, rgba(6,8,12,0.65) 62%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(6,8,12,0.88) 0%, rgba(6,8,12,0.55) 45%, rgba(6,8,12,0.25) 80%);
+}
+@media (max-width: 760px) {
+  .hero-shade { background: linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.15) 25%, rgba(6,8,12,0.7) 60%, var(--bg) 100%); }
+}
+.hero-content .h-xl, .hero-content .lead, .hero-tag { text-shadow: 0 2px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5); }
 .hero-fallback { position: absolute; inset: 0; overflow: hidden;
   background:
     radial-gradient(1200px 600px at 85% 20%, rgba(23,99,201,0.35), transparent 60%),
@@ -357,3 +365,9 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 @media (max-width: 760px) { .lookbook { grid-template-columns: repeat(2, 1fr); } }
 .page-head .head-art { position: absolute; right: max(20px, calc(50% - 600px)); top: 50%; transform: translateY(-38%) rotate(-4deg); width: min(360px, 32vw); pointer-events: none; filter: drop-shadow(0 20px 40px rgba(23,99,201,0.35)); }
 @media (max-width: 760px) { .page-head .head-art { position: static; transform: none; width: 220px; margin: 0 0 18px 20px; } }
+
+/* Highlights video grid */
+.clips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.clips video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); background: #000; }
+.clips video:first-child { grid-column: span 2; grid-row: span 2; height: 100%; }
+@media (max-width: 760px) { .clips { grid-template-columns: 1fr 1fr; } .clips video:first-child { grid-column: span 2; grid-row: auto; } }
