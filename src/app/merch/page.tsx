@@ -13,7 +13,7 @@ export default function MerchPage() {
   const store = site.links.merchStore;
   return (
     <>
-      <PageHead art="/brand/logo-alt-globe.png" eyebrow="Official merch" title={<>Rep the <span className="accent">brand</span></>} lead="Sport performance, streetwear, Ball Out Girls and kids gear. Add to cart here and check out securely with Shopify.">
+      <PageHead art="/brand/logo-merch.png" eyebrow="Official merch" title={<>Rep the <span className="accent">brand</span></>} lead="Sport performance, streetwear, Ball Out Girls and kids gear. Add to cart here and check out securely with Shopify.">
         <div className="btn-row" style={{ marginTop: 26 }}>
           <a href={store} target="_blank" rel="noopener" className="btn btn-primary">Shop the full store <External /></a>
         </div>
@@ -27,6 +27,8 @@ export default function MerchPage() {
               <img key={p.src} src={p.src} alt={p.alt} loading="lazy" className="reveal" />
             ))}
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo-transparent.png" alt="BallOutBoys Athletics" className="merch-mark reveal" loading="lazy" />
           <ShopifyMerch />
         </div>
       </section>
@@ -37,6 +39,11 @@ export default function MerchPage() {
         primary={{ href: site.links.skool, label: "Join free on Skool", external: true }}
         secondary={{ href: store, label: "Visit the store", external: true }}
       />
+
+      <div className="merch-seal">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/logo-alt-globe.png" alt="BallOutBoys globe logo" loading="lazy" />
+      </div>
     </>
   );
 }
