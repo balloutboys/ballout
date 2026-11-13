@@ -358,9 +358,9 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-500); font-family: var(--fh); font-weight: 800; font-size: 20px; }
 
 /* Merch lookbook */
-.lookbook { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 56px; }
-.lookbook img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
-@media (max-width: 760px) { .lookbook { grid-template-columns: repeat(2, 1fr); } }
+.lookbook { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px 56px; padding: 0 20px 14px; scrollbar-width: thin; scrollbar-color: var(--brand-500) transparent; }
+.lookbook img { flex: 0 0 auto; min-width: 0; width: calc((min(100vw, 1200px) - 40px - 42px) / 4.3); height: auto; aspect-ratio: 2 / 3; object-fit: cover; object-position: center 25%; border-radius: 14px; border: 1px solid var(--line); scroll-snap-align: start; }
+@media (max-width: 760px) { .lookbook img { width: 62vw; } }
 .page-head .head-art { position: absolute; right: max(20px, calc(50% - 600px)); top: 50%; transform: translateY(-38%) rotate(-4deg); width: min(360px, 32vw); pointer-events: none; filter: drop-shadow(0 20px 40px rgba(23,99,201,0.35)); }
 @media (max-width: 760px) { .page-head .head-art { position: static; transform: none; width: 220px; margin: 0 0 18px 20px; } }
 

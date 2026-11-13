@@ -21,10 +21,14 @@ export default function MerchPage() {
 
       <section className="section">
         <div className="wrap">
+          <div className="split reveal" style={{ alignItems: "end", marginBottom: 24 }}>
+            <div className="stack"><span className="eyebrow">Lookbook</span><h2 className="h-md">Worn by the <span className="accent">BallOutBoys</span></h2></div>
+            <p className="muted">Swipe to see more →</p>
+          </div>
           <div className="lookbook">
             {site.merchPhotos.map((p) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={p.src} src={p.src} alt={p.alt} loading="lazy" className="reveal" />
+              <img key={p.src} src={p.src} alt={p.alt} loading="lazy" />
             ))}
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
