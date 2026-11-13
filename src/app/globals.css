@@ -335,3 +335,23 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .win img { width: 100%; height: 100%; object-fit: cover; }
 .win figcaption { position: absolute; inset: auto 0 0 0; padding: 60px 22px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.88)); display: grid; gap: 10px; justify-items: start; }
 .win strong { font-family: var(--fh); font-weight: 800; font-style: italic; font-size: clamp(26px, 3vw, 36px); line-height: 1; text-transform: uppercase; }
+
+/* Reviews */
+.rating { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-self: end; }
+.rating .score { font-family: var(--fh); font-weight: 800; font-style: italic; font-size: 64px; line-height: 1; }
+.rating p { font-size: 14px; margin-top: 4px; }
+@media (max-width: 900px) { .rating { justify-self: start; } }
+.stars { display: inline-flex; gap: 2px; }
+.reviews { columns: 3 320px; column-gap: 20px; }
+.review { break-inside: avoid; margin: 0 0 20px; padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: linear-gradient(180deg, var(--surface), var(--bg-2)); }
+.review blockquote { margin: 14px 0 20px; color: #dde3eb; font-size: 16px; line-height: 1.6; }
+.review blockquote p + p { margin-top: 12px; }
+.review figcaption { display: flex; align-items: center; gap: 12px; }
+.review figcaption > span:last-child { display: grid; line-height: 1.3; }
+.review figcaption .muted { font-size: 13px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-500); font-family: var(--fh); font-weight: 800; font-size: 20px; }
+
+/* Merch lookbook */
+.lookbook { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 56px; }
+.lookbook img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
+@media (max-width: 760px) { .lookbook { grid-template-columns: repeat(2, 1fr); } }

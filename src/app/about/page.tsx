@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand, Gallery, PageHead } from "@/components/Blocks";
 import Wins from "@/components/Wins";
+import Reviews from "@/components/Reviews";
 import { site } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -66,6 +67,8 @@ export default function AboutPage() {
       )}
 
       <Wins />
+
+      <Reviews title={<>Why families <span className="accent">trust Coach Ned</span></>} />
 
       <CtaBand
         title="Train with us."

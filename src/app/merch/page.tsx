@@ -21,6 +21,12 @@ export default function MerchPage() {
 
       <section className="section">
         <div className="wrap">
+          <div className="lookbook">
+            {site.merchPhotos.map((p) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={p.src} src={p.src} alt={p.alt} loading="lazy" className="reveal" />
+            ))}
+          </div>
           <ShopifyMerch />
         </div>
       </section>

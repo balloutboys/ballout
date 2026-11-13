@@ -29,6 +29,8 @@ export const site = {
     ebookCheckout: "https://buy.stripe.com/8x25kD8lUds60O1aze3VC05",
     lessonsBooking: "https://balloutboys.as.me",
     merchStore: "https://balloutboysmerch.com",
+    // Your Google Business reviews link (shows a "Read on Google" button). Leave "" to hide.
+    googleReviews: "",
     // Where the summer program "Reserve a spot" buttons go.
     summerSignup: "https://calendly.com/balloutboysathletics/summer-pogram",
   },
@@ -75,6 +77,14 @@ export const site = {
     "/media/athletes/slide-second.jpg",
     "/media/athletes/infield-throw.jpg",
     "/media/athletes/diving-stop.jpg",
+  ],
+
+  /** Merch lookbook photos (merch page + home merch card). */
+  merchPhotos: [
+    { src: "/media/merch/black-tee.jpg", alt: "BallOutBoys black globe tee" },
+    { src: "/media/merch/globe-tee-back.jpg", alt: "BallOutBoys youth tee, back print" },
+    { src: "/media/merch/youth-long-sleeve.jpg", alt: "BallOutBoys youth long sleeve" },
+    { src: "/media/merch/stick-talk-tee.jpg", alt: "Stick Talk youth tee" },
   ],
 
   /** Team results with photos (home + about pages). */

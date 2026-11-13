@@ -4,6 +4,7 @@ import Memberships from "@/components/Memberships";
 import Founders from "@/components/Founders";
 import Partners from "@/components/Partners";
 import Wins from "@/components/Wins";
+import Reviews from "@/components/Reviews";
 import { CtaBand, Gallery, Marquee } from "@/components/Blocks";
 import { Arrow, External } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -94,6 +95,8 @@ export default function Home() {
         </section>
       )}
 
+      <Reviews ids={["steven", "karen", "matthew", "ismael", "jeremy", "larry"]} />
+
       <Wins />
 
       <section className="section">
@@ -111,11 +114,15 @@ export default function Home() {
               <p>Join the free BallOutBoys Skool community: drills, breakdowns and a team of athletes chasing the same goal.</p>
               <span className="more">Join free <External /></span>
             </a>
-            <Link href="/merch" className="card hover reveal">
+            <Link href="/merch" className="card hover reveal" style={{ display: "grid", gridTemplateColumns: "1fr 110px", gap: 20, alignItems: "center" }}>
+              <div>
               <span className="pill">Merch</span>
               <h3>Rep the brand</h3>
               <p>BallOutBoys apparel and gear. Shop the latest drop.</p>
               <span className="more">Shop merch <Arrow /></span>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={site.merchPhotos[0].src} alt={site.merchPhotos[0].alt} loading="lazy" style={{ width: 110, aspectRatio: "2/3", objectFit: "cover", borderRadius: 10 }} />
             </Link>
           </div>
         </div>

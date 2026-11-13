@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Checks, Faq, PageHead } from "@/components/Blocks";
 import { External } from "@/components/Icons";
 import { site } from "@/site.config";
+import Reviews from "@/components/Reviews";
 
 export const metadata: Metadata = {
   title: "1-on-1 Lessons",
@@ -48,6 +49,8 @@ export default function LessonsPage() {
           </p>
         </div>
       </section>
+
+      <Reviews ids={["larry", "karen", "ismael"]} title={<>1-on-1 <span className="accent">results</span></>} />
 
       <section className="section">
         <div className="wrap narrow">
