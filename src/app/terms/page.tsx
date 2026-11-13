@@ -48,7 +48,9 @@ export default function TermsPage() {
           <p>Training may be photographed or filmed. See our <Link href="/privacy">Privacy Policy</Link> for how athlete media is used and how to opt out.</p>
 
           <h2>10. Results</h2>
-          <p>Every athlete is different. We do not guarantee specific results such as roster spots, scholarships, recruitment, velocity or exit velocity gains.</p>
+          <p>Every athlete is different. Except for the Founder 30-Day Exit Velo Guarantee described below, we do not guarantee specific results such as roster spots, scholarships, recruitment, velocity or exit velocity gains.</p>
+          <h3>Founder 30-Day Exit Velo Guarantee</h3>
+          <p>Founder Members who meet the eligibility terms provided at sign-up (including attendance and completing the program as assigned) and do not gain at least 5 MPH of exit velocity, measured at their baseline and 30-day tests, receive the remedy described in those eligibility terms. Founder pricing requires a 6- or 12-month commitment; month-to-month plans are not eligible.</p>
 
           <h2>11. Intellectual property</h2>
           <p>The BallOutBoys name, logo and all content on this site, including programs, videos and written material, belong to {n} and may not be used without permission.</p>

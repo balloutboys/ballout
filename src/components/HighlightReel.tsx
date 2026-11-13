@@ -8,7 +8,7 @@ import { site } from "@/site.config";
  */
 export default function HighlightReel() {
   const clips = site.heroHighlights;
-  const photos = site.athletePhotos.map((p) => p.src);
+  const photos = site.heroPhotos.length ? site.heroPhotos : site.athletePhotos.map((p) => p.src);
   const [i, setI] = useState(0);
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
 

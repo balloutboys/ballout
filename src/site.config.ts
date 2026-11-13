@@ -45,7 +45,52 @@ export const site = {
    * Athlete photos. Drop images in /public/media/athletes/ and list them here.
    * They show in the home page gallery and the About page.
    */
-  athletePhotos: [] as { src: string; name?: string; caption?: string }[],
+  athletePhotos: [
+    { src: "/media/athletes/power-swing.jpg" },
+    { src: "/media/athletes/night-swing.jpg" },
+    { src: "/media/athletes/softball.jpg" },
+    { src: "/media/athletes/diving-stop.jpg" },
+    { src: "/media/athletes/walk-up.jpg" },
+    { src: "/media/athletes/infield-throw.jpg" },
+    { src: "/media/athletes/youth-fielding.jpg" },
+    { src: "/media/athletes/slide-second.jpg" },
+    { src: "/media/athletes/ready-third-base.jpg" },
+    { src: "/media/athletes/at-bat.jpg" },
+    { src: "/media/athletes/infield-ready.jpg" },
+  ] as { src: string; name?: string; caption?: string }[],
+
+  /** Photos that rotate behind the home page headline until heroHighlights videos are added. */
+  heroPhotos: [
+    "/media/athletes/power-swing.jpg",
+    "/media/athletes/night-swing.jpg",
+    "/media/athletes/slide-second.jpg",
+    "/media/athletes/infield-throw.jpg",
+    "/media/athletes/diving-stop.jpg",
+  ],
+
+  /** Partner / sponsor logos shown on the home page. bg = tile color behind the logo. */
+  partners: [
+    { name: "Midnight Vending LLC", src: "/media/partners/midnight-vending.png", bg: "#000000" },
+    { name: "ECS Agency", src: "/media/partners/ecs-agency.jpg", bg: "#fbfaf6" },
+    { name: "The Rack", src: "/media/partners/the-rack.png", bg: "#ffffff" },
+  ] as { name: string; src: string; bg: string; url?: string }[],
+
+  /** Founder Member grand-opening offer. Hides automatically after the deadline (end of that day, ET). */
+  founders: {
+    spots: 30,
+    deadlineLabel: "Nov 30",
+    deadline: "2026-11-30T23:59:59-05:00",
+    testDay: "First week of December",
+    guarantee: "+5 MPH",
+    guaranteeText: "exit velo in your first 30 days",
+    perks: [
+      "4 one-hour small-group sessions a week",
+      "Strength, speed & hitting in groups of 5–8",
+      "Retest every 4 weeks: watch your numbers move",
+      "Baseball & softball · ages 13+ · in person or online",
+    ],
+    fineprint: "Founder pricing requires a 6- or 12-month commitment; month-to-month is not eligible. *30-Day Exit Velo Guarantee: eligibility terms apply.",
+  },
 
   /**
    * VSL (video sales letter) videos. Use a YouTube / Vimeo link or an mp4 path
@@ -127,7 +172,7 @@ export const memberships: Membership[] = [
   {
     id: "6649c11e-40e5-4466-a785-b867d02a48bd",
     name: "Founders Member Program",
-    blurb: "Founding-member pricing and perks for the first athletes in.",
+    blurb: "Only 30 spots. Founder pricing plus the +5 MPH exit velo guarantee in your first 30 days.*",
   },
   {
     id: "aeea575c-c913-42a7-b0fb-b27e37a637e3",

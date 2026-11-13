@@ -1,6 +1,8 @@
 import Link from "next/link";
 import HighlightReel from "@/components/HighlightReel";
 import Memberships from "@/components/Memberships";
+import Founders from "@/components/Founders";
+import Partners from "@/components/Partners";
 import { CtaBand, Gallery, Marquee } from "@/components/Blocks";
 import { Arrow, External } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -10,6 +12,8 @@ const programs = [
   { n: "02", title: "Summer Program", href: "/summer", text: "An intense summer block to get bigger, faster and more explosive before the fall and next season." },
   { n: "03", title: "1-on-1 Lessons", href: "/lessons", text: "Private sessions focused on your swing, your arm and your game. Book and pay online in under a minute." },
 ];
+
+export const revalidate = 3600; // re-check the Founders deadline hourly
 
 export default function Home() {
   const { links } = site;
@@ -57,6 +61,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Founders />
 
       <Marquee words={["Ball out", "Train like a pro", "Rotational force", "Faith first", "Next level", "Metro Atlanta"]} />
 
@@ -124,6 +130,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <Partners />
 
       <CtaBand
         title={<>Ready to <span style={{ color: "#fff" }}>ball out?</span></>}

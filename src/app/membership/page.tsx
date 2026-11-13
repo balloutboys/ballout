@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import VSL from "@/components/VSL";
 import Memberships from "@/components/Memberships";
+import Founders from "@/components/Founders";
 import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
 import { Arrow } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   title: "Membership",
   description: "Join the BallOutBoys Athletics membership: year-round baseball and softball player development in metro Atlanta.",
 };
+
+export const revalidate = 3600;
 
 export default function MembershipPage() {
   return (
@@ -38,10 +41,11 @@ export default function MembershipPage() {
           </div>
           <div className="reveal">
             <Checks items={[
-              "Structured training: hitting, throwing, speed and strength",
-              "Offseason build and in-season maintenance plans",
+              "Up to 4 one-hour small-group sessions a week",
+              "Strength, speed and hitting in groups of 5–8",
+              "Retest every 4 weeks so you can watch your numbers move",
+              "Baseball & softball · ages 13+ · in person or online",
               "Pro-level habits: nutrition, recovery and routine",
-              "The mental game: handling success, failure and pressure",
               "Book and manage everything in the app",
               `Coaching from ${site.coach}, who has played the game at the pro level`,
             ]} />
@@ -62,6 +66,8 @@ export default function MembershipPage() {
           </div>
         </section>
       )}
+
+      <Founders />
 
       <section className="section alt" id="plans">
         <div className="wrap">

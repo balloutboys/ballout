@@ -118,15 +118,16 @@ h1, h2, h3, h4 { margin: 0; font-family: var(--fh); font-weight: 800; line-heigh
 .hero-media { position: absolute; inset: 0; z-index: -2; background: #05070a; }
 .hero-media video, .hero-media .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transition: opacity 1.2s ease; filter: saturate(0.9) contrast(1.05);
+  opacity: 0; transition: opacity 1.2s ease; filter: saturate(0.85) contrast(1.05);
 }
 .hero-media video.on, .hero-media .hero-img.on { opacity: 1; }
 .hero-media .hero-img { background-size: cover; background-position: center; animation: kenburns 14s ease-in-out infinite alternate; }
 @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, -1%); } }
-.hero-shade { position: absolute; inset: 0; z-index: -1;
+.hero-shade { position: absolute; inset: 0; z-index: 2;
   background:
-    linear-gradient(180deg, rgba(6,8,12,0.75) 0%, rgba(6,8,12,0.35) 35%, rgba(6,8,12,0.55) 65%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(6,8,12,0.85) 0%, rgba(6,8,12,0.2) 70%);
+    linear-gradient(180deg, rgba(6,8,12,0.8) 0%, rgba(6,8,12,0.45) 30%, rgba(6,8,12,0.65) 62%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(6,8,12,0.88) 0%, rgba(6,8,12,0.55) 45%, rgba(6,8,12,0.25) 80%),
+    linear-gradient(0deg, rgba(0,60,133,0.22), rgba(0,60,133,0.22));
 }
 .hero-fallback { position: absolute; inset: 0; overflow: hidden;
   background:
@@ -299,3 +300,32 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .waitlist input:focus { outline: none; border-color: var(--brand-400); background: rgba(255,255,255,0.07); }
 @media (max-width: 520px) { .waitlist { flex-direction: column; } }
 .success { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 12px; background: rgba(59,130,240,0.14); border: 1px solid rgba(59,130,240,0.4); color: #dbe7fb; }
+
+/* Founders offer */
+.founders { display: grid; grid-template-columns: 1.35fr 1fr; border-radius: 22px; overflow: hidden; border: 1px solid rgba(59,130,240,0.4); background: var(--bg-2); }
+.f-left { padding: 48px; }
+.f-left > * + * { margin-top: 18px; }
+.f-title { font-size: clamp(56px, 9vw, 120px); line-height: 0.85; }
+.f-title .accent { display: block; }
+.f-perks { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+.f-perks li { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 2px solid var(--line-strong); color: #e3e8ef; font-size: 16px; }
+.f-perks li span { font-family: var(--fh); font-weight: 800; font-size: 30px; line-height: 1; color: var(--brand-400); }
+.f-fine { font-size: 12.5px; color: var(--dim); }
+.f-right { padding: 44px 40px; background: linear-gradient(160deg, #0a56a8 0%, var(--brand) 60%, #022452 100%); }
+.f-badge { display: inline-block; border: 2px solid #fff; padding: 8px 14px; font-family: var(--fh); font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; font-size: 15px; }
+.f-label { margin-top: 26px; font-family: var(--fh); font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; }
+.f-big { font-family: var(--fh); font-weight: 800; font-size: clamp(72px, 10vw, 120px); line-height: 0.9; }
+.f-sub { font-size: 22px; font-weight: 600; }
+.f-sub2 { color: #cfe0f7; font-size: 15px; }
+.f-rows { margin: 24px 0; }
+.f-rows div { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.45); }
+.f-rows div:last-child { border-bottom: 1px solid rgba(255,255,255,0.45); }
+.f-rows dt { font-family: var(--fh); font-weight: 800; font-size: 32px; line-height: 1; text-transform: uppercase; }
+.f-rows dd { margin: 0; font-weight: 500; }
+@media (max-width: 900px) { .founders { grid-template-columns: 1fr; } .f-left, .f-right { padding: 32px 22px; } .f-perks { grid-template-columns: 1fr; } }
+
+/* Partners */
+.partners { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+.partner { display: grid; place-items: center; aspect-ratio: 3 / 2; border-radius: 14px; border: 1px solid var(--line); overflow: hidden; padding: 14px; }
+.partner img { max-height: 100%; max-width: 100%; object-fit: contain; }
+@media (max-width: 560px) { .partners { grid-template-columns: 1fr 1fr; } }
