@@ -410,3 +410,30 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .sticky-txt { display: grid; line-height: 1.25; min-width: 0; }
 .sticky-txt strong { font-family: var(--fh); font-weight: 800; font-size: 18px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sticky-txt span { font-size: 13px; color: var(--muted); }
+
+/* Join popup */
+.popup-bg { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.72); backdrop-filter: blur(4px); display: grid; place-items: center; padding: 16px; animation: fadein .25s ease; }
+@keyframes fadein { from { opacity: 0; } }
+.popup { position: relative; width: min(860px, 100%); max-height: calc(100svh - 32px); overflow: auto; display: grid; grid-template-columns: 0.9fr 1fr; border-radius: 20px; background: var(--bg-2); border: 1px solid rgba(59,130,240,0.45); box-shadow: 0 40px 100px -20px rgba(0,0,0,0.9); animation: popin .3s ease; }
+@keyframes popin { from { transform: translateY(16px) scale(.98); opacity: 0; } }
+.popup-img { width: 100%; height: 100%; min-height: 100%; object-fit: cover; object-position: center 15%; }
+.popup-body { padding: 36px 32px 28px; }
+.popup-kicker { font-family: var(--fh); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-400); }
+.popup h2 { font-size: clamp(34px, 5vw, 48px); font-style: italic; margin: 6px 0 10px; }
+.popup-sub { margin-top: 10px; font-weight: 600; color: #e3e8ef; }
+.popup-form { display: grid; gap: 14px; margin-top: 20px; }
+.popup-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: #cfd6e0; }
+.popup-form input:not([type=checkbox]) { min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.05); color: #fff; font: inherit; font-size: 16px; }
+.popup-form input:focus { outline: none; border-color: var(--brand-400); }
+.popup-form .popup-consent { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.popup-consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--brand-500); flex: none; }
+.popup-legal { text-align: center; font-size: 13px; color: var(--muted); }
+.popup-legal a { text-decoration: underline; }
+.popup-x { position: absolute; top: 10px; right: 10px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgba(6,8,12,0.75); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+@media (max-width: 720px) {
+  .popup { grid-template-columns: 1fr; }
+  .popup-img { height: 220px; min-height: 0; }
+  .popup-body { padding: 24px 20px; }
+}
+iframe[hidden] { display: none !important; }
+.popup-img { grid-row: 1; align-self: stretch; height: 100%; }

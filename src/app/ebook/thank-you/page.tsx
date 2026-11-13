@@ -20,8 +20,8 @@ export default function ThankYouPage() {
         <div className="grid g2">
           <div className="card stack">
             <div className="num">01</div>
-            <h3>Join the Skool community</h3>
-            <p>Your access is open now. Join on the web with the same email you checked out with, then grab the app.</p>
+            <h3>Your free month of Skool</h3>
+            <p>One month of the paid Skool community is on us. Join on the web with the same email you checked out with, then grab the app.</p>
             <div className="btn-row">
               <a href={k.skoolClassroom} target="_blank" rel="noopener" className="btn btn-primary btn-sm">Join the community <External /></a>
               <a href={k.skoolApp} target="_blank" rel="noopener" className="btn btn-ghost btn-sm">Get the Skool app</a>
@@ -29,9 +29,10 @@ export default function ThankYouPage() {
           </div>
           <div className="card stack">
             <div className="num">02</div>
-            <h3>Claim your free 3-day trial</h3>
-            <p>Your ebook comes with a free 3-day trial of BallOutBoys Athletics training. Reply to your receipt email to claim it and set up your days.</p>
+            <h3>Book your advising call</h3>
+            <p>Book your athlete advising call with {site.coach}. We&rsquo;ll talk goals and set up your 3-day free trial of BallOutBoys training.</p>
             <div className="btn-row">
+              <a href={k.advisingCall} target="_blank" rel="noopener" className="btn btn-primary btn-sm">Book my call <External /></a>
               <Link href="/membership" className="btn btn-ghost btn-sm">See memberships</Link>
             </div>
           </div>

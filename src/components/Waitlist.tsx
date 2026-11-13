@@ -20,9 +20,9 @@ export default function Waitlist({ tag, button = "Notify me" }: { tag: string; b
       className="waitlist"
       method="post"
       action={`${site.shopify.storefrontUrl}/contact#newsletter`}
-      target="_blank"
+      target="bob-waitlist-frame"
       acceptCharset="UTF-8"
-      onSubmit={() => setTimeout(() => setDone(true), 50)}
+      onSubmit={() => setTimeout(() => setDone(true), 300)}
     >
       <input type="hidden" name="form_type" value="customer" />
       <input type="hidden" name="utf8" value="✓" />
@@ -30,6 +30,7 @@ export default function Waitlist({ tag, button = "Notify me" }: { tag: string; b
       <label htmlFor={`wl-${tag}`} style={{ position: "absolute", left: -9999 }}>Email</label>
       <input id={`wl-${tag}`} type="email" name="contact[email]" required placeholder="Your email" autoComplete="email" />
       <button type="submit" className="btn btn-primary">{button}</button>
+      <iframe name="bob-waitlist-frame" title="waitlist" hidden />
     </form>
   );
 }

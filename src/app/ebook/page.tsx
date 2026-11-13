@@ -21,8 +21,8 @@ const sections = [
 
 const stack = [
   { t: "How To Move Like A Pro Before You're A Pro", d: "The full ebook, all five sections" },
-  { t: "BallOutBoys Skool community access", d: "Drills, breakdowns and athletes chasing the same goal" },
-  { t: "Free 3-day BallOutBoys training trial", d: "Train with Coach Ned and see the difference" },
+  { t: "One month of the paid Skool community, free", d: "Drills, breakdowns and athletes chasing the same goal" },
+  { t: "Book an athlete advising call for a 3-day free trial", d: "Talk with Coach Ned, then train free for 3 days" },
 ];
 
 export default function EbookPage() {
@@ -131,7 +131,7 @@ export default function EbookPage() {
           <Faq items={[
             { q: "How do I get the ebook?", a: "Right after checkout, your ebook and your Skool community access link are sent to the email you paid with. Check spam if it isn't there in a few minutes." },
             { q: "Who is it for?", a: "High school and college baseball and softball players who are serious about the next level. Parents get a lot out of it too." },
-            { q: "How do I claim the 3-day training trial?", a: "Reply to your receipt email to claim it and set up your days." },
+            { q: "How do I get the 3-day free trial?", a: "After checkout, book your athlete advising call from the thank-you page. We'll set up your 3 free training days on the call." },
             { q: "Is checkout secure?", a: "Yes. Checkout runs on Stripe: card, Apple Pay or Google Pay. We never see your card details." },
             { q: "Can I get a refund?", a: "Because the ebook is delivered instantly, all sales are final. If something goes wrong with delivery, reply to your receipt and we'll fix it." },
           ]} />
@@ -143,7 +143,7 @@ export default function EbookPage() {
         <div className="wrap">
           <div className="cta-band reveal">
             <h2 className="h-lg">The habits start now.</h2>
-            <p className="lead">The ebook, Skool community access and a free 3-day training trial. {price}, one time.</p>
+            <p className="lead">The ebook, one month of the paid Skool community free, and an athlete advising call for a 3-day free trial. {price}, one time.</p>
             <div className="btn-row" style={{ justifyContent: "center", marginTop: 28 }}><BuyBtn white /></div>
             <p className="trust" style={{ color: "#cfe0f7", marginTop: 14 }}>Secure checkout by Stripe</p>
           </div>

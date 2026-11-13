@@ -6,6 +6,7 @@
 export const site = {
   name: "BallOutBoys Athletics",
   coach: "Coach Ned",
+  legalName: "Ball Out Boys, LLC",
   coachPhoto: "/media/merch/multicolor-tee.jpg",
   shortName: "BallOutBoys",
   tagline: "Baseball & softball player development",
@@ -34,6 +35,8 @@ export const site = {
     skoolClassroom: "https://www.skool.com/the-rotational-force-blueprint-4992/classroom/623a61f2",
     skoolApp: "https://apps.apple.com/app/id6447270545",
     lessonsBooking: "https://balloutboys.as.me",
+    // Athlete advising call (ebook bonus: 3-day free trial). Replace with your own booking link.
+    advisingCall: "https://balloutboys.as.me",
     merchStore: "https://balloutboysmerch.com",
     // Your Google Business reviews link (shows a "Read on Google" button). Leave "" to hide.
     googleReviews: "https://share.google/WstQeSODwrDuPo35r",
@@ -122,6 +125,9 @@ export const site = {
     { name: "Jayleigh's Sideline Shots", src: "/media/partners/jayleighs-sideline-shots.png", bg: "#000000" },
   ] as { name: string; src: string; bg: string; url?: string }[],
 
+  /** Join popup (shows once a week per visitor). */
+  popup: { image: "/media/merch/five-star-hoodie.jpg" },
+
   /** Founder Member grand-opening offer. Hides automatically after the deadline (end of that day, ET). */
   founders: {
     spots: 30,
@@ -144,10 +150,9 @@ export const site = {
    * in /public/media/. Empty shows a "video coming soon" frame.
    */
   vsl: {
-    membership: "https://youtu.be/l7GpSgUfe7E",
-    summer: "",
-    // In-season VSL: shows as a second video on the Membership page once set.
-    inSeason: "",
+    // In-season VSL: plays at the top of the Membership page.
+    membership: "",
+    summer: "https://youtu.be/l7GpSgUfe7E",
   },
 
   /** Acuity: Stripe is connected inside Acuity (Business Settings > Payment Settings). */
@@ -188,7 +193,7 @@ export const site = {
     dates: "June 1 – July 31",
     ages: "Ages 13+ · baseball & softball",
     location: "Metro Atlanta",
-    price: "TBA",
+    price: "Book your free call",
     spots: "Limited spots",
   },
 };

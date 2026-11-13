@@ -14,7 +14,7 @@ export default function SummerPage() {
     { k: "Dates", v: s.dates },
     { k: "Who", v: s.ages },
     { k: "Where", v: s.location },
-    { k: s.price ? "Price" : "Spots", v: s.price || s.spots },
+    { k: "Price", v: s.price },
   ];
   return (
     <>
@@ -102,7 +102,7 @@ export default function SummerPage() {
           <Faq items={[
             { q: "Who can join?", a: `${s.ages}. All skill levels who are ready to work.` },
             { q: "When is it?", a: `${s.dates}, ${s.year}. Reserve your spot now and you'll get the full schedule.` },
-            { q: "How much does it cost?", a: s.price === "TBA" ? "Pricing will be announced soon. Reserve your spot now to be first in line." : s.price },
+            { q: "How much does it cost?", a: "Book your free call below and we'll walk you through pricing and whether the program is the right fit." },
             { q: "What should my athlete bring?", a: "Glove, bat, training shoes, water and a ready-to-work attitude." },
             { q: "Can members join?", a: "Yes. Members and non-members can both join the summer program." },
           ]} />

@@ -26,7 +26,7 @@ export default function MembershipPage() {
             <p className="lead">Watch the video, then pick your plan. This is how BallOutBoys athletes build strength, movement and the habits that get them seen.</p>
           </div>
           <div style={{ maxWidth: 960, margin: "40px auto 0" }}>
-            <VSL url={site.vsl.membership} title="Watch: The BallOutBoys Membership" />
+            <VSL url={site.vsl.membership} title="Watch: In-Season Training" />
           </div>
           <div className="btn-row" style={{ justifyContent: "center", marginTop: 32 }}>
             <a href="#plans" className="btn btn-primary">Choose your plan <Arrow /></a>
@@ -54,20 +54,6 @@ export default function MembershipPage() {
           </div>
         </div>
       </section>
-
-      {site.vsl.inSeason && (
-        <section className="section alt">
-          <div className="wrap split">
-            <div className="stack reveal">
-              <span className="eyebrow">In-season training</span>
-              <h2 className="h-lg">Stay sharp <span className="accent">all season</span></h2>
-              <p className="lead">Keep the strength you built in the offseason and keep getting better while you play.</p>
-              <div className="btn-row"><a href="#plans" className="btn btn-primary">Choose your plan <Arrow /></a></div>
-            </div>
-            <div className="reveal"><VSL url={site.vsl.inSeason} title="Watch: In-Season Training" /></div>
-          </div>
-        </section>
-      )}
 
       <Founders />
 

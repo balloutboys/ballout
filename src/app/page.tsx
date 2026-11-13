@@ -107,7 +107,7 @@ export default function Home() {
           <Link href="/ebook" className="card feature hover reveal" style={{ padding: 36 }}>
             <span className="pill">Ebook · Out now</span>
             <h3 style={{ fontSize: 40, marginTop: 16 }}>How to move like a pro before you&rsquo;re a pro</h3>
-            <p>Mentality, nutrition, the weight room, discipline, money, God and your circle. Includes Skool community access and a free 3-day training trial.</p>
+            <p>Mentality, nutrition, the weight room, discipline, money, God and your circle. Includes a free month of the paid Skool community and an advising call for a 3-day free trial.</p>
             <span className="more">Get the ebook <Arrow /></span>
           </Link>
           <div className="grid" style={{ gap: 20 }}>
