@@ -3,6 +3,7 @@ import HighlightReel from "@/components/HighlightReel";
 import Memberships from "@/components/Memberships";
 import Founders from "@/components/Founders";
 import Partners from "@/components/Partners";
+import Wins from "@/components/Wins";
 import { CtaBand, Gallery, Marquee } from "@/components/Blocks";
 import { Arrow, External } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -92,6 +93,8 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      <Wins />
 
       <section className="section">
         <div className="wrap grid g2">

@@ -329,3 +329,9 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .partner { display: grid; place-items: center; aspect-ratio: 3 / 2; border-radius: 14px; border: 1px solid var(--line); overflow: hidden; padding: 14px; }
 .partner img { max-height: 100%; max-width: 100%; object-fit: contain; }
 @media (max-width: 560px) { .partners { grid-template-columns: 1fr 1fr; } }
+
+/* Wins */
+.win { margin: 0; position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4 / 3; background: var(--surface); }
+.win img { width: 100%; height: 100%; object-fit: cover; }
+.win figcaption { position: absolute; inset: auto 0 0 0; padding: 60px 22px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.88)); display: grid; gap: 10px; justify-items: start; }
+.win strong { font-family: var(--fh); font-weight: 800; font-style: italic; font-size: clamp(26px, 3vw, 36px); line-height: 1; text-transform: uppercase; }

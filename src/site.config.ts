@@ -39,7 +39,11 @@ export const site = {
    *   "/media/highlights/hitting-1.mp4"
    * Keep each clip short (5-10s), muted, under ~8 MB. They crossfade in order.
    */
-  heroHighlights: [] as string[],
+  heroHighlights: [
+    "/media/highlights/night-at-bat.mp4",
+    "/media/highlights/game-at-bat.mp4",
+    "/media/highlights/base-hit.mp4",
+  ] as string[],
 
   /**
    * Athlete photos. Drop images in /public/media/athletes/ and list them here.
@@ -49,6 +53,11 @@ export const site = {
     { src: "/media/athletes/power-swing.jpg" },
     { src: "/media/athletes/night-swing.jpg" },
     { src: "/media/athletes/softball.jpg" },
+    { src: "/media/athletes/college-portrait.jpg" },
+    { src: "/media/athletes/pop-up-catch.jpg" },
+    { src: "/media/athletes/dugout.jpg" },
+    { src: "/media/athletes/pride-ready.jpg" },
+    { src: "/media/athletes/second-base.jpg" },
     { src: "/media/athletes/diving-stop.jpg" },
     { src: "/media/athletes/walk-up.jpg" },
     { src: "/media/athletes/infield-throw.jpg" },
@@ -66,6 +75,12 @@ export const site = {
     "/media/athletes/slide-second.jpg",
     "/media/athletes/infield-throw.jpg",
     "/media/athletes/diving-stop.jpg",
+  ],
+
+  /** Team results with photos (home + about pages). */
+  wins: [
+    { src: "/media/athletes/team-champions.jpg", title: "42 Classic Champions", detail: "2025 · Training Legends" },
+    { src: "/media/athletes/team-finalist.jpg", title: "Perfect Game Sunday Series", detail: "Finalist" },
   ],
 
   /** Partner / sponsor logos shown on the home page. bg = tile color behind the logo. */

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand, Gallery, PageHead } from "@/components/Blocks";
+import Wins from "@/components/Wins";
 import { site } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -63,6 +64,8 @@ export default function AboutPage() {
           </div>
         </section>
       )}
+
+      <Wins />
 
       <CtaBand
         title="Train with us."

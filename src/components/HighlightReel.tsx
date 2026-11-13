@@ -35,6 +35,7 @@ export default function HighlightReel() {
             ref={(el) => { refs.current[n] = el; }}
             className={n === i ? "on" : ""}
             src={src}
+            poster={src.replace(/\.mp4$/, ".jpg")}
             muted
             playsInline
             autoPlay={n === 0}
