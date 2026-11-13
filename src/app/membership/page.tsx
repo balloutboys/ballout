@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import VSL from "@/components/VSL";
 import Memberships from "@/components/Memberships";
 import Founders from "@/components/Founders";
+import VideoBackdrop from "@/components/VideoBackdrop";
 import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
 import { Arrow } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -16,7 +17,8 @@ export const revalidate = 3600;
 export default function MembershipPage() {
   return (
     <>
-      <section className="page-head" style={{ paddingBottom: 80 }}>
+      <section className="page-head has-video" style={{ paddingBottom: 80 }}>
+        <VideoBackdrop start={3} />
         <div className="wrap">
           <div className="center stack" style={{ maxWidth: 900, margin: "0 auto" }}>
             <span className="eyebrow">BallOutBoys Membership</span>

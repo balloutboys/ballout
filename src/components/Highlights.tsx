@@ -1,36 +1,21 @@
-"use client";
-import { useEffect, useRef } from "react";
+import Link from "next/link";
+import VideoBackdrop from "./VideoBackdrop";
+import { Arrow } from "./Icons";
 import { site } from "@/site.config";
 
-/** Muted, looping highlight clips that only play while on screen. */
+/** Full-width band with highlight clips faded in the background. */
 export default function Highlights() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [first, ...rest] = site.heroHighlights;
-  const clips = first ? [{ src: first, tall: false }, ...site.portraitClips.map((src) => ({ src, tall: true })), ...rest.map((src) => ({ src, tall: false }))] : [];
-
-  useEffect(() => {
-    const vids = ref.current?.querySelectorAll("video");
-    if (!vids?.length || !("IntersectionObserver" in window)) return;
-    const io = new IntersectionObserver((es) => es.forEach((e) => {
-      const v = e.target as HTMLVideoElement;
-      if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
-    }), { threshold: 0.25 });
-    vids.forEach((v) => io.observe(v));
-    return () => io.disconnect();
-  }, []);
-
-  if (!clips.length || site.heroMode === "videos") return null;
+  if (!site.heroHighlights.length) return null;
   return (
-    <section className="section alt">
-      <div className="wrap">
-        <div className="stack reveal" style={{ marginBottom: 36 }}>
-          <span className="eyebrow">Highlights</span>
-          <h2 className="h-lg">Game <span className="accent">film</span></h2>
-        </div>
-        <div className="clips" ref={ref}>
-          {clips.map(({ src, tall }) => (
-            <video key={src} className={tall ? "tall" : undefined} src={src} poster={src.replace(/\.mp4$/, ".jpg")} muted loop playsInline preload="none" aria-label="BallOutBoys athlete game highlight" />
-          ))}
+    <section className="reel-band">
+      <VideoBackdrop />
+      <div className="wrap center stack-lg reveal">
+        <span className="eyebrow" style={{ justifyContent: "center" }}>Game film</span>
+        <h2 className="h-xl">Built in the cage. <span className="accent">Proven in the game.</span></h2>
+        <p className="lead">Real BallOutBoys athletes putting the work on display.</p>
+        <div className="btn-row">
+          <Link href="/membership" className="btn btn-primary">Start training <Arrow /></Link>
+          <Link href="/lessons" className="btn btn-ghost">Book a lesson</Link>
         </div>
       </div>
     </section>
