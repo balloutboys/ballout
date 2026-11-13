@@ -36,7 +36,7 @@ export const site = {
     skoolApp: "https://apps.apple.com/app/id6447270545",
     lessonsBooking: "https://balloutboys.as.me",
     // Athlete advising call (ebook bonus: 3-day free trial). Replace with your own booking link.
-    advisingCall: "https://balloutboys.as.me",
+    advisingCall: "https://calendly.com/balloutboysathletics/strategy-call",
     merchStore: "https://balloutboysmerch.com",
     // Your Google Business reviews link (shows a "Read on Google" button). Leave "" to hide.
     googleReviews: "https://share.google/WstQeSODwrDuPo35r",

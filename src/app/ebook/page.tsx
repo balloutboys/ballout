@@ -21,7 +21,7 @@ const sections = [
 
 const stack = [
   { t: "How To Move Like A Pro Before You're A Pro", d: "The full ebook, all five sections" },
-  { t: "One month of the paid Skool community, free", d: "Drills, breakdowns and athletes chasing the same goal" },
+  { t: "FREE Skool community + one month of the paid Skool community FREE", d: "Drills, breakdowns and athletes chasing the same goal" },
   { t: "Book an athlete advising call for a 3-day free trial", d: "Talk with Coach Ned, then train free for 3 days" },
 ];
 
@@ -143,7 +143,7 @@ export default function EbookPage() {
         <div className="wrap">
           <div className="cta-band reveal">
             <h2 className="h-lg">The habits start now.</h2>
-            <p className="lead">The ebook, one month of the paid Skool community free, and an athlete advising call for a 3-day free trial. {price}, one time.</p>
+            <p className="lead">The ebook, the free Skool community plus one month of the paid community free, and an athlete advising call for a 3-day free trial. {price}, one time.</p>
             <div className="btn-row" style={{ justifyContent: "center", marginTop: 28 }}><BuyBtn white /></div>
             <p className="trust" style={{ color: "#cfe0f7", marginTop: 14 }}>Secure checkout by Stripe</p>
           </div>

@@ -20,8 +20,8 @@ export default function ThankYouPage() {
         <div className="grid g2">
           <div className="card stack">
             <div className="num">01</div>
-            <h3>Your free month of Skool</h3>
-            <p>One month of the paid Skool community is on us. Join on the web with the same email you checked out with, then grab the app.</p>
+            <h3>Your Skool access</h3>
+            <p>You get the free Skool community plus one month of the paid community on us. Join on the web with the same email you checked out with, then grab the app.</p>
             <div className="btn-row">
               <a href={k.skoolClassroom} target="_blank" rel="noopener" className="btn btn-primary btn-sm">Join the community <External /></a>
               <a href={k.skoolApp} target="_blank" rel="noopener" className="btn btn-ghost btn-sm">Get the Skool app</a>
