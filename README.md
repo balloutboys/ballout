@@ -11,7 +11,7 @@ Next.js (App Router), deployed on Vercel. No database, no monthly tools beyond w
 | `/summer` | VSL landing page for the summer program |
 | `/lessons` | 1-on-1 lessons with the Acuity booking calendar embedded (payments via Stripe in Acuity) |
 | `/merch` | Merch: Shopify Buy Button collection on the page, or category cards linking to balloutboysmerch.com |
-| `/ebook` | Ebook sales page (Stripe checkout); `/ebook/thank-you` is the post-purchase page |
+| `/ebook` | One-page ebook funnel with Stripe checkout and a sticky buy bar; `/ebook/thank-you` is the post-purchase page (set it as the Stripe Payment Link redirect) |
 | `/ghosthop` | Coming 2027 teaser |
 | `/about`, `/privacy`, `/terms` | About us and legal |
 | `/links` | Link-in-bio page with every link (use it in your Instagram/TikTok bio) |

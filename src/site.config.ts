@@ -28,6 +28,11 @@ export const site = {
     onlineStore: "https://www.balloutboysathletics.com",
     skool: "https://www.skool.com/the-rotational-force-blueprint-4992/about",
     ebookCheckout: "https://buy.stripe.com/8x25kD8lUds60O1aze3VC05",
+    ebookPrice: "$29.99",
+    // Stripe Payment Link > After payment > "Don't show confirmation page" > redirect to this page:
+    ebookThankYou: "https://www.balloutboysathletics.com/ebook/thank-you",
+    skoolClassroom: "https://www.skool.com/the-rotational-force-blueprint-4992/classroom/623a61f2",
+    skoolApp: "https://apps.apple.com/app/id6447270545",
     lessonsBooking: "https://balloutboys.as.me",
     merchStore: "https://balloutboysmerch.com",
     // Your Google Business reviews link (shows a "Read on Google" button). Leave "" to hide.
