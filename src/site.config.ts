@@ -107,7 +107,6 @@ export const site = {
   wins: [
     { src: "/media/athletes/team-champions.jpg", title: "42 Classic Champions", detail: "2025 · Training Legends" },
     { src: "/media/athletes/team-finalist.jpg", title: "Perfect Game Sunday Series", detail: "Finalist" },
-    { src: "/media/athletes/team-fathers-day-pg-major.jpg", title: "Father's Day Tournament", detail: "PG Major" },
   ],
 
   /** Sponsor logos shown on the home page. bg = tile color behind the logo. */
