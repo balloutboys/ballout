@@ -62,6 +62,7 @@ export const site = {
     { src: "/media/athletes/power-swing.jpg" },
     { src: "/media/athletes/night-swing.jpg" },
     { src: "/media/athletes/softball.jpg" },
+    { src: "/media/athletes/captured-by-jss.jpg", caption: "Photo: Jayleigh's Sideline Shots" },
     { src: "/media/athletes/college-portrait.jpg" },
     { src: "/media/athletes/pop-up-catch.jpg" },
     { src: "/media/athletes/dugout.jpg" },
@@ -106,6 +107,7 @@ export const site = {
   wins: [
     { src: "/media/athletes/team-champions.jpg", title: "42 Classic Champions", detail: "2025 · Training Legends" },
     { src: "/media/athletes/team-finalist.jpg", title: "Perfect Game Sunday Series", detail: "Finalist" },
+    { src: "/media/athletes/team-fathers-day-pg-major.jpg", title: "Father's Day Tournament", detail: "PG Major" },
   ],
 
   /** Sponsor logos shown on the home page. bg = tile color behind the logo. */
@@ -113,6 +115,7 @@ export const site = {
     { name: "Midnight Vending LLC", src: "/media/partners/midnight-vending.png", bg: "#000000" },
     { name: "ECS Agency", src: "/media/partners/ecs-agency.jpg", bg: "#fbfaf6" },
     { name: "The Rack", src: "/media/partners/the-rack.png", bg: "#ffffff" },
+    { name: "Jayleigh's Sideline Shots", src: "/media/partners/jayleighs-sideline-shots.png", bg: "#000000" },
   ] as { name: string; src: string; bg: string; url?: string }[],
 
   /** Founder Member grand-opening offer. Hides automatically after the deadline (end of that day, ET). */

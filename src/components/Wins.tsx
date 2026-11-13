@@ -9,7 +9,7 @@ export default function Wins() {
           <span className="eyebrow">Wins</span>
           <h2 className="h-lg">Hardware <span className="accent">earned</span></h2>
         </div>
-        <div className="grid g2">
+        <div className={`grid ${site.wins.length % 3 === 0 ? "g3" : "g2"}`}>
           {site.wins.map((w) => (
             <figure key={w.src} className="win reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
