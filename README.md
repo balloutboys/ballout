@@ -29,6 +29,9 @@ Put images in `public/media/athletes/` and list them in `athletePhotos` with an 
 ### Add the VSL videos
 Set `vsl.membership` and `vsl.summer` to a YouTube/Vimeo link (unlisted is fine) or an mp4 path.
 
+### Ghosthop waitlist
+The form on `/ghosthop` adds people to Shopify > Customers as email subscribers tagged `ghosthop-waitlist`. When it drops, send a campaign from Shopify > Marketing > Shopify Email to customers with that tag.
+
 ### Merch on the page (Shopify + Tapstitch)
 Tapstitch syncs products to Shopify, so the site just reads from Shopify. In Shopify admin: Sales channels > Buy Button > Create a Buy Button > Collection. From the generated code copy `domain`, `storefrontAccessToken` and the collection `id` into `shopify` in `site.config.ts`. Products then show with Add to cart and Shopify checkout right on `/merch`.
 

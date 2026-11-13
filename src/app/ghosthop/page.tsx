@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { External } from "@/components/Icons";
-import { site } from "@/site.config";
+import Waitlist from "@/components/Waitlist";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Ghosthop · Coming 2027",
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function GhosthopPage() {
-  const waitlist = site.links.ghosthopWaitlist || site.links.skool;
   return (
     <section className="hero short" style={{ minHeight: "100svh", alignItems: "center" }}>
       <div className="hero-media" aria-hidden="true">
@@ -23,12 +22,10 @@ export default function GhosthopPage() {
       <div className="wrap center stack-lg" style={{ paddingTop: 120, paddingBottom: 80 }}>
         <span className="pill" style={{ margin: "0 auto" }}>Coming 2027</span>
         <h1 className="h-xl" style={{ letterSpacing: "0.02em" }}>Ghost<span className="accent">hop</span></h1>
-        <p className="lead">The next thing from BallOutBoys Athletics. We&rsquo;re building it now. Be the first to know when it drops.</p>
-        <div className="btn-row" style={{ justifyContent: "center" }}>
-          <a href={waitlist} target="_blank" rel="noopener" className="btn btn-primary">Get early access <External /></a>
-        </div>
+        <p className="lead">The next product from BallOutBoys Athletics. We&rsquo;re building it now. Join the waitlist and be the first to know when it drops.</p>
+        <Waitlist tag="ghosthop-waitlist" button="Join the waitlist" />
         <p className="muted" style={{ fontSize: 14 }}>
-          {site.links.ghosthopWaitlist ? "Join the waitlist for first access." : "Join the free BallOutBoys Skool community. Members hear about Ghosthop first."}
+          Get an email the moment Ghosthop drops. No spam, unsubscribe anytime. See our <Link className="accent" href="/privacy">Privacy Policy</Link>.
         </p>
       </div>
     </section>

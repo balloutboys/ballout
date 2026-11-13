@@ -37,8 +37,9 @@ export default function PrivacyPage() {
           <ul>
             <li><strong>Beturr</strong>: client accounts, memberships and the BallOutBoys app</li>
             <li><strong>Acuity Scheduling</strong>: 1-on-1 lesson booking</li>
+            <li><strong>Calendly</strong>: summer program reservations</li>
             <li><strong>Stripe</strong>: payment processing</li>
-            <li><strong>Shopify</strong> and our print-on-demand partner: merch orders and shipping</li>
+            <li><strong>Shopify</strong> and our print-on-demand partner (Tapstitch): merch orders, shipping, and our email list and product waitlists</li>
             <li><strong>Skool</strong>: our online community</li>
             <li>Website hosting and analytics providers</li>
           </ul>

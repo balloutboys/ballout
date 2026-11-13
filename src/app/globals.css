@@ -280,3 +280,22 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Merch collection tabs */
+.col-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+.col-tab { position: relative; aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; border: 2px solid var(--line); background: var(--surface); cursor: pointer; padding: 0; color: #fff; text-align: left; transition: border-color .2s, transform .2s; }
+.col-tab img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: opacity .2s, transform .4s; }
+.col-tab::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(0,0,0,0.85)); }
+.col-tab span { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; font-family: var(--fh); font-weight: 800; font-style: italic; font-size: 22px; line-height: 1; text-transform: uppercase; }
+.col-tab:hover img { opacity: 0.75; transform: scale(1.04); }
+.col-tab.on { border-color: var(--brand-400); box-shadow: 0 0 0 4px rgba(59,130,240,0.2); }
+.col-tab.on img { opacity: 0.85; }
+@media (max-width: 760px) { .col-tabs { grid-template-columns: repeat(2, 1fr); } .col-tab span { font-size: 18px; } }
+
+/* Waitlist form */
+.waitlist { display: flex; gap: 10px; max-width: 520px; margin: 0 auto; }
+.waitlist input { flex: 1; min-width: 0; min-height: 52px; padding: 0 18px; border-radius: 10px; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.04); color: #fff; font: inherit; font-size: 16px; }
+.waitlist input::placeholder { color: var(--dim); }
+.waitlist input:focus { outline: none; border-color: var(--brand-400); background: rgba(255,255,255,0.07); }
+@media (max-width: 520px) { .waitlist { flex-direction: column; } }
+.success { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 12px; background: rgba(59,130,240,0.14); border: 1px solid rgba(59,130,240,0.4); color: #dbe7fb; }

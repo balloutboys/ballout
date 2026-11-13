@@ -43,11 +43,25 @@ export default function MembershipPage() {
               "Pro-level habits: nutrition, recovery and routine",
               "The mental game: handling success, failure and pressure",
               "Book and manage everything in the app",
-              "Coaching from someone who has played the game at the pro level",
+              `Coaching from ${site.coach}, who has played the game at the pro level`,
             ]} />
           </div>
         </div>
       </section>
+
+      {site.vsl.inSeason && (
+        <section className="section alt">
+          <div className="wrap split">
+            <div className="stack reveal">
+              <span className="eyebrow">In-season training</span>
+              <h2 className="h-lg">Stay sharp <span className="accent">all season</span></h2>
+              <p className="lead">Keep the strength you built in the offseason and keep getting better while you play.</p>
+              <div className="btn-row"><a href="#plans" className="btn btn-primary">Choose your plan <Arrow /></a></div>
+            </div>
+            <div className="reveal"><VSL url={site.vsl.inSeason} title="Watch: In-Season Training" /></div>
+          </div>
+        </section>
+      )}
 
       <section className="section alt" id="plans">
         <div className="wrap">

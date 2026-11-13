@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import VSL from "@/components/VSL";
 import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
-import { External } from "@/components/Icons";
 import { site } from "@/site.config";
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function SummerPage() {
             <VSL url={site.vsl.summer} title={`Watch: Summer ${s.year} Program`} />
           </div>
           <div className="btn-row" style={{ justifyContent: "center", marginTop: 32 }}>
-            <a href={site.links.summerSignup} target="_blank" rel="noopener" className="btn btn-primary">Reserve my spot <External /></a>
+            <a href="#reserve" className="btn btn-primary">Reserve my spot</a>
             <a href="#details" className="btn btn-ghost">See details</a>
           </div>
         </div>
@@ -74,6 +73,22 @@ export default function SummerPage() {
         </div>
       </section>
 
+      <section className="section" id="reserve">
+        <div className="wrap">
+          <div className="center stack reveal" style={{ marginBottom: 32 }}>
+            <span className="eyebrow">Reserve your spot</span>
+            <h2 className="h-lg">Lock in <span className="accent">summer {s.year}</span></h2>
+            <p className="lead">Pick a time below to reserve your athlete&rsquo;s spot and get the full schedule.</p>
+          </div>
+          <div className="embed-frame">
+            <iframe src={`${site.links.summerSignup}?hide_gdpr_banner=1&primary_color=1763c9`} title="Reserve a summer program spot" loading="lazy" style={{ minHeight: 760 }} />
+          </div>
+          <p className="muted center" style={{ marginTop: 16, fontSize: 14 }}>
+            Calendar not loading? <a className="accent" href={site.links.summerSignup} target="_blank" rel="noopener">Reserve on Calendly</a>.
+          </p>
+        </div>
+      </section>
+
       {site.athletePhotos.length > 0 && (
         <section className="section"><div className="wrap"><Gallery limit={4} /></div></section>
       )}
@@ -86,7 +101,8 @@ export default function SummerPage() {
           </div>
           <Faq items={[
             { q: "Who can join?", a: `${s.ages}. All skill levels who are ready to work.` },
-            { q: "When does it start?", a: `${s.dates}. Reserve your spot now and you'll get the full schedule.` },
+            { q: "When is it?", a: `${s.dates}, ${s.year}. Reserve your spot now and you'll get the full schedule.` },
+            { q: "How much does it cost?", a: s.price === "TBA" ? "Pricing will be announced soon. Reserve your spot now to be first in line." : s.price },
             { q: "What should my athlete bring?", a: "Glove, bat, training shoes, water and a ready-to-work attitude." },
             { q: "Can members join?", a: "Yes. Members and non-members can both join the summer program." },
           ]} />
@@ -96,7 +112,7 @@ export default function SummerPage() {
       <CtaBand
         title="Don't waste your summer."
         lead={`${s.spots}. Reserve your spot for Summer ${s.year}.`}
-        primary={{ href: site.links.summerSignup, label: "Reserve my spot", external: true }}
+        primary={{ href: "#reserve", label: "Reserve my spot" }}
         secondary={{ href: "/membership", label: "See memberships" }}
       />
     </>

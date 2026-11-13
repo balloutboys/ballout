@@ -5,19 +5,20 @@
 
 export const site = {
   name: "BallOutBoys Athletics",
+  coach: "Coach Ned",
   shortName: "BallOutBoys",
   tagline: "Baseball & softball player development",
   location: "Metro Atlanta, GA",
   motto: "Ball out at all times. You never know who's watching.",
 
   // Contact shown in the footer, Privacy Policy and Terms. Leave "" to hide.
-  contactEmail: "",
+  contactEmail: "info@balloutboysathletics.com",
   contactPhone: "",
 
   social: {
-    instagram: "",
-    tiktok: "",
-    youtube: "",
+    instagram: "https://www.instagram.com/trainwithneddy/",
+    tiktok: "https://www.tiktok.com/@trainwithneddy6",
+    youtube: "https://www.youtube.com/@BalloutboysAthletics",
   },
 
   links: {
@@ -29,9 +30,7 @@ export const site = {
     lessonsBooking: "https://balloutboys.as.me",
     merchStore: "https://balloutboysmerch.com",
     // Where the summer program "Reserve a spot" buttons go.
-    summerSignup: "https://beturrapp.com/join/balloutboys-athletics",
-    // Ghosthop waitlist (a form link, e.g. Google Form / Typeform). Falls back to Skool.
-    ghosthopWaitlist: "",
+    summerSignup: "https://calendly.com/balloutboysathletics/summer-pogram",
   },
 
   /**
@@ -53,8 +52,10 @@ export const site = {
    * in /public/media/. Empty shows a "video coming soon" frame.
    */
   vsl: {
-    membership: "",
+    membership: "https://youtu.be/l7GpSgUfe7E",
     summer: "",
+    // In-season VSL: shows as a second video on the Membership page once set.
+    inSeason: "",
   },
 
   /** Acuity: Stripe is connected inside Acuity (Business Settings > Payment Settings). */
@@ -70,24 +71,32 @@ export const site = {
    * Copy domain, storefrontAccessToken and the collection id from the generated code.
    */
   shopify: {
-    domain: "", // e.g. "balloutboysmerch.myshopify.com"
-    storefrontAccessToken: "",
-    collectionId: "",
+    domain: "vzvsbk-hu.myshopify.com",
+    // Public Buy Button token (safe to publish; it can only read products and create carts).
+    storefrontAccessToken: "5efa64e4de5c5d3cab08c5123e2abfe5",
+    // Public storefront where the Ghosthop waitlist form signs people up for emails.
+    storefrontUrl: "https://balloutboysmerch.com",
+    collections: [
+      { id: "453813764347", title: "Sport Performance", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/5STARPhotoroom_20251029_125158.png?v=1776139048" },
+      { id: "453813862651", title: "Streetwear", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_133703.jpg?v=1776139208" },
+      { id: "453814223099", title: "Ball Out Girls", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_121043.jpg?v=1776140406" },
+      { id: "453813993723", title: "Kids Sports Gear & Fashion", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251030_195559.jpg?v=1776139898" },
+    ],
   },
 
   stats: [
-    { value: "HS", label: "to college pipeline" },
-    { value: "1-on-1", label: "private lessons" },
-    { value: "Pro", label: "level training habits" },
-    { value: "ATL", label: "metro Atlanta based" },
+    { value: "100+", label: "Athletes trained" },
+    { value: "15+", label: "College commits" },
+    { value: "5+", label: "Years coaching" },
+    { value: "ATL", label: "Metro Atlanta based" },
   ],
 
   summer: {
     year: "2027",
-    dates: "Dates announced soon",
-    ages: "Ages 8-18 · baseball & softball",
+    dates: "June 1 – July 31",
+    ages: "Ages 13+ · baseball & softball",
     location: "Metro Atlanta",
-    price: "",
+    price: "TBA",
     spots: "Limited spots",
   },
 };

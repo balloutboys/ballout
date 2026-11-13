@@ -26,8 +26,13 @@ export default function LinksPage() {
       { t: "Free Skool Community", s: "The Rotational Force Blueprint", href: k.skool },
       { t: "Merch", s: "Official BallOutBoys apparel", href: "/merch" },
       { t: "Online Store", s: "balloutboysathletics.com", href: k.onlineStore },
-      { t: "Ghosthop", s: "Coming 2027", href: "/ghosthop" },
+      { t: "Ghosthop", s: "Coming 2027 · join the waitlist", href: "/ghosthop" },
     ] },
+    { name: "Follow", items: [
+      { t: "Instagram", s: "@trainwithneddy", href: site.social.instagram },
+      { t: "TikTok", s: "@trainwithneddy6", href: site.social.tiktok },
+      { t: "YouTube", s: "BallOutBoys Athletics", href: site.social.youtube },
+    ].filter((x) => x.href) },
   ];
   return (
     <section className="links-page">

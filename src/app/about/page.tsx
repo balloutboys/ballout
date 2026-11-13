@@ -17,7 +17,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <PageHead eyebrow="About us" title={<>Built by a player, <span className="accent">for players.</span></>} lead={`${site.name} is a baseball and softball player development program out of ${site.location}.`} />
+      <PageHead eyebrow="About us" title={<>Built by a player, <span className="accent">for players.</span></>} lead={`${site.name} is a baseball and softball player development program out of ${site.location}, founded by ${site.coach}.`} />
 
       <section className="section">
         <div className="wrap split" style={{ alignItems: "start" }}>
@@ -26,13 +26,17 @@ export default function AboutPage() {
             <h2 className="h-lg">From the cage to <span className="accent">pro ball</span> and back</h2>
           </div>
           <div className="stack reveal" style={{ fontSize: 18, color: "#d3dae4" }}>
-            <p>After graduating college, our founder worked a year as a baseball trainer at D-BAT back home in Georgia, then quit to chase the dream of playing pro ball, grinding through indy ball on and off for two years.</p>
+            <p>After graduating college, {site.coach}, our founder, worked a year as a baseball trainer at D-BAT back home in Georgia, then quit to chase the dream of playing pro ball, grinding through indy ball on and off for two years.</p>
             <p>When that chapter closed, it was time to come home to build BallOutBoys Athletics. Since then, BallOutBoys has coached athletes into colleges, premier high schools and top travel organizations.</p>
             <p>Today we&rsquo;re scaling, by the grace of God, to reach as many players as possible, teaching them how to move like a pro before they&rsquo;re a pro.</p>
             <p style={{ fontFamily: "var(--fh)", fontWeight: 800, fontStyle: "italic", fontSize: 28, textTransform: "uppercase", color: "#fff", lineHeight: 1.1 }}>&ldquo;{site.motto}&rdquo;</p>
           </div>
         </div>
       </section>
+
+      <div className="stats">
+        {site.stats.map((s) => (<div className="stat" key={s.label}><div className="v">{s.value}</div><div className="l">{s.label}</div></div>))}
+      </div>
 
       <section className="section alt">
         <div className="wrap">

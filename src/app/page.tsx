@@ -118,9 +118,9 @@ export default function Home() {
             <div>
               <span className="pill">Coming 2027</span>
               <h3 style={{ fontSize: 44, marginTop: 12 }}>Ghosthop</h3>
-              <p>Something new from BallOutBoys is on the way. Get on the list first.</p>
+              <p>A new product from BallOutBoys is on the way. Join the waitlist to get first access.</p>
             </div>
-            <span className="btn btn-ghost">Get early access <Arrow /></span>
+            <span className="btn btn-ghost">Join the waitlist <Arrow /></span>
           </Link>
         </div>
       </section>

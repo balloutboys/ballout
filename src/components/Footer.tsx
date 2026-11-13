@@ -3,6 +3,7 @@ import { site } from "@/site.config";
 
 export default function Footer() {
   const { links, social } = site;
+  const labels: Record<string, string> = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube" };
   const socials = Object.entries(social).filter(([, v]) => v);
   return (
     <footer className="footer">
@@ -42,7 +43,7 @@ export default function Footer() {
               <li><Link href="/links">All Links</Link></li>
               <li><Link href="/privacy">Privacy Policy</Link></li>
               <li><Link href="/terms">Terms of Service</Link></li>
-              {socials.map(([k, v]) => (<li key={k}><a href={v} target="_blank" rel="noopener" style={{ textTransform: "capitalize" }}>{k}</a></li>))}
+              {socials.map(([k, v]) => (<li key={k}><a href={v} target="_blank" rel="noopener">{labels[k] ?? k}</a></li>))}
             </ul>
           </div>
         </div>
