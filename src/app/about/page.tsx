@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="wrap split" style={{ alignItems: "start" }}>
           <div className="stack reveal">
             <span className="eyebrow">Our story</span>
-            <h2 className="h-lg">From the cage to <span className="accent">pro ball</span> and back</h2>
+            <h2 className="h-lg">From the cage to <span className="accent">indy ball</span> and back</h2>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={site.coachPhoto} alt={`${site.coach}, founder of ${site.name}`} className="coach-photo" />
           </div>

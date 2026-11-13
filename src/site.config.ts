@@ -7,7 +7,7 @@ export const site = {
   name: "BallOutBoys Athletics",
   coach: "Coach Ned",
   legalName: "Ball Out Boys, LLC",
-  coachPhoto: "/media/merch/multicolor-tee.jpg",
+  coachPhoto: "/media/merch/multicolor-tee-bw.jpg",
   shortName: "BallOutBoys",
   tagline: "Baseball & softball player development",
   location: "Metro Atlanta, GA",
