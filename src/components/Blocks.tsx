@@ -2,11 +2,11 @@ import Link from "next/link";
 import { site } from "@/site.config";
 import { Check } from "./Icons";
 
-export function PageHead({ eyebrow, title, lead, children }: { eyebrow: string; title: React.ReactNode; lead?: string; children?: React.ReactNode }) {
+export function PageHead({ eyebrow, title, lead, children, art }: { eyebrow: string; title: React.ReactNode; lead?: string; children?: React.ReactNode; art?: string }) {
   return (
     <section className="page-head">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="globe-bg" src="/brand/globe.png" alt="" aria-hidden="true" />
+      <img className={art ? "head-art" : "globe-bg"} src={art ?? "/brand/globe.png"} alt="" aria-hidden="true" />
       <div className="wrap stack">
         <span className="eyebrow">{eyebrow}</span>
         <h1 className="h-lg">{title}</h1>
