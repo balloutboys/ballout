@@ -125,6 +125,12 @@ export const site = {
     { name: "Jayleigh's Sideline Shots", src: "/media/partners/jayleighs-sideline-shots.png", bg: "#000000" },
   ] as { name: string; src: string; bg: string; url?: string }[],
 
+  /**
+   * Video testimonials. Paste YouTube links (unlisted is fine). type "parent" also shows on the Summer page.
+   * e.g. { url: "https://youtu.be/XXXX", label: "Jake, 15U", type: "athlete" }
+   */
+  testimonials: [] as { url: string; label: string; type: "athlete" | "parent" }[],
+
   /** Join popup (shows once a week per visitor). */
   popup: { image: "/media/merch/five-star-hoodie.jpg" },
 

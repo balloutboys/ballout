@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import VSL from "@/components/VSL";
 import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
 import { site } from "@/site.config";
+import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
   title: "Summer Program",
@@ -72,6 +73,8 @@ export default function SummerPage() {
           </div>
         </div>
       </section>
+
+      <Testimonials only="parent" title={<>What parents <span className="accent">say</span></>} />
 
       <section className="section" id="reserve">
         <div className="wrap">

@@ -3,6 +3,7 @@ import VSL from "@/components/VSL";
 import Memberships from "@/components/Memberships";
 import Founders from "@/components/Founders";
 import VideoBackdrop from "@/components/VideoBackdrop";
+import Testimonials from "@/components/Testimonials";
 import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
 import { Arrow } from "@/components/Icons";
 import { site } from "@/site.config";
@@ -54,6 +55,8 @@ export default function MembershipPage() {
           </div>
         </div>
       </section>
+
+      <Testimonials title={<>Real athletes. <span className="accent">Real results.</span></>} />
 
       <Founders />
 

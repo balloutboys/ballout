@@ -437,3 +437,13 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 }
 iframe[hidden] { display: none !important; }
 .popup-img { grid-row: 1; align-self: stretch; height: 100%; }
+
+/* Video testimonials */
+.testi { margin: 0; display: grid; gap: 14px; }
+.testi-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #000; border: 1px solid var(--line); }
+.testi-video iframe, .testi-video button { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; background: none; cursor: pointer; }
+.testi-video img { width: 100%; height: 100%; object-fit: cover; opacity: .85; transition: opacity .2s, transform .4s; }
+.testi-video button:hover img { opacity: 1; transform: scale(1.03); }
+.testi-video .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; width: 68px; height: 68px; }
+.testi figcaption { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.testi figcaption strong { font-family: var(--fh); font-weight: 700; font-size: 20px; text-transform: uppercase; }
