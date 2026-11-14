@@ -126,10 +126,18 @@ export const site = {
   ] as { name: string; src: string; bg: string; url?: string }[],
 
   /**
-   * Video testimonials. Paste YouTube links (unlisted is fine). type "parent" also shows on the Summer page.
-   * e.g. { url: "https://youtu.be/XXXX", label: "Jake, 15U", type: "athlete" }
+   * Video testimonials (YouTube or Vimeo links). Parents show in a big row, athletes below.
+   * summer: true also shows it on the Summer page.
    */
-  testimonials: [] as { url: string; label: string; type: "athlete" | "parent" }[],
+  testimonials: [
+    { url: "https://vimeo.com/1246780769", label: "Summer program parent", type: "parent", summer: true },
+    { url: "https://vimeo.com/1246780772", label: "Youth parent", type: "parent" },
+    { url: "https://vimeo.com/1246780773", label: "100 → 110 MPH exit velo", type: "athlete", results: ["Gained 10+ lbs", "Built an in-season routine", "Plus strength in all lifts"] },
+    { url: "https://vimeo.com/1246780770", label: "92 → 99 MPH exit velo", type: "athlete", results: ["Mental game: learning the swing & trusting the outcome", "Plus strength in all lifts"] },
+    { url: "https://vimeo.com/1246780766", label: "82 → 92 MPH exit velo", type: "athlete", results: ["All-time record box jump (56 in)", "Plus strength in all lifts"] },
+    { url: "https://vimeo.com/1246780771", label: "65 → 76 MPH exit velo", type: "athlete", results: ["\u201cSmoother mechanics on both sides of the plate\u201d", "Plus strength in all lifts"] },
+    { url: "https://vimeo.com/1246780774", label: "62 → 73 MPH exit velo", type: "athlete", results: ["Mental game: less overthinking allowed cleaner mechanics", "Plus strength in all lifts"] },
+  ] as { url: string; label: string; type: "athlete" | "parent"; summer?: boolean; results?: string[] }[],
 
   /** Join popup (shows once a week per visitor). */
   popup: { image: "/media/merch/five-star-hoodie.jpg" },

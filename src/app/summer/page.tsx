@@ -74,7 +74,7 @@ export default function SummerPage() {
         </div>
       </section>
 
-      <Testimonials only="parent" title={<>What parents <span className="accent">say</span></>} />
+      <Testimonials summerOnly title={<>What parents <span className="accent">say</span></>} />
 
       <section className="section" id="reserve">
         <div className="wrap">
