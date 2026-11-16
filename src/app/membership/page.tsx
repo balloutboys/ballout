@@ -65,7 +65,7 @@ export default function MembershipPage() {
           <div className="center stack reveal" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Plans</span>
             <h2 className="h-lg">Pick your <span className="accent">membership</span></h2>
-            <p className="lead">Checkout is secure. You&rsquo;ll create your BallOutBoys app account as you join.</p>
+            <p className="lead">Pick a plan, then see pricing and check out securely in the BallOutBoys app.</p>
           </div>
           <Memberships />
         </div>
