@@ -1,24 +1,40 @@
-import { embedUrl, joinUrl, memberships } from "@/site.config";
-import { External } from "./Icons";
+"use client";
+import { useState } from "react";
+import { joinUrl, memberships, site } from "@/site.config";
+import { Check, External } from "./Icons";
 
+/**
+ * One membership picker: choose a plan from the dropdown, then "See pricing & join"
+ * opens the BallOutBoys app sign-up page for that plan (prices live there, not on this site).
+ */
 export default function Memberships() {
+  const [id, setId] = useState(memberships.find((m) => m.featured)?.id ?? memberships[0].id);
+  const m = memberships.find((x) => x.id === id)!;
   return (
-    <div className="mem-grid">
-      {memberships.map((m) => (
-        <div key={m.id} className={`card mem${m.featured ? " feature" : ""}`}>
-          <div className="top">
-            <h3>{m.name}</h3>
-            {m.featured && <span className="pill white">Best value</span>}
-          </div>
-          <p className="muted" style={{ marginTop: -6 }}>{m.blurb}</p>
-          <div className="embed">
-            <iframe src={embedUrl(m.id)} title={m.name} loading="lazy" />
-          </div>
-          <a href={joinUrl(m.id)} target="_blank" rel="noopener" className="btn btn-primary btn-block">
-            Buy {m.name} <External />
-          </a>
+    <div className="picker reveal">
+      <label className="picker-label" htmlFor="membership-pick">Choose your membership</label>
+      <div className="picker-select">
+        <select id="membership-pick" value={id} onChange={(e) => setId(e.target.value)}>
+          {memberships.map((x) => (
+            <option key={x.id} value={x.id}>{x.name}</option>
+          ))}
+        </select>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </div>
+      <div className="picker-detail">
+        <div className="picker-head">
+          <h3>{m.name}</h3>
+          {m.featured && <span className="pill white">Best value</span>}
         </div>
-      ))}
+        <p className="muted">{m.blurb}</p>
+        <ul className="checks" style={{ marginTop: 16 }}>
+          {["Small-group training: strength, speed & hitting", "Retest every 4 weeks to track your numbers", "Everything managed in the BallOutBoys app"].map((t) => (
+            <li key={t}><Check />{t}</li>
+          ))}
+        </ul>
+      </div>
+      <a href={joinUrl(m.id)} target="_blank" rel="noopener" className="btn btn-primary btn-block">See pricing &amp; join <External /></a>
+      <p className="picker-note">Opens the BallOutBoys app to see pricing and check out securely. Already a member? <a href={site.links.clientSignIn} target="_blank" rel="noopener">Sign in</a>.</p>
     </div>
   );
 }

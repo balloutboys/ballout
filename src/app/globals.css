@@ -190,13 +190,20 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .pill.white { background: #fff; color: #050608; border-color: #fff; }
 
 /* Membership cards */
-.mem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-@media (max-width: 760px) { .mem-grid { grid-template-columns: 1fr; } }
-.mem { display: flex; flex-direction: column; gap: 16px; }
-.mem .embed { background: #fff; border-radius: 12px; overflow: hidden; }
-.mem .embed iframe { width: 100%; height: 280px; border: 0; }
-.mem h3 { font-size: 30px; }
-.mem .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+/* Membership picker */
+.picker { max-width: 640px; margin: 0 auto; padding: 32px; border-radius: 20px; border: 1px solid rgba(59,130,240,0.45); background: radial-gradient(500px 240px at 100% 0%, rgba(23,99,201,0.25), transparent 70%), var(--bg-2); display: grid; gap: 18px; }
+.picker-label { font-family: var(--fh); font-weight: 700; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--brand-400); }
+.picker-select { position: relative; }
+.picker-select select { width: 100%; min-height: 60px; padding: 0 52px 0 18px; border-radius: 12px; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.05); color: #fff; font-family: var(--fh); font-weight: 700; font-size: 22px; text-transform: uppercase; letter-spacing: .02em; appearance: none; -webkit-appearance: none; cursor: pointer; }
+.picker-select select:focus { outline: none; border-color: var(--brand-400); }
+.picker-select option { background: #0b0f16; color: #fff; font-family: var(--fb); font-size: 16px; text-transform: none; }
+.picker-select svg { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--brand-400); }
+.picker-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.picker-head h3 { font-size: 32px; font-style: italic; }
+.picker-detail .muted { margin-top: 6px; }
+.picker-note { font-size: 13.5px; color: var(--muted); text-align: center; }
+.picker-note a { color: var(--brand-400); text-decoration: underline; }
+@media (max-width: 520px) { .picker { padding: 22px 18px; } .picker-select select { font-size: 19px; } }
 
 /* VSL */
 .vsl { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--line-strong); box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8), 0 0 0 6px rgba(255,255,255,0.03); }

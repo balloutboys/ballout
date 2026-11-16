@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { joinUrl, memberships, site } from "@/site.config";
+import { site } from "@/site.config";
 import { Arrow, External } from "@/components/Icons";
 
 export const metadata: Metadata = {
@@ -15,11 +15,11 @@ export default function LinksPage() {
   const k = site.links;
   const groups: { name: string; items: L[] }[] = [
     { name: "Get started", items: [
-      { t: "New Client Sign Up", s: "Create your BallOutBoys app account", href: k.newClientSignup, primary: true },
+      { t: "Memberships", s: "Choose your plan and see pricing", href: "/membership#plans", primary: true },
+      { t: "New Client Sign Up", s: "Create your BallOutBoys app account", href: k.newClientSignup },
       { t: "Existing Client Login", s: "Sign in to the app", href: k.clientSignIn },
       { t: "Book a 1-on-1 Lesson", s: "Pick a time and pay online", href: "/lessons" },
     ] },
-    { name: "Memberships", items: memberships.map((m) => ({ t: m.name, s: m.blurb, href: joinUrl(m.id) })) },
     { name: "Programs & products", items: [
       { t: "Summer Program", s: `Summer ${site.summer.year}`, href: "/summer" },
       { t: "Ebook: Move Like A Pro", s: "How to move like a pro before you're a pro", href: "/ebook" },
