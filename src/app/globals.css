@@ -489,11 +489,3 @@ iframe[hidden] { display: none !important; }
 .picker-blurb { color: #e3e8ef; font-weight: 600; margin-top: 6px; }
 .picker-detail { animation: pickfade .35s ease; }
 @keyframes pickfade { from { opacity: 0; transform: translateY(6px); } }
-
-/* Membership: highlight clips in their own frame (not faded) */
-.reel-panel { position: relative; isolation: isolate; max-width: 960px; margin: 40px auto 0; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; border: 1px solid var(--line-strong); box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8); }
-.reel-panel .backdrop { z-index: 0; }
-.reel-panel .backdrop video.on { opacity: 1; }
-.reel-panel .backdrop video { filter: none; }
-.reel-panel .backdrop-shade { display: none; }
-@media (max-width: 760px) and (orientation: portrait) { .reel-panel { aspect-ratio: 4 / 5; } }
