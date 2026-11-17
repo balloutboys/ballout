@@ -5,17 +5,11 @@ import Founders from "@/components/Founders";
 import Partners from "@/components/Partners";
 import Wins from "@/components/Wins";
 import Reviews from "@/components/Reviews";
-import Highlights from "@/components/Highlights";
 import Testimonials from "@/components/Testimonials";
-import { CtaBand, Gallery, Marquee } from "@/components/Blocks";
+import { CtaBand, Marquee } from "@/components/Blocks";
 import { Arrow, External } from "@/components/Icons";
 import { site } from "@/site.config";
 
-const programs = [
-  { n: "01", title: "Membership", href: "/membership", text: "Year-round training built on pro habits. Strength, movement, hitting and the mental game, tracked in the BallOutBoys app." },
-  { n: "02", title: "Summer Program", href: "/summer", text: "An intense summer block to get bigger, faster and more explosive before the fall and next season." },
-  { n: "03", title: "1-on-1 Lessons", href: "/lessons", text: "Private sessions focused on your swing, your arm and your game. Book and pay online in under a minute." },
-];
 
 
 export default function Home() {
@@ -46,27 +40,6 @@ export default function Home() {
         ))}
       </div>
 
-      <section className="section">
-        <div className="wrap">
-          <div className="stack reveal" style={{ marginBottom: 40 }}>
-            <span className="eyebrow">Find your fit</span>
-            <h2 className="h-lg">Three ways to <span className="accent">train</span></h2>
-          </div>
-          <div className="grid g3">
-            {programs.map((p) => (
-              <Link key={p.n} href={p.href} className="card reveal">
-                <div className="num">{p.n}</div>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-                <span className="more">Learn more <Arrow /></span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Highlights />
-
       <Founders />
 
       <Marquee words={["Ball out", "Train like a pro", "Rotational force", "Faith first", "Next level", "Metro Atlanta"]} />
@@ -85,18 +58,6 @@ export default function Home() {
           <Memberships />
         </div>
       </section>
-
-      {site.athletePhotos.length > 0 && (
-        <section className="section">
-          <div className="wrap">
-            <div className="stack reveal" style={{ marginBottom: 36 }}>
-              <span className="eyebrow">Our athletes</span>
-              <h2 className="h-lg">The <span className="accent">BallOutBoys</span></h2>
-            </div>
-            <Gallery limit={8} />
-          </div>
-        </section>
-      )}
 
       <Testimonials />
 
