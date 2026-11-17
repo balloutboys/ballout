@@ -359,7 +359,6 @@ export const booking: BookingOption[] = [
 export const nav = [
   { href: "/membership", label: "Membership" },
   { href: "/summer", label: "Summer Program" },
-  { href: "/book", label: "Book" },
   { href: "/lessons", label: "1-on-1 Lessons" },
   { href: "/ebook", label: "Ebook" },
   { href: "/merch", label: "Merch" },
