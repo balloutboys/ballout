@@ -17,7 +17,6 @@ const programs = [
   { n: "03", title: "1-on-1 Lessons", href: "/lessons", text: "Private sessions focused on your swing, your arm and your game. Book and pay online in under a minute." },
 ];
 
-export const revalidate = 3600; // re-check the Founders deadline hourly
 
 export default function Home() {
   const { links } = site;

@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   description: "Join the BallOutBoys Athletics membership: year-round baseball and softball player development in metro Atlanta.",
 };
 
-export const revalidate = 3600;
 
 export default function MembershipPage() {
   return (

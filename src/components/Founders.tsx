@@ -1,10 +1,15 @@
+"use client";
+import { useEffect, useState } from "react";
 import { joinUrl, memberships, site } from "@/site.config";
 import { Check, External } from "./Icons";
 
 /** Founder Member grand-opening offer. Renders nothing once the deadline has passed. */
 export default function Founders() {
   const f = site.founders;
-  if (Date.now() > new Date(f.deadline).getTime()) return null;
+  const [expired, setExpired] = useState(Date.now() > new Date(f.deadline).getTime());
+  // Re-check in the visitor's browser so the section hides after the deadline without a rebuild.
+  useEffect(() => { setExpired(Date.now() > new Date(f.deadline).getTime()); }, [f.deadline]);
+  if (expired) return null;
   const pkg = memberships.find((m) => m.name.startsWith("Founders"));
   return (
     <section className="section" id="founders">
