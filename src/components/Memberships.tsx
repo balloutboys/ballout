@@ -21,14 +21,15 @@ export default function Memberships() {
         </select>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
       </div>
-      <div className="picker-detail">
+      <div className="picker-detail" key={m.id}>
         <div className="picker-head">
           <h3>{m.name}</h3>
           {m.featured && <span className="pill white">Best value</span>}
         </div>
-        <p className="muted">{m.blurb}</p>
+        <p className="picker-blurb">{m.blurb}</p>
+        <p className="muted" style={{ marginTop: 10 }}>{m.body}</p>
         <ul className="checks" style={{ marginTop: 16 }}>
-          {["Small-group training: strength, speed & hitting", "Retest every 4 weeks to track your numbers", "Everything managed in the BallOutBoys app"].map((t) => (
+          {m.features.map((t) => (
             <li key={t}><Check />{t}</li>
           ))}
         </ul>
