@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/site.config";
+import { External } from "./Icons";
 
 declare global {
   interface Window { ShopifyBuy?: any } // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -46,7 +47,8 @@ const options = {
 /** Shopify Buy Button store: one tab per collection, one shared cart, Shopify checkout. */
 export default function ShopifyMerch() {
   const { domain, storefrontAccessToken, collections } = site.shopify;
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(-1);
+  const panel = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
   const ui = useRef<UI | null>(null);
   const nodes = useRef<(HTMLDivElement | null)[]>([]);
@@ -64,7 +66,7 @@ export default function ShopifyMerch() {
       const SB = window.ShopifyBuy;
       if (!SB?.UI) return setFailed(true);
       const client = SB.buildClient({ domain, storefrontAccessToken });
-      SB.UI.onReady(client).then((u: UI) => { ui.current = u; build(0); });
+      SB.UI.onReady(client).then((u: UI) => { ui.current = u; if (active >= 0) build(active); });
     };
     if (window.ShopifyBuy?.UI) { init(); return; }
     const s = document.createElement("script");
@@ -73,13 +75,18 @@ export default function ShopifyMerch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => { build(active); }); // build a tab the first time it's shown
+  useEffect(() => { if (active >= 0) build(active); }); // build a tab the first time it's shown
+
+  const pick = (i: number) => {
+    setActive(i);
+    setTimeout(() => panel.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+  };
 
   return (
     <div>
       <div className="col-tabs" role="tablist" aria-label="Collections">
         {collections.map((c, i) => (
-          <button key={c.id} role="tab" aria-selected={i === active} className={`col-tab${i === active ? " on" : ""}`} onClick={() => setActive(i)}>
+          <button key={c.id} role="tab" aria-selected={i === active} className={`col-tab${i === active ? " on" : ""}`} onClick={() => pick(i)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`${c.image}&width=400`} alt="" loading="lazy" />
             <span>{c.title}</span>
@@ -91,9 +98,19 @@ export default function ShopifyMerch() {
           The store didn&rsquo;t load. <a className="accent" href={site.links.merchStore} target="_blank" rel="noopener">Shop on balloutboysmerch.com</a>.
         </p>
       )}
-      {collections.map((c, i) => (
-        <div key={c.id} role="tabpanel" hidden={i !== active} ref={(el) => { nodes.current[i] = el; }} style={{ minHeight: 400 }} />
-      ))}
+      <div ref={panel} style={{ scrollMarginTop: 90 }}>
+        {active < 0 ? (
+          <p className="col-hint">Tap a category above to see the gear.</p>
+        ) : (
+          <div className="col-head">
+            <h3>{collections[active].title}</h3>
+            <a href={collections[active].url} target="_blank" rel="noopener" className="btn btn-ghost btn-sm">Shop all {collections[active].title} <External /></a>
+          </div>
+        )}
+        {collections.map((c, i) => (
+          <div key={c.id} role="tabpanel" hidden={i !== active} ref={(el) => { nodes.current[i] = el; }} style={{ minHeight: 400 }} />
+        ))}
+      </div>
     </div>
   );
 }

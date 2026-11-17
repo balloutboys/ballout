@@ -110,6 +110,8 @@ export const site = {
   /** Merch lookbook photos (merch page + home merch card). */
   merchPhotos: [
     { src: "/media/merch/athletics-tee-portrait.jpg", alt: "BallOutBoys Athletics black tee" },
+    { src: "/media/merch/orange-star-jacket.jpg", alt: "BallOutBoys black and orange star zip hoodie set" },
+    { src: "/media/merch/ball-out-girls-blue-set.jpg", alt: "Ball Out Girls blue sports bra and shorts set" },
     { src: "/media/merch/five-star-hoodie.jpg", alt: "BallOutBoys 5-Star zip hoodie" },
     { src: "/media/merch/the-champ-tee.jpg", alt: "The Champ youth tee, back print" },
     { src: "/media/merch/train-develop-compete-tee.jpg", alt: "Train Develop Compete tee, back print" },
@@ -201,10 +203,10 @@ export const site = {
     // Public storefront where the Ghosthop waitlist form signs people up for emails.
     storefrontUrl: "https://balloutboysmerch.com",
     collections: [
-      { id: "453813764347", title: "Sport Performance", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/5STARPhotoroom_20251029_125158.png?v=1776139048" },
-      { id: "453813862651", title: "Streetwear", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_133703.jpg?v=1776139208" },
-      { id: "453814223099", title: "Ball Out Girls", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_121043.jpg?v=1776140406" },
-      { id: "453813993723", title: "Kids Sports Gear & Fashion", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251030_195559.jpg?v=1776139898" },
+      { id: "453813764347", title: "Sport Performance", url: "https://balloutboysmerch.com/collections/sport-performance", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/5STARPhotoroom_20251029_125158.png?v=1776139048" },
+      { id: "453813862651", title: "Streetwear", url: "https://balloutboysmerch.com/collections/streetwear", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_133703.jpg?v=1776139208" },
+      { id: "453814223099", title: "Ball Out Girls", url: "https://balloutboysmerch.com/collections/ball-out-girls", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251029_121043.jpg?v=1776140406" },
+      { id: "453813993723", title: "Kids Sports Gear & Fashion", url: "https://balloutboysmerch.com/collections/kids-sports-gear-fashion", image: "https://cdn.shopify.com/s/files/1/0771/9750/8859/collections/Photoroom_20251030_195559.jpg?v=1776139898" },
     ],
   },
 
@@ -229,6 +231,10 @@ export type Membership = {
   id: string;
   name: string;
   blurb: string;
+  /** Body paragraph shown under the blurb when this plan is picked. */
+  body: string;
+  /** Checklist shown for this plan. */
+  features: string[];
   featured?: boolean;
 };
 
@@ -241,22 +247,46 @@ export const memberships: Membership[] = [
     id: "238d6eaf-c852-449f-a2e7-7b07bb802330",
     name: "12 Month Membership",
     blurb: "A full year of development. Best value for athletes chasing the next level.",
+    body: "Twelve months of structured training: build strength in the offseason, keep it in season, and retest every 4 weeks so you can see the progress.",
+    features: [
+      "Small-group training: strength, speed & hitting",
+      "Retest every 4 weeks to track your numbers",
+      "Everything managed in the BallOutBoys app",
+    ],
     featured: true,
   },
   {
     id: "3f166ce2-636a-4e37-8ffb-94182d6e921f",
     name: "6 Month Membership",
     blurb: "A full season block: offseason build plus in-season maintenance.",
+    body: "Six months to build your base and carry it into the season. A strong fit for athletes with one big season ahead.",
+    features: [
+      "Small-group training: strength, speed & hitting",
+      "Retest every 4 weeks to track your numbers",
+      "Everything managed in the BallOutBoys app",
+    ],
   },
   {
     id: "6649c11e-40e5-4466-a785-b867d02a48bd",
     name: "Founders Member Program",
     blurb: "Only 30 spots. Founder pricing plus the +5 MPH exit velo guarantee in your first 30 days.*",
+    body: "Be one of the first 30 athletes in. Lock in founder pricing on a 6- or 12-month commitment and test day in the first week of December.",
+    features: [
+      "Small-group training: strength, speed & hitting",
+      "Retest every 4 weeks to track your numbers",
+      "Everything managed in the BallOutBoys app",
+    ],
   },
   {
     id: "aeea575c-c913-42a7-b0fb-b27e37a637e3",
     name: "Walk-On Membership",
     blurb: "Get started without the long commitment. Earn your spot.",
+    body: "Train with BallOutBoys month to month. Prove it to yourself, then lock in a longer plan when you're ready.",
+    features: [
+      "Small-group training: strength, speed & hitting",
+      "Retest every 4 weeks to track your numbers",
+      "Everything managed in the BallOutBoys app",
+    ],
   },
 ];
 

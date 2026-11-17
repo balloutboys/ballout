@@ -401,7 +401,7 @@ a.card:hover, .card.hover:hover { border-color: rgba(59,130,240,0.55); transform
 .page-head.has-video .backdrop-shade { background: linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.4) 50%, var(--bg) 100%), linear-gradient(0deg, rgba(0,60,133,0.25), rgba(0,60,133,0.25)); }
 
 /* Ebook funnel */
-.ebook-cover { width: min(420px, 100%); border-radius: 10px; box-shadow: 0 40px 80px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); transform: rotate(-2deg); }
+.ebook-cover { width: min(420px, 100%); border-radius: 10px; box-shadow: 0 40px 80px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); }
 .price-row { display: flex; align-items: baseline; gap: 12px; }
 .price { font-family: var(--fh); font-weight: 800; font-style: italic; font-size: 56px; line-height: 1; }
 .trust { font-size: 13.5px; color: var(--muted); }
@@ -483,3 +483,9 @@ iframe[hidden] { display: none !important; }
 .slides-dots button.on { background: #fff; width: 22px; border-radius: 4px; }
 /* Video hero: lighter shade so the clips stay visible */
 .hero-media.is-video .hero-shade { background: linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.15) 30%, rgba(6,8,12,0.45) 65%, var(--bg) 100%), linear-gradient(90deg, rgba(6,8,12,0.7) 0%, rgba(6,8,12,0.25) 55%, rgba(6,8,12,0) 80%); }
+.col-hint { text-align: center; color: var(--muted); padding: 30px 0 10px; font-family: var(--fh); font-weight: 700; font-size: 20px; letter-spacing: .06em; text-transform: uppercase; }
+.col-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }
+.col-head h3 { font-size: clamp(28px, 4vw, 40px); font-style: italic; }
+.picker-blurb { color: #e3e8ef; font-weight: 600; margin-top: 6px; }
+.picker-detail { animation: pickfade .35s ease; }
+@keyframes pickfade { from { opacity: 0; transform: translateY(6px); } }
