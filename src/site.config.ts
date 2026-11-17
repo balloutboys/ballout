@@ -290,9 +290,76 @@ export const memberships: Membership[] = [
   },
 ];
 
+/**
+ * Booking page (/book). Each option opens its booking link. Beturr packages use joinUrl(<package id>).
+ * Add a new option by copying one block. "url" can be any link: Beturr, Calendly, or a page on this site.
+ */
+export type BookingOption = {
+  id: string;
+  category: "Training" | "Calls" | "Programs";
+  name: string;
+  duration: string;
+  who: string;
+  summary: string;
+  includes: string[];
+  url: string;
+  cta: string;
+  free?: boolean;
+};
+
+export const booking: BookingOption[] = [
+  {
+    id: "1on1",
+    category: "Training",
+    name: "1-on-1 Lesson",
+    duration: "Private session",
+    who: "Baseball & softball · all ages",
+    summary: "Private training with Coach Ned focused on your swing, your arm and your game.",
+    includes: ["Hitting, throwing, fielding or speed: you pick the focus", "Drills to take home so the work sticks", "Book, pay and manage sessions in the BallOutBoys app"],
+    url: "https://beturrapp.com/join/balloutboys-athletics?package=24535870-23f8-4652-be61-e9a4c4cf59ff",
+    cta: "See pricing & book",
+  },
+  {
+    id: "membership",
+    category: "Training",
+    name: "Small-Group Membership",
+    duration: "Up to 4 sessions a week",
+    who: "Ages 13+ · in person or online",
+    summary: "Year-round small-group training in strength, speed and hitting, with a retest every 4 weeks.",
+    includes: ["Groups of 5–8 athletes", "Retest every 4 weeks to track your numbers", "12 Month, 6 Month, Founders and Walk-On plans"],
+    url: "/membership#plans",
+    cta: "Choose a membership",
+  },
+  {
+    id: "advising",
+    category: "Calls",
+    name: "Athlete Advising Call",
+    duration: "Phone or video call",
+    who: "Athletes & parents",
+    summary: "Talk with Coach Ned about your goals and get set up with a free 3-day training trial.",
+    includes: ["Your goals, schedule and current level", "Which program fits best", "Set up your free 3-day trial"],
+    url: "https://calendly.com/balloutboysathletics/strategy-call",
+    cta: "Book my free call",
+    free: true,
+  },
+  {
+    id: "summer",
+    category: "Programs",
+    name: "Summer Program",
+    duration: "June 1 – July 31",
+    who: "Ages 13+ · baseball & softball",
+    summary: "Book a free call to reserve your athlete's spot and go over pricing for Summer 2027.",
+    includes: ["Rotational power and bat speed", "Speed, agility and strength", "Small groups so every athlete gets coached"],
+    url: "https://calendly.com/balloutboysathletics/summer-pogram",
+    cta: "Book your free call",
+    free: true,
+  },
+];
+
 export const nav = [
   { href: "/membership", label: "Membership" },
   { href: "/summer", label: "Summer Program" },
+  { href: "/book", label: "Book" },
   { href: "/lessons", label: "1-on-1 Lessons" },
   { href: "/ebook", label: "Ebook" },
   { href: "/merch", label: "Merch" },
