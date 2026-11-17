@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand, PageHead } from "@/components/Blocks";
-import ShopifyMerch from "@/components/ShopifyCollection";
+import CollectionLinks from "@/components/CollectionLinks";
 import { External } from "@/components/Icons";
 import { site } from "@/site.config";
 
@@ -33,7 +33,7 @@ export default function MerchPage() {
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/brand/logo-transparent.png" alt="BallOutBoys Athletics" className="merch-mark reveal" loading="lazy" />
-          <ShopifyMerch />
+          <CollectionLinks />
         </div>
       </section>
 
