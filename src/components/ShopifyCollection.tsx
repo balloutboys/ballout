@@ -38,6 +38,7 @@ const options = {
     text: { button: "Add to cart" },
   },
   cart: {
+    popup: false, // open Shopify checkout in this tab instead of a new one
     styles: { button: { "font-family": FONT, "font-weight": "700", "text-transform": "uppercase", "background-color": BLUE, ":hover": { "background-color": BLUE_HOVER }, "border-radius": "10px" } },
     text: { total: "Subtotal", button: "Checkout" },
   },
