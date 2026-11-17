@@ -110,20 +110,20 @@ export const site = {
   /** Merch lookbook photos (merch page + home merch card). */
   merchPhotos: [
     { src: "/media/merch/athletics-tee-portrait.jpg", alt: "BallOutBoys Athletics black tee" },
-    { src: "/media/merch/orange-star-jacket.jpg", alt: "BallOutBoys black and orange star zip hoodie set" },
-    { src: "/media/merch/ball-out-girls-blue-set.jpg", alt: "Ball Out Girls blue sports bra and shorts set" },
+    { src: "/media/merch/multicolor-tee.jpg", alt: "BallOutBoys multicolor tee" },
     { src: "/media/merch/five-star-hoodie.jpg", alt: "BallOutBoys 5-Star zip hoodie" },
     { src: "/media/merch/the-champ-tee.jpg", alt: "The Champ youth tee, back print" },
     { src: "/media/merch/train-develop-compete-tee.jpg", alt: "Train Develop Compete tee, back print" },
     { src: "/media/merch/globe-performance-tee.jpg", alt: "BallOutBoys globe performance tee and shorts" },
     { src: "/media/merch/multicolor-hoodie.jpg", alt: "BallOutBoys multicolor hoodie" },
-    { src: "/media/merch/multicolor-tee.jpg", alt: "BallOutBoys multicolor tee" },
+    { src: "/media/merch/ball-out-girls-blue-set.jpg", alt: "Ball Out Girls blue sports bra and shorts set" },
     { src: "/media/merch/black-tee.jpg", alt: "BallOutBoys black globe tee" },
     { src: "/media/merch/globe-tee-back.jpg", alt: "BallOutBoys youth tee, back print" },
     { src: "/media/merch/youth-long-sleeve.jpg", alt: "BallOutBoys youth long sleeve" },
     { src: "/media/merch/stick-talk-tee.jpg", alt: "Stick Talk youth tee" },
     { src: "/media/merch/gods-favorite-tee.jpg", alt: "God's Favorite tee" },
     { src: "/media/merch/multicolor-tee-bw.jpg", alt: "BallOutBoys multicolor tee" },
+    { src: "/media/merch/orange-star-jacket.jpg", alt: "BallOutBoys black and orange star zip hoodie set" },
   ],
 
   /** Team results with photos (home + about pages). */
