@@ -17,15 +17,17 @@ export const metadata: Metadata = {
 export default function MembershipPage() {
   return (
     <>
-      <section className="page-head has-video" style={{ paddingBottom: 80 }}>
-        <VideoBackdrop start={3} />
+      <section className="page-head" style={{ paddingBottom: 80 }}>
         <div className="wrap">
           <div className="center stack" style={{ maxWidth: 900, margin: "0 auto" }}>
             <span className="eyebrow">BallOutBoys Membership</span>
             <h1 className="h-lg">Train like the next level <span className="accent">is already yours.</span></h1>
             <p className="lead">Watch the video, then pick your plan. This is how BallOutBoys athletes build strength, movement and the habits that get them seen.</p>
           </div>
-          <div style={{ maxWidth: 960, margin: "40px auto 0" }}>
+          <div className="reel-panel">
+            <VideoBackdrop />
+          </div>
+          <div style={{ maxWidth: 960, margin: "28px auto 0" }}>
             <VSL url={site.vsl.membership} title="Watch: In-Season Training" />
           </div>
           <div className="btn-row" style={{ justifyContent: "center", marginTop: 32 }}>
