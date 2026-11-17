@@ -511,4 +511,3 @@ iframe[hidden] { display: none !important; }
 .bk-note { font-size: 13.5px; color: var(--muted); text-align: center; }
 .bk-note a { color: var(--brand-400); text-decoration: underline; }
 @media (max-width: 520px) { .bk-detail { padding: 22px 18px; } }
-.col-tabs a.col-tab { display: block; color: #fff; }
