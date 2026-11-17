@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import VSL from "@/components/VSL";
-import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
+import { Checks, CtaBand, Faq } from "@/components/Blocks";
 import { site } from "@/site.config";
 import Testimonials from "@/components/Testimonials";
 
@@ -91,10 +91,6 @@ export default function SummerPage() {
           </p>
         </div>
       </section>
-
-      {site.athletePhotos.length > 0 && (
-        <section className="section"><div className="wrap"><Gallery limit={4} /></div></section>
-      )}
 
       <section className="section">
         <div className="wrap narrow">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { CtaBand, Gallery, PageHead } from "@/components/Blocks";
+import { CtaBand, PageHead } from "@/components/Blocks";
+import Slideshow from "@/components/Slideshow";
 import Wins from "@/components/Wins";
 import Reviews from "@/components/Reviews";
 import { site } from "@/site.config";
@@ -26,8 +27,7 @@ export default function AboutPage() {
           <div className="stack reveal">
             <span className="eyebrow">Our story</span>
             <h2 className="h-lg">From the cage to <span className="accent">indy ball</span> and back</h2>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={site.coachPhoto} alt={`${site.coach}, founder of ${site.name}`} className="coach-photo" />
+            <Slideshow images={site.coachSlides} alt={`${site.coach}, founder of ${site.name}`} />
           </div>
           <div className="stack reveal" style={{ fontSize: 18, color: "#d3dae4" }}>
             <p>After graduating college, {site.coach}, our founder, worked a year as a baseball trainer at D-BAT back home in Georgia, then quit to chase the dream of playing pro ball, grinding through indy ball on and off for two years.</p>
@@ -55,18 +55,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {site.athletePhotos.length > 0 && (
-        <section className="section">
-          <div className="wrap">
-            <div className="stack reveal" style={{ marginBottom: 36 }}>
-              <span className="eyebrow">Our athletes</span>
-              <h2 className="h-lg">Where they&rsquo;re <span className="accent">headed</span></h2>
-            </div>
-            <Gallery />
-          </div>
-        </section>
-      )}
 
       <Wins />
 

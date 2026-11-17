@@ -7,7 +7,17 @@ import { site } from "@/site.config";
  * Falls back to athlete photos, then to an animated brand background.
  */
 export default function HighlightReel() {
-  const clips = site.heroMode === "videos" ? site.heroHighlights : [];
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 760px) and (orientation: portrait)");
+    const on = () => setPhone(mq.matches);
+    on(); mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const base = site.heroMode === "videos" ? site.heroHighlights : [];
+  const clips = phone && base.length
+    ? [...base.map((s) => s.replace(/\.mp4$/, "-v.mp4")), ...site.portraitClips]
+    : base;
   const photos = site.heroPhotos.length ? site.heroPhotos : site.athletePhotos.map((p) => p.src);
   const [i, setI] = useState(0);
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -22,7 +32,7 @@ export default function HighlightReel() {
       const t = setTimeout(() => setI((n) => (n + 1) % photos.length), 5000);
       return () => clearTimeout(t);
     }
-  }, [i, clips.length, photos.length]);
+  }, [i, clips.length, photos.length, phone]);
 
   const next = () => setI((n) => (n + 1) % clips.length);
 

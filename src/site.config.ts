@@ -8,6 +8,15 @@ export const site = {
   coach: "Coach Ned",
   legalName: "Ball Out Boys, LLC",
   coachPhoto: "/media/merch/multicolor-tee-bw.jpg",
+  /** Slideshow next to the story on the About page. */
+  coachSlides: [
+    "/media/merch/multicolor-tee-bw.jpg",
+    "/media/athletes/power-swing.jpg",
+    "/media/athletes/pop-up-catch.jpg",
+    "/media/athletes/pride-ready.jpg",
+    "/media/athletes/ready-third-base.jpg",
+    "/media/athletes/dugout.jpg",
+  ],
   shortName: "BallOutBoys",
   tagline: "Baseball & softball player development",
   location: "Metro Atlanta, GA",
@@ -51,8 +60,12 @@ export const site = {
    * Keep each clip short (5-10s), muted, under ~8 MB. They crossfade in order.
    */
   /** What plays behind the home headline: "photos" (bright, rotating heroPhotos) or "videos" (heroHighlights). */
-  heroMode: "photos" as "photos" | "videos",
+  heroMode: "videos" as "photos" | "videos",
 
+  /**
+   * Phone (vertical) versions are the same filename ending in "-v.mp4", centered on the hitter.
+   * portraitClips are already vertical and play on phones as-is.
+   */
   heroHighlights: [
     "/media/highlights/night-at-bat.mp4",
     "/media/highlights/game-at-bat.mp4",
@@ -196,7 +209,7 @@ export const site = {
   },
 
   stats: [
-    { value: "100+", label: "Athletes trained" },
+    { value: "150+", label: "Athletes trained" },
     { value: "15+", label: "College commits" },
     { value: "5+", label: "Years coaching" },
     { value: "ATL", label: "Metro Atlanta based" },

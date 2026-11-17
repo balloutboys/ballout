@@ -4,7 +4,11 @@ import { site } from "@/site.config";
 
 /** Faded, muted highlight clips that crossfade behind a section. Plays only while on screen. */
 export default function VideoBackdrop({ start = 0 }: { start?: number }) {
-  const all = [...site.heroHighlights, ...site.portraitClips];
+  const [phone, setPhone] = useState(false);
+  useEffect(() => { setPhone(window.matchMedia("(max-width: 760px) and (orientation: portrait)").matches); }, []);
+  const all = phone
+    ? [...site.heroHighlights.map((s) => s.replace(/\.mp4$/, "-v.mp4")), ...site.portraitClips]
+    : site.heroHighlights;
   const clips = [...all.slice(start), ...all.slice(0, start)];
   const [i, setI] = useState(0);
   const [visible, setVisible] = useState(false);

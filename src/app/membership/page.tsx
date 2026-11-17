@@ -4,7 +4,7 @@ import Memberships from "@/components/Memberships";
 import Founders from "@/components/Founders";
 import VideoBackdrop from "@/components/VideoBackdrop";
 import Testimonials from "@/components/Testimonials";
-import { Checks, CtaBand, Faq, Gallery } from "@/components/Blocks";
+import { Checks, CtaBand, Faq } from "@/components/Blocks";
 import { Arrow } from "@/components/Icons";
 import { site } from "@/site.config";
 
@@ -69,10 +69,6 @@ export default function MembershipPage() {
           <Memberships />
         </div>
       </section>
-
-      {site.athletePhotos.length > 0 && (
-        <section className="section"><div className="wrap"><Gallery limit={4} /></div></section>
-      )}
 
       <section className="section">
         <div className="wrap narrow">
