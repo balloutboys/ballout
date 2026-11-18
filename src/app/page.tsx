@@ -20,12 +20,14 @@ export default function Home() {
         <HighlightReel />
         <div className="hero-content">
           <div className="wrap stack-lg">
-            <p className="hero-tag">BallOutBoys Athletics · <b>Metro Atlanta</b></p>
+            <p className="hero-tag">BallOutBoys Athletics <b>presents</b></p>
             <h1 className="h-xl">
-              <span className="line">Move like a pro</span>
-              <span className="line accent">before you&rsquo;re a pro.</span>
+              <span className="line">Building the foundation</span>
+              <span className="line accent">of an elite athlete.</span>
             </h1>
-            <p className="lead">Baseball &amp; softball player development for athletes who want the next level: college, premier high school and beyond.</p>
+            <p className="hero-sub">The Rotational Force Blueprint&trade;</p>
+            <p className="lead">A guide to developing movement, rotational power, athleticism, and performance for the next level.</p>
+            <p className="hero-tag">By Nedrick &ldquo;Coach Ned&rdquo; Flemister Jr.</p>
             <div className="btn-row">
               <Link href="/membership" className="btn btn-primary">Join the Membership <Arrow /></Link>
               <Link href="/lessons" className="btn btn-ghost">Book a 1-on-1 Lesson</Link>
