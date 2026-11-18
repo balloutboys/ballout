@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="stack reveal" style={{ fontSize: 18, color: "#d3dae4" }}>
             <p>After graduating college, {site.coach}, our founder, worked a year as a baseball trainer at D-BAT back home in Georgia, then quit to chase the dream of playing pro ball, grinding through indy ball on and off for two years.</p>
             <p>When that chapter closed, it was time to come home to build BallOutBoys Athletics. Since then, BallOutBoys has coached athletes into colleges, premier high schools and top travel organizations.</p>
-            <p>Today we&rsquo;re scaling, by the grace of God, to reach as many players as possible, teaching them how to move like a pro before they&rsquo;re a pro.</p>
+            <p>Today we&rsquo;re scaling, by the grace of God, to reach as many players as possible, building the foundation of an elite athlete through The Rotational Force Blueprint&trade;.</p>
             <p style={{ fontFamily: "var(--fh)", fontWeight: 800, fontStyle: "italic", fontSize: 28, textTransform: "uppercase", color: "#fff", lineHeight: 1.1 }}>&ldquo;{site.motto}&rdquo;</p>
           </div>
         </div>

@@ -511,3 +511,4 @@ iframe[hidden] { display: none !important; }
 .bk-note { font-size: 13.5px; color: var(--muted); text-align: center; }
 .bk-note a { color: var(--brand-400); text-decoration: underline; }
 @media (max-width: 520px) { .bk-detail { padding: 22px 18px; } }
+.hero-sub { font-family: var(--fh); font-weight: 800; font-size: clamp(22px, 3vw, 32px); text-transform: uppercase; letter-spacing: .02em; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,0.7); }
