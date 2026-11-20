@@ -27,7 +27,6 @@ export default function Home() {
             </h1>
             <p className="hero-sub">The Rotational Force Blueprint&trade;</p>
             <p className="lead">A guide to developing movement, rotational power, athleticism, and performance for the next level.</p>
-            <p className="hero-tag">By Nedrick &ldquo;Coach Ned&rdquo; Flemister Jr.</p>
             <div className="btn-row">
               <Link href="/membership" className="btn btn-primary">Join the Membership <Arrow /></Link>
               <Link href="/lessons" className="btn btn-ghost">Book a 1-on-1 Lesson</Link>
