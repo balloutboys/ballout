@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/site.config";
 import { playWithRetry, prepAutoplay } from "./autoplay";
-import { bindPlacement, isPhone } from "./focus";
 
 /** Faded, muted highlight clips that crossfade behind a section. Plays only while on screen. */
 export default function VideoBackdrop({ start = 0 }: { start?: number }) {
@@ -25,7 +24,6 @@ export default function VideoBackdrop({ start = 0 }: { start?: number }) {
   }, []);
 
   const key = clips.join("|");
-  useEffect(() => { if (box.current) return bindPlacement(box.current, () => ({ tx: 0.5, ty: 72 + window.innerHeight * (isPhone() ? 0.17 : 0.15), zoom: 1, gap: 0 })); }, [key]);
   useEffect(() => {
     vids.current.forEach((v, n) => { if (v && !(visible && n === i)) v.pause(); });
     if (!visible) return;

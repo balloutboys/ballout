@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/site.config";
 import { playWithRetry, prepAutoplay } from "./autoplay";
-import { bindPlacement, isPhone } from "./focus";
 
 /**
  * Background highlight reel: crossfades through short muted clips (site.heroHighlights).
@@ -23,16 +22,6 @@ export default function HighlightReel() {
   const photos = site.heroPhotos.length ? site.heroPhotos : site.athletePhotos.map((p) => p.src);
   const [i, setI] = useState(0);
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
-  const media = useRef<HTMLDivElement>(null);
-  const clipKey = clips.join("|");
-  useEffect(() => {
-    if (!media.current || !clipKey) return;
-    const box = media.current;
-    // Phone: clip fills the open window above the words. Desktop: hitter slides into the open right side.
-    return bindPlacement(box, () => isPhone()
-      ? { tx: 0.5, ty: 72 + window.innerHeight * 0.18, zoom: 1, gap: 0 }
-      : { tx: 0.76, ty: box.clientHeight * 0.52, zoom: 1.12, gap: box.clientWidth * 0.5 });
-  }, [clipKey]);
 
   useEffect(() => {
     if (clips.length) {
@@ -49,7 +38,7 @@ export default function HighlightReel() {
   const next = () => setI((n) => (n + 1) % clips.length);
 
   return (
-    <div ref={media} className={`hero-media${clips.length ? " is-video" : ""}`} aria-hidden="true">
+    <div className={`hero-media${clips.length ? " is-video" : ""}`} aria-hidden="true">
       {clips.length > 0 ? (
         clips.map((src, n) => (
           <video
