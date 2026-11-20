@@ -13,7 +13,10 @@ export default function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/logo-transparent.png" alt={site.name} width={220} height={61} style={{ height: 56, width: "auto" }} />
             <p className="muted">{site.tagline} · {site.location}</p>
-            <p className="muted" style={{ fontStyle: "italic" }}>&ldquo;{site.motto}&rdquo;</p>
+            <figure style={{ margin: 0 }}>
+              <blockquote className="muted" style={{ margin: 0, fontStyle: "italic" }}>{site.footerQuote.text}</blockquote>
+              <figcaption className="muted" style={{ marginTop: 6 }}>&ndash; {site.footerQuote.by}</figcaption>
+            </figure>
             {site.contactEmail && <p><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>}
           </div>
           <div>

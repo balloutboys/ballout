@@ -21,6 +21,11 @@ export const site = {
   tagline: "Baseball & softball player development",
   location: "Metro Atlanta, GA",
   motto: "Ball out at all times. You never know who's watching.",
+  /** Quote in the site footer. */
+  footerQuote: {
+    text: "The best players execute when opportunity meets preparation. Therefore, \u201cBall Out\u201d at all times you never know who\u2019s watching.",
+    by: "Ned Flemister Jr",
+  },
 
   // Contact shown in the footer, Privacy Policy and Terms. Leave "" to hide.
   contactEmail: "info@balloutboysathletics.com",
