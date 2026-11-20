@@ -133,8 +133,10 @@ export const site = {
 
   /** Team results with photos (home + about pages). */
   wins: [
-    { src: "/media/athletes/team-champions.jpg", title: "42 Classic Champions", detail: "2025 · Training Legends" },
+    { src: "/media/athletes/team-champions.jpg", title: "42 Classic", detail: "Champions" },
+    { src: "/media/athletes/team-fathers-day-pg-champions.jpg", title: "Perfect Game Father's Day Classic", detail: "Champions" },
     { src: "/media/athletes/team-finalist.jpg", title: "Perfect Game Sunday Series", detail: "Finalist" },
+    { src: "/media/athletes/team-pg-atlanta-fall-finalist.jpg", title: "Perfect Game Atlanta Fall Classic", detail: "Finalist" },
   ],
 
   /** Sponsor logos shown on the home page. bg = tile color behind the logo. */
