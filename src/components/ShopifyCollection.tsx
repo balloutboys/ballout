@@ -50,24 +50,17 @@ export default function ShopifyMerch() {
   const { domain, storefrontAccessToken, collections } = site.shopify;
   const [active, setActive] = useState(-1);
   const panel = useRef<HTMLDivElement>(null);
+  const host = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(false);
   const ui = useRef<UI | null>(null);
-  const nodes = useRef<(HTMLDivElement | null)[]>([]);
-  const built = useRef<Set<number>>(new Set());
-
-  const build = (i: number) => {
-    const node = nodes.current[i];
-    if (!ui.current || !node || built.current.has(i)) return;
-    built.current.add(i);
-    ui.current.createComponent("collection", { id: collections[i].id, node, moneyFormat: "%24%7B%7Bamount%7D%7D", options });
-  };
 
   useEffect(() => {
     const init = () => {
       const SB = window.ShopifyBuy;
       if (!SB?.UI) return setFailed(true);
       const client = SB.buildClient({ domain, storefrontAccessToken });
-      SB.UI.onReady(client).then((u: UI) => { ui.current = u; if (active >= 0) build(active); });
+      SB.UI.onReady(client).then((u: UI) => { ui.current = u; setReady(true); });
     };
     if (window.ShopifyBuy?.UI) { init(); return; }
     const s = document.createElement("script");
@@ -76,7 +69,15 @@ export default function ShopifyMerch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => { if (active >= 0) build(active); }); // build a tab the first time it's shown
+  // Every time the selected category changes, clear the old products and load the new collection fresh.
+  useEffect(() => {
+    const box = host.current;
+    if (!box || active < 0 || !ready || !ui.current) return;
+    box.innerHTML = "";
+    const node = document.createElement("div");
+    box.appendChild(node);
+    ui.current.createComponent("collection", { id: collections[active].id, node, moneyFormat: "%24%7B%7Bamount%7D%7D", options });
+  }, [active, ready, collections]);
 
   const pick = (i: number) => {
     setActive(i);
@@ -108,9 +109,7 @@ export default function ShopifyMerch() {
             <a href={collections[active].url} className="btn btn-ghost btn-sm">Shop all {collections[active].title} <External /></a>
           </div>
         )}
-        {collections.map((c, i) => (
-          <div key={c.id} role="tabpanel" hidden={i !== active} ref={(el) => { nodes.current[i] = el; }} style={{ minHeight: 400 }} />
-        ))}
+        <div ref={host} role="tabpanel" hidden={active < 0} style={{ minHeight: 400 }} />
       </div>
     </div>
   );

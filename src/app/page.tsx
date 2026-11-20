@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HighlightReel from "@/components/HighlightReel";
-import Memberships from "@/components/Memberships";
+import BookingApp from "@/components/BookingApp";
 import Founders from "@/components/Founders";
 import Partners from "@/components/Partners";
 import Wins from "@/components/Wins";
@@ -46,18 +46,18 @@ export default function Home() {
 
       <Marquee words={["Ball out", "Train like a pro", "Rotational force", "Faith first", "Next level", "Metro Atlanta"]} />
 
-      <section className="section alt" id="memberships">
+      <section className="section alt" id="book">
         <div className="wrap">
           <div className="split" style={{ alignItems: "end", marginBottom: 40 }}>
             <div className="stack reveal">
-              <span className="eyebrow">Memberships</span>
-              <h2 className="h-lg">Pick your <span className="accent">plan</span></h2>
+              <span className="eyebrow">Book with BallOutBoys</span>
+              <h2 className="h-lg">All booking <span className="accent">options</span></h2>
             </div>
             <div className="stack reveal">
-              <p className="lead">Every plan runs through the BallOutBoys app: your schedule, workouts and progress in one place. Already a member? <a href={links.clientSignIn} target="_blank" rel="noopener" className="accent">Sign in here</a>.</p>
+              <p className="lead">Lessons, memberships, a free athlete advising call or the summer program. Pick one and book it. Already a client? <a href={links.clientSignIn} target="_blank" rel="noopener" className="accent">Sign in here</a>.</p>
             </div>
           </div>
-          <Memberships />
+          <BookingApp />
         </div>
       </section>
 

@@ -30,6 +30,7 @@ export default function MembershipPage() {
           </div>
           <div className="btn-row" style={{ justifyContent: "center", marginTop: 32 }}>
             <a href="#plans" className="btn btn-primary">Choose your plan <Arrow /></a>
+            <a href={site.links.advisingCall} target="_blank" rel="noopener" className="btn btn-ghost">Book your free athlete advising call</a>
           </div>
         </div>
       </section>
