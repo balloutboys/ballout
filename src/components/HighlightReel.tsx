@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/site.config";
+import { playWithRetry, prepAutoplay } from "./autoplay";
 
 /**
  * Background highlight reel: crossfades through short muted clips (site.heroHighlights).
@@ -25,8 +26,8 @@ export default function HighlightReel() {
   useEffect(() => {
     if (clips.length) {
       const v = refs.current[i];
-      if (v) { v.currentTime = 0; v.play().catch(() => {}); }
-      return;
+      if (v && v.currentTime > 0.05) v.currentTime = 0;
+      return playWithRetry(() => refs.current[i]);
     }
     if (photos.length > 1) {
       const t = setTimeout(() => setI((n) => (n + 1) % photos.length), 5000);
@@ -42,7 +43,7 @@ export default function HighlightReel() {
         clips.map((src, n) => (
           <video
             key={src}
-            ref={(el) => { refs.current[n] = el; }}
+            ref={(el) => { refs.current[n] = el; prepAutoplay(el); }}
             className={n === i ? "on" : ""}
             src={src}
             poster={src.replace(/\.mp4$/, ".jpg")}

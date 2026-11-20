@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/site.config";
+import { playWithRetry, prepAutoplay } from "./autoplay";
 
 /** Faded, muted highlight clips that crossfade behind a section. Plays only while on screen. */
 export default function VideoBackdrop({ start = 0 }: { start?: number }) {
@@ -22,12 +23,12 @@ export default function VideoBackdrop({ start = 0 }: { start?: number }) {
     return () => io.disconnect();
   }, []);
 
+  const key = clips.join("|");
   useEffect(() => {
-    vids.current.forEach((v, n) => {
-      if (!v) return;
-      if (visible && n === i) { v.play().catch(() => {}); } else { v.pause(); }
-    });
-  }, [i, visible]);
+    vids.current.forEach((v, n) => { if (v && !(visible && n === i)) v.pause(); });
+    if (!visible) return;
+    return playWithRetry(() => vids.current[i]);
+  }, [i, visible, key]);
 
   if (!clips.length) return null;
   return (
@@ -35,13 +36,14 @@ export default function VideoBackdrop({ start = 0 }: { start?: number }) {
       {clips.map((src, n) => (
         <video
           key={src}
-          ref={(el) => { vids.current[n] = el; }}
+          ref={(el) => { vids.current[n] = el; prepAutoplay(el); }}
           className={n === i ? "on" : ""}
           src={src}
           poster={src.replace(/\.mp4$/, ".jpg")}
           muted
           playsInline
-          preload={n === 0 ? "metadata" : "none"}
+          autoPlay={n === 0}
+          preload={n === 0 ? "auto" : "none"}
           onEnded={() => setI((x) => (x + 1) % clips.length)}
         />
       ))}
