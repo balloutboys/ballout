@@ -71,17 +71,6 @@ export const site = {
    * Phone (vertical) versions are the same filename ending in "-v.mp4", centered on the hitter.
    * portraitClips are already vertical and play on phones as-is.
    */
-  /** Hitter position in each clip (0–1). x/y for the wide clip, vy (and vx) for the phone clip. */
-  clipFocus: {
-    "night-at-bat": { x: 0.32, y: 0.58, vy: 0.6 },
-    "game-at-bat": { x: 0.45, y: 0.55, vy: 0.56 },
-    "base-hit": { x: 0.36, y: 0.4, vy: 0.42 },
-    "night-game-pitch": { x: 0.2, y: 0.45, vy: 0.5 },
-    "day-game-at-bat": { x: 0.3, y: 0.45, vy: 0.58 },
-    "day-at-bat-2": { x: 0.46, y: 0.62, vy: 0.63 },
-    "cage-swing": { x: 0.45, y: 0.5, vx: 0.45, vy: 0.5 },
-  } as Record<string, { x: number; y: number; vx?: number; vy: number }>,
-
   heroHighlights: [
     "/media/highlights/night-at-bat.mp4",
     "/media/highlights/game-at-bat.mp4",
