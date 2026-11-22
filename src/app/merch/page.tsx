@@ -13,7 +13,7 @@ export default function MerchPage() {
   const store = site.links.merchStore;
   return (
     <>
-      <PageHead art="/brand/logo-merch.png" eyebrow="Official merch" title={<>Rep the <span className="accent">brand</span></>} lead="Sport performance, streetwear, Ball Out Girls and kids gear. Add to cart here and check out securely with Shopify.">
+      <PageHead art="/brand/logo-merch.png" eyebrow="Official merch" title={<>Rep the <span className="accent">brand</span></>} lead="Sport Performance, Streetwear, Ball Out Girls and Kids gear. Add to cart here and check out securely with Shopify.">
         <div className="btn-row" style={{ marginTop: 26 }}>
           <a href={store} target="_blank" rel="noopener" className="btn btn-primary">Shop the full store <External /></a>
         </div>
