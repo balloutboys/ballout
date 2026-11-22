@@ -356,11 +356,10 @@ export const booking: BookingOption[] = [
     name: "Summer Program",
     duration: "June 1 – July 31",
     who: "Ages 13+ · baseball & softball",
-    summary: "Book a free call to reserve your athlete's spot and go over pricing for Summer 2027.",
+    summary: "Book a free strategy call to cover your goals and how our development system works. This call is for fit\u2014acceptance isn\u2019t guaranteed.",
     includes: ["Rotational power and bat speed", "Speed, agility and strength", "Small groups so every athlete gets coached"],
     url: "https://calendly.com/balloutboysathletics/summer-pogram",
     cta: "Book your free call",
-    free: true,
   },
 ];
 
