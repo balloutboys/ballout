@@ -19,3 +19,9 @@
 - Almost all links, media, prices and copy settings: `src/site.config.ts`
 - Reviews: `src/reviews.ts`
 - Memberships, lessons: Beturr (`beturrapp.com/join/balloutboys-athletics?package=…`); merch: Shopify Buy Button (balloutboysmerch.com); ebook: Stripe payment link → `/ebook/thank-you`
+
+## Summer Program
+- It is a paid program (price shared on the call). Never label it "Free".
+- The booking button stays "Book your free call" (the strategy call is free).
+- Description: "Book a free strategy call to cover your goals and how our development system works."
+- Always include: "This call is for fit—acceptance isn't guaranteed."
