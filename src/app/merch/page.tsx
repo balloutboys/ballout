@@ -21,8 +21,8 @@ export default function MerchPage() {
 
       <section className="section">
         <div className="wrap">
-          <div className="split reveal" style={{ alignItems: "end", marginBottom: 24 }}>
-            <div className="stack"><span className="eyebrow">Rep the brand</span><h2 className="h-md">Worn by athletes. <span className="accent">Built for athletes.</span></h2></div>
+          <div className="look-head reveal">
+            <div className="stack"><span className="eyebrow">Rep the brand</span><h2 className="h-md look-title">Worn by athletes. <span className="accent">Built for athletes.</span></h2></div>
             <p className="muted">Swipe to see more →</p>
           </div>
           <div className="lookbook">
