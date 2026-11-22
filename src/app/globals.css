@@ -512,3 +512,6 @@ iframe[hidden] { display: none !important; }
 .bk-note a { color: var(--brand-400); text-decoration: underline; }
 @media (max-width: 520px) { .bk-detail { padding: 22px 18px; } }
 .hero-sub { font-family: var(--fh); font-weight: 800; font-size: clamp(22px, 3vw, 32px); text-transform: uppercase; letter-spacing: .02em; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,0.7); }
+.look-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 24px; }
+@media (min-width: 761px) { .look-title { white-space: nowrap; } }
+@media (max-width: 760px) { .look-title { font-size: clamp(18px, 5.6vw, 28px); white-space: nowrap; } }
