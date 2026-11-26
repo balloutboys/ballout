@@ -195,6 +195,7 @@ M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, em
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
 M["scr_spray"] = mat("ScreenSpray", "#000000", emit_tex="screen_spray.jpg", estr=1.6, rough=0.15)
 M["scr_logo"] = mat("ScreenLogo", "#000000", emit_tex="screen_logo.jpg", estr=1.6, rough=0.15)
+M["scr_prices"] = mat("ScreenPrices", "#000000", emit_tex="screen_prices.jpg", estr=1.5, rough=0.15)
 M["scr_team"] = mat("ScreenTeam", "#000000", emit_tex="screen_team.jpg", estr=1.4, rough=0.15)
 M["scr_swing"] = mat("ScreenSwing", "#000000", emit_tex="screen_swing.jpg", estr=1.4, rough=0.15)
 
@@ -1060,10 +1061,11 @@ def office_chair(name, x, y, rot):
 # desk with Coach Ned's chair behind it against the left (west) wall
 desk("Desk_Ned", 22.3, 0.9, 24.7, 4.7, monitor_face=(24.15, 2.8, -90))
 office_chair("Chair_Ned", 21.15, 2.8, 90)
-# guest chair in front of the desk, front right
-office_chair("Chair_Guest", 25.75, 2.0, -90)
-# extra desk under the TV on the east wall
-desk("Desk_Extra", 27.2, 1.0, 28.85, 4.6)
+# guest chair in front of Coach Ned's desk
+office_chair("Chair_Guest", 25.5, 4.4, -90)
+# second desk faces the top (north) wall; its chair sits against the bottom (front) wall, facing north too
+desk("Desk_Extra", 26.4, 2.2, 28.8, 3.5, monitor_face=(27.6, 3.2, 0))
+office_chair("Chair_Extra", 27.6, 1.1, 180)
 # couch on the back wall facing the desk, coffee table between
 couch("OfficeCouch", 20.1, 6.7, 24.9, 9.25, "-y", M["fabric_blue"])
 b = B("OfficeTable", "Props", bevel=0.03)
@@ -1140,7 +1142,7 @@ b.box(-0.06, 0.0, 0, 0.06, 0.12, 0.45, M["black_plastic"])
 b.pop()
 b.finish()
 # centred on the wall behind reception: from the storefront (y=0) to the office door frame (y=5.88)
-tv("TV_Lobby", XS + PT + 0.15, 2.94, 6.3, 4.0, 2.3, 90, M["scr_logo"])
+tv("TV_Lobby", XS + PT + 0.15, 2.94, 6.3, 4.0, 2.25, 90, M["scr_prices"])
 # one couch on the east wall (where the chairs were), facing the coffee table
 couch("LobbyCouch", 47.35, 2.4, 49.95, 7.9, "-x", M["fabric_blue"])
 b = B("LobbyTable", "Props", bevel=0.04)
