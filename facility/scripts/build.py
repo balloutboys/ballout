@@ -1133,15 +1133,16 @@ b.pop()
 b.finish()
 # centred on the wall behind reception: from the storefront (y=0) to the office door frame (y=5.88)
 tv("TV_Lobby", XS + PT + 0.15, 2.94, 6.3, 4.0, 2.3, 90, M["scr_logo"])
-couch("LobbyCouch1", 37.7, 8.5, 42.0, 11.15, "-y", M["fabric_blue"])
-couch("LobbyCouch2", 42.2, 8.5, 46.5, 11.15, "-y", M["fabric_blue"])
+# one couch on the east wall (where the chairs were), facing the coffee table
+couch("LobbyCouch", 47.35, 2.4, 49.95, 7.9, "-x", M["fabric_blue"])
 b = B("LobbyTable", "Props", bevel=0.04)
 b.box(39.6, 5.8, 1.3, 44.8, 7.4, 1.48, M["walnut"])
 for xx in (39.8, 44.4):
     b.box(xx, 5.9, FL, xx + 0.2, 7.3, 1.3, M["black_plastic"])
 b.finish()
-armchair("LobbyChair1", 48.6, 4.0, -90, M["fabric_dark"])
-armchair("LobbyChair2", 48.6, 6.6, -90, M["fabric_dark"])
+# two chairs where the couches were, backs to the restroom wall, facing the table
+armchair("LobbyChair1", 40.85, 9.9, 0, M["fabric_dark"])
+armchair("LobbyChair2", 43.55, 9.9, 0, M["fabric_dark"])
 # merch: clothing rack + wall shelf, x 46.9..49.7, y 8.4..11
 b = B("MerchRack", "Props", bevel=0.01)
 b.box(47.0, 8.4, FL, 47.1, 8.5, 5.4, M["chrome"])
