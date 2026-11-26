@@ -525,7 +525,7 @@ def frame_y(x, y0, y1, t=PT):
 frame_x(33.0, 36.1, YOB)
 door_leaf(33.05, YOB + PT + 0.1, 3.0, 90)          # hall -> weight room, opens into WR
 frame_y(XS, 6.0, 8.8)
-door_leaf(XS - 0.1, 6.05, 2.7, 180 - 0)           # office door swings into office
+door_leaf(XS + PT + 0.1, 8.75, 2.7, 0)            # office door swings out into the lobby
 frame_y(XS, 15.2, 18.0)
 door_leaf(XS - 0.1, 15.25, 2.7, 180)               # storage door
 frame_y(XR, 12.3, 15.0)
