@@ -1,0 +1,823 @@
+<title>Suite 204 Virtual Tour</title>
+<meta name="description" content="Ball Out Boys Athletics, Suite 204: 3D dollhouse model and 360° walkthrough of the planned training facility.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: full-bleed WebGL stage; thin glass HUD on the edges (brand bar top, stop rail bottom, plan inset right). */
+:root {
+  --ink: #06080c;          /* stage */
+  --panel: rgba(11, 15, 22, 0.82);
+  --panel-solid: #0e141d;
+  --line: rgba(255, 255, 255, 0.12);
+  --fg: #f3f5f8;
+  --muted: #9aa5b4;
+  --blue: #1763c9;         /* brand royal blue */
+  --blue-hi: #3b82f0;
+  --ring: #ffffff;
+  --fd: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --fb: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sl: max(14px, env(safe-area-inset-left, 0px));
+  --sr: max(14px, env(safe-area-inset-right, 0px));
+  --st: calc(env(safe-area-inset-top, 0px) + 12px);
+  --sb: calc(env(safe-area-inset-bottom, 0px) + 12px);
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--ink); color: var(--fg); font-family: var(--fb); overflow: hidden; -webkit-font-smoothing: antialiased; }
+#stage { position: fixed; inset: 0; background: radial-gradient(120% 90% at 50% 35%, #16202e 0%, #0a0e14 55%, #05070a 100%); }
+#stage canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#stage canvas:active { cursor: grabbing; }
+button { font: inherit; color: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--blue-hi); outline-offset: 2px; }
+
+/* top bar */
+.top { position: fixed; top: 0; left: 0; right: 0; padding: var(--st) var(--sr) 0 var(--sl); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; pointer-events: none; z-index: 5; }
+.brand { pointer-events: auto; display: flex; flex-direction: column; gap: 2px; padding: 9px 14px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); min-width: 0; }
+.brand b { font-family: var(--fd); font-weight: 800; font-size: 19px; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; white-space: nowrap; }
+.brand b span { color: var(--blue-hi); }
+.brand small { font-size: 12px; color: var(--muted); letter-spacing: 0.02em; white-space: nowrap; }
+.tools { pointer-events: auto; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.tbtn { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 13px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
+.tbtn:hover { border-color: rgba(255,255,255,.3); }
+.tbtn[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); }
+.tbtn svg { width: 17px; height: 17px; flex: none; }
+
+/* bottom rail */
+.bottom { position: fixed; left: 0; right: 0; bottom: 0; padding: 0 var(--sr) var(--sb) var(--sl); display: flex; flex-direction: column; gap: 10px; z-index: 5; pointer-events: none; }
+.card { pointer-events: auto; align-self: flex-start; max-width: min(440px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; gap: 6px; }
+.card .eyebrow { font-family: var(--fd); font-weight: 700; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-hi); }
+.card h1 { margin: 0; font-family: var(--fd); font-weight: 800; font-size: 30px; line-height: 0.95; text-transform: uppercase; text-wrap: balance; }
+.card .spec { font-size: 13px; font-weight: 600; color: var(--fg); opacity: .9; font-variant-numeric: tabular-nums; }
+.card p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.card .nav { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.card .nav .count { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; margin-right: auto; }
+.nbtn { height: 34px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--line); background: rgba(255,255,255,.04); cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; }
+.nbtn.primary { background: var(--blue); border-color: var(--blue); }
+.nbtn:hover { border-color: rgba(255,255,255,.35); }
+.rail { pointer-events: auto; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px; -webkit-overflow-scrolling: touch; }
+.rail::-webkit-scrollbar { display: none; }
+.chip { flex: none; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 15px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); opacity: .6; }
+.chip[aria-current="true"] { background: #fff; color: #06080c; border-color: #fff; }
+.chip[aria-current="true"] i { background: var(--blue); opacity: 1; }
+
+/* plan inset */
+.plan { position: fixed; right: var(--sr); top: calc(var(--st) + 54px); width: 170px; z-index: 4; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 16px 40px -18px rgba(0,0,0,.8); }
+.plan .wrap { position: relative; aspect-ratio: 2 / 3; }
+.plan img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: .92; }
+.plan .dot { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid #fff; background: rgba(6,8,12,.55); cursor: pointer; padding: 0; }
+.plan .dot.on { background: var(--blue); width: 16px; height: 16px; margin: -8px 0 0 -8px; }
+.plan .cone { position: absolute; width: 0; height: 0; pointer-events: none; }
+.plan .cone::before { content: ""; position: absolute; left: -26px; top: -46px; width: 52px; height: 46px; background: conic-gradient(from -32deg at 50% 100%, rgba(59,130,240,.75) 0deg 64deg, transparent 64deg); clip-path: polygon(50% 100%, 0 0, 100% 0); }
+.plan .cap { font-family: var(--fd); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 7px 10px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+
+/* 3D labels */
+#labels { position: fixed; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+.pin { position: absolute; left: 0; top: 0; pointer-events: auto; transform: translate(-50%, -100%); display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; background: none; border: 0; padding: 0; }
+.pin span { font-family: var(--fd); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; background: rgba(6,8,12,.86); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 4px 10px; }
+.pin em { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 2px solid #fff; box-shadow: 0 0 0 4px rgba(23,99,201,.35); }
+.pin:hover span { background: var(--blue); border-color: var(--blue); }
+.hot { transform: translate(-50%, -50%); }
+.hot span { background: rgba(6,8,12,.72); }
+
+/* loader + hint */
+.loader { position: fixed; inset: 0; display: grid; place-items: center; z-index: 9; background: var(--ink); transition: opacity .6s; }
+.loader .box { display: grid; gap: 12px; justify-items: center; text-align: center; padding: 0 24px; }
+.loader b { font-family: var(--fd); font-weight: 800; font-size: 28px; text-transform: uppercase; letter-spacing: .02em; }
+.loader b span { color: var(--blue-hi); }
+.loader .bar { width: 220px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.1); overflow: hidden; }
+.loader .bar i { display: block; height: 100%; width: 0%; background: var(--blue-hi); transition: width .2s; }
+.loader small { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.hint { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 6; pointer-events: none; background: rgba(6,8,12,.8); border: 1px solid var(--line); border-radius: 999px; padding: 10px 18px; font-size: 14px; transition: opacity .5s; white-space: nowrap; }
+.spin { position: fixed; right: var(--sr); bottom: calc(var(--sb) + 60px); z-index: 6; width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(255,255,255,.2); border-top-color: #fff; animation: sp 0.8s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+
+/* gallery */
+.gallery { position: fixed; inset: 0; z-index: 20; background: rgba(5,7,10,.96); overflow-y: auto; padding: calc(env(safe-area-inset-top, 0px) + 18px) var(--sr) calc(env(safe-area-inset-bottom, 0px) + 24px) var(--sl); }
+.gallery header { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 1200px; margin: 0 auto 16px; }
+.gallery h2 { margin: 0; font-family: var(--fd); font-weight: 800; font-size: 28px; text-transform: uppercase; }
+.gallery h2 span { color: var(--blue-hi); }
+.grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 14px; }
+.shot { display: grid; gap: 8px; background: none; border: 0; padding: 0; text-align: left; cursor: zoom-in; }
+.shot img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: #0e141d; }
+.shot span { font-family: var(--fd); font-weight: 700; font-size: 16px; letter-spacing: .05em; text-transform: uppercase; }
+.shot small { display: block; font-family: var(--fb); font-weight: 400; font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--muted); margin-top: 2px; }
+.note { max-width: 1200px; margin: 18px auto 0; color: var(--muted); font-size: 12px; }
+.lightbox { position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,.94); display: grid; grid-template-rows: 1fr auto; padding: calc(env(safe-area-inset-top, 0px) + 12px) var(--sr) calc(env(safe-area-inset-bottom, 0px) + 12px) var(--sl); gap: 10px; }
+.lightbox img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.lightbox .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.lightbox .row span { font-family: var(--fd); font-weight: 700; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; }
+
+.card.compact .spec, .card.compact p { display: none; }
+.ibtn { width: 34px; padding: 0; display: inline-grid; place-items: center; }
+.ibtn svg { width: 17px; height: 17px; }
+@media (min-width: 641px) { .ibtn { display: none; } }
+@media (max-width: 640px) {
+  .tools { flex-wrap: nowrap; }
+  .tbtn { width: 34px; padding: 0; justify-content: center; }
+  .brand { padding: 8px 11px; }
+  .brand b { font-size: 16px; white-space: normal; }
+  .brand small { font-size: 11px; }
+  .tbtn { height: 34px; padding: 0 10px; font-size: 13px; }
+  .tbtn .lbl { display: none; }
+  .card { padding: 12px 14px; max-width: 100%; align-self: stretch; }
+  .card h1 { font-size: 25px; }
+  .card p { font-size: 13px; }
+  .plan { width: 112px; top: calc(var(--st) + 50px); }
+  .pin span { font-size: 11px; padding: 3px 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .spin { animation-duration: 2s; } }
+</style>
+
+<div id="stage"></div>
+<div id="labels"></div>
+
+<div class="top">
+  <div class="brand">
+    <b>Ball Out Boys <span>Athletics</span></b>
+    <small>Suite 204 · 3,874 SF · 50′ × 77′</small>
+  </div>
+  <div class="tools">
+    <button class="tbtn" id="btnHome" type="button" aria-label="3D overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg><span class="lbl">3D</span></button>
+    <button class="tbtn" id="btnTop" type="button" aria-label="Top-down view">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 15h9V3M13 9h7"/></svg><span class="lbl">Top</span></button>
+    <button class="tbtn" id="btnPlan" type="button" aria-pressed="true" aria-label="Show floor plan">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg><span class="lbl">Map</span></button>
+    <button class="tbtn" id="btnGallery" type="button" aria-label="Open renders">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg><span class="lbl">Renders</span></button>
+  </div>
+</div>
+
+<aside class="plan" id="plan" aria-label="Floor plan">
+  <div class="wrap" id="planWrap"><img src="plan.jpg" alt="Top-down render of Suite 204"></div>
+  <div class="cap"><span>Front ↓</span><span id="planCap">Overview</span></div>
+</aside>
+
+<div class="bottom">
+  <section class="card" id="card" aria-live="polite"></section>
+  <nav class="rail" id="rail" aria-label="Tour stops"></nav>
+</div>
+
+<div class="hint" id="hint" style="opacity:0">Drag to look around · tap a ring to walk</div>
+<div class="spin" id="spin" hidden></div>
+
+<div class="loader" id="loader">
+  <div class="box">
+    <b>Ball Out Boys <span>Athletics</span></b>
+    <div class="bar"><i id="loadBar"></i></div>
+    <small id="loadTxt">Loading the 3D model…</small>
+  </div>
+</div>
+
+<div class="gallery" id="gallery" hidden>
+  <header>
+    <h2>Suite 204 <span>Renders</span></h2>
+    <button class="nbtn" id="galClose" type="button">Back to tour</button>
+  </header>
+  <div class="grid" id="grid"></div>
+  <p class="note">Concept renders of layout v6, built to scale from the Suite 204 floor plan. Not construction drawings; verify clear height, egress and permits with the landlord before install.</p>
+</div>
+<div class="lightbox" id="lightbox" hidden>
+  <img id="lbImg" alt="">
+  <div class="row"><span id="lbCap"></span><button class="nbtn" id="lbClose" type="button">Close</button></div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+const FT = 0.3048;
+// plan coords in feet: x west→east (0..50), y front→back (0..77), z up
+const P = (x, y, z = 0) => new THREE.Vector3(x * FT, z * FT, -y * FT);
+const CENTER = P(25, 38.5, 0);
+
+const STOPS = [
+  { id: "lobby", name: "Lobby", x: 40, y: 3.5, eye: 5.3, yaw: 318, eyebrow: "Front entrance",
+    spec: "Reception desk + TV · 2 vending · merch · lounge seating",
+    text: "Athletes and parents check in at the reception desk, with the TV on the wall behind it. Couches and merch wait while sessions run." },
+  { id: "office", name: "Coach Ned's Office", x: 25.8, y: 6.6, eye: 5.3, yaw: 245, eyebrow: "Office",
+    spec: "Desk · couch + table · TV · extra desk",
+    text: "Private space for evaluations, parent meetings and planning each athlete's development." },
+  { id: "hall", name: "Hallway", x: 35, y: 15.6, eye: 5.3, yaw: 0, eyebrow: "Office block",
+    spec: "ADA restroom · vending · storage · weight room door",
+    text: "The hall connects the lobby to the ADA restroom, the storage room and the door onto the training floor." },
+  { id: "weight", name: "Weight Room", x: 38, y: 42, eye: 5.3, yaw: 128, eyebrow: "Strength",
+    spec: "2 racks on platforms · DB rack 5–100 lb · 4 benches",
+    text: "Rubber floor, open to the cages, so athletes can go from a lift straight into swings or throws." },
+  { id: "cable", name: "Cable + BSS", x: 40.5, y: 61, eye: 5.3, yaw: 52, eyebrow: "Strength",
+    spec: "Cable machine · Bulgarian split squat rack · band + med ball racks",
+    text: "Rotational and single-leg work: cable chops, med ball throws and split squats beside the dock door." },
+  { id: "lounge", name: "Lounge", x: 13.5, y: 66.8, pinX: 22, pinY: 67.6, eye: 5.3, yaw: 198, eyebrow: "Back of the building",
+    spec: "50″ HitTrax TV · 2 chairs · 2 couches · bat rack + cubbies",
+    text: "Gear goes in the cubbies, and the HitTrax screen shows exit velocity and spray charts from the cage." },
+  { id: "plate", name: "Cage 1 · Home Plate", x: 13.2, y: 61, eye: 5.3, yaw: 180, eyebrow: "Cage 1 · 65′ × 19.5′",
+    spec: "HitTrax tracking · mirror wall · LED logo sign",
+    text: "The batter's view down the bullpen. Live BP, machine work and HitTrax data from one lane." },
+  { id: "mound", name: "Cage 1 · Mounds", x: 5.55, y: 3.0, eye: 6.1, yaw: 6, eyebrow: "Bullpen",
+    spec: "2 portable mounds · 60′ 6″ to plate",
+    text: "Two mounds on wheels at regulation distance. Roll in the pitching machine and L-screen for BP." },
+  { id: "cage2", name: "Cage 2", x: 29.5, y: 45.5, eye: 5.3, yaw: 330, eyebrow: "Cage 2 · 46.6′ × 13′",
+    spec: "Retractable divider → two 23.3′ halves",
+    text: "Half A runs tee and front toss. Half B runs the machine and short toss. Pull the net back for one long lane." },
+];
+const NEIGH = {
+  lobby: ["office", "hall"], office: ["lobby", "hall"], hall: ["lobby", "office", "weight"],
+  weight: ["hall", "cable", "cage2"], cable: ["weight", "lounge"], lounge: ["cable", "plate", "cage2"],
+  plate: ["lounge", "mound", "cage2"], mound: ["plate", "cage2"], cage2: ["weight", "plate", "mound", "lounge"],
+};
+const byId = Object.fromEntries(STOPS.map((s) => [s.id, s]));
+
+const SHOTS = [
+  ["hero.jpg", "Full facility", "Cutaway from the east side, the same angle as a dollhouse model."],
+  ["front.jpg", "From the entrance", "Lobby and offices up front, cages and weight room behind, lounge at the back."],
+  ["cages.jpg", "Cages 1 and 2", "Bullpen with two mounds, Cage 2 with the retractable divider."],
+  ["weightroom.jpg", "Weight room", "Two racks on platforms, DB rack, benches, cable machine and BSS rack."],
+  ["lobby.jpg", "Lobby and offices", "Reception with the TV behind the desk, vending, merch, Coach Ned's office and the ADA restroom."],
+  ["eye_cage1.jpg", "Batter's view", "Standing at home plate in Cage 1, looking out to the mounds."],
+  ["eye_weight.jpg", "Weight room floor", "Eye level from the dock end of the weight room."],
+  ["top.jpg", "Top view", "Straight down, front entrance at the bottom. 50′ × 77′."],
+];
+
+// ---------------------------------------------------------------- renderer / scene
+const stage = document.getElementById("stage");
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.55;
+
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.05, 400);
+scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x20242b, 0.9));
+const sun = new THREE.DirectionalLight(0xfff4e8, 2.2);
+sun.position.copy(CENTER).add(new THREE.Vector3(14, 26, 12));
+sun.target.position.copy(CENTER);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20, near: 1, far: 70 });
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 0.02;
+scene.add(sun, sun.target);
+
+const ground = new THREE.Mesh(new THREE.CircleGeometry(60, 64), new THREE.ShadowMaterial({ opacity: 0.45 }));
+ground.rotation.x = -Math.PI / 2;
+ground.position.copy(CENTER).setY(-0.19);
+ground.receiveShadow = true;
+scene.add(ground);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.maxPolarAngle = THREE.MathUtils.degToRad(84);
+controls.minDistance = 6;
+controls.maxDistance = 110;
+controls.target.copy(CENTER);
+
+// ---------------------------------------------------------------- model
+let model = null;
+const cutWalls = [];
+const WALL_N = {
+  Wall_W_up: [-1, 0, 0], Wall_E_up: [1, 0, 0], Storefront_up: [0, 0, 1], Glass_up: [0, 0, 1],
+  Wall_LoungeBack_up: [0, 0, -1], Wall_Back_up: [0, 0, -1], Wall_Notch_up: [-0.7, 0, -0.7],
+};
+
+function tuneMaterial(m, mesh) {
+  const n = m.name || "";
+  if (n === "Glass") {
+    const g = new THREE.MeshStandardMaterial({ color: 0xa9c4d6, roughness: 0.05, metalness: 0, transparent: true, opacity: 0.16, depthWrite: false });
+    mesh.castShadow = false;
+    return g;
+  }
+  if (n === "Net") {
+    m.transparent = true; m.depthWrite = false; m.side = THREE.DoubleSide; m.alphaTest = 0.02;
+    m.opacity = 1; mesh.castShadow = false; mesh.renderOrder = 2;
+  }
+  if (/Decal|Hatch|Banner|Logo|Neon|Acrylic/.test(n)) {
+    m.transparent = true; m.depthWrite = false; m.polygonOffset = true; m.polygonOffsetFactor = -2;
+    mesh.castShadow = false; mesh.renderOrder = 1;
+  }
+  if (/^(LED|LEDBlue)$/.test(n)) { m.emissiveIntensity = Math.min(m.emissiveIntensity || 1, 3); }
+  if (/^Screen|VendFront/.test(n)) { m.emissiveIntensity = 1.0; }
+  if (n === "NeonSign") { m.emissiveIntensity = 1.8; }
+  if (m.map) m.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return m;
+}
+
+const loader = new GLTFLoader();
+// Decode embedded images with <img> + blob: URLs (allowed by the viewer), never fetch().
+loader.register((parser) => {
+  parser.textureLoader = new THREE.TextureLoader(parser.options.manager);
+  parser.textureLoader.setCrossOrigin("anonymous");
+  return { name: "BOB_img_textures" };
+});
+const loadBar = document.getElementById("loadBar");
+const loadTxt = document.getElementById("loadTxt");
+
+function onModel(gltf) {
+  model = gltf.scene;
+  model.traverse((o) => {
+    if (!o.isMesh) return;
+    const nm = (o.parent && o.parent.type === "Group" && o.parent.name ? o.parent.name : "") + " " + o.name;
+    const flat = /Floor_|Slab|Decal_/.test(nm);
+    o.castShadow = !flat;
+    o.receiveShadow = true;
+    o.material = Array.isArray(o.material) ? o.material.map((m) => tuneMaterial(m, o)) : tuneMaterial(o.material, o);
+  });
+  for (const [name, n] of Object.entries(WALL_N)) {
+    const obj = model.getObjectByName(name);
+    if (obj) cutWalls.push({ obj, n: new THREE.Vector3(...n).normalize() });
+  }
+  scene.add(model);
+  const ld = document.getElementById("loader");
+  ld.style.opacity = "0";
+  setTimeout(() => (ld.hidden = true), 650);
+  start();
+}
+function modelFailed(err) {
+  console.error(err);
+  loadTxt.textContent = "The 3D model didn't load. Reload the page to try again.";
+}
+function b64ToBytes(b64) {
+  const bin = atob(b64.trim());
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+// The model ships as base64 text (a type the viewer serves) and is parsed in memory.
+async function loadModel() {
+  const res = await fetch("facility.txt");
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const total = +res.headers.get("content-length") || 3.65e6;
+  let text = "";
+  if (res.body && res.body.getReader) {
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let got = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      got += value.length;
+      text += dec.decode(value, { stream: true });
+      const pct = Math.min(99, Math.round((got / total) * 100));
+      loadBar.style.width = pct + "%";
+      loadTxt.textContent = `Loading the 3D model… ${pct}%`;
+    }
+    text += dec.decode();
+  } else {
+    text = await res.text();
+  }
+  loadBar.style.width = "100%";
+  loadTxt.textContent = "Building the model…";
+  const bytes = b64ToBytes(text);
+  loader.parse(bytes.buffer, "", onModel, modelFailed);
+}
+loadModel().catch(modelFailed);
+
+// ---------------------------------------------------------------- panorama sphere
+const panoGeo = new THREE.SphereGeometry(40, 96, 48);
+panoGeo.scale(-1, 1, 1);
+const panoMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthTest: false, depthWrite: false, toneMapped: false });
+const pano = new THREE.Mesh(panoGeo, panoMat);
+pano.rotation.y = -Math.PI / 2;   // image centre = +y in plan (back of building)
+pano.renderOrder = 10;
+pano.visible = false;
+scene.add(pano);
+
+const texLoader = new THREE.TextureLoader();
+const texCache = {};
+function getTex(id) {
+  if (!texCache[id]) {
+    texCache[id] = new Promise((res, rej) => texLoader.load(`panos/p_${id === "plate" ? "cage1_plate" : id === "mound" ? "cage1_mound" : id}.jpg`, (t) => {
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.minFilter = THREE.LinearFilter;
+      t.generateMipmaps = false;
+      t.anisotropy = 4;
+      res(t);
+    }, undefined, (e) => { delete texCache[id]; rej(e); }));
+  }
+  return texCache[id];
+}
+
+// floor rings for hotspots inside a panorama
+const ringGeo = new THREE.RingGeometry(0.34, 0.46, 48);
+ringGeo.rotateX(-Math.PI / 2);
+const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9, depthTest: false, depthWrite: false, toneMapped: false });
+const discMat = new THREE.MeshBasicMaterial({ color: 0x1763c9, transparent: true, opacity: 0.55, depthTest: false, depthWrite: false, toneMapped: false });
+const discGeo = new THREE.CircleGeometry(0.34, 48);
+discGeo.rotateX(-Math.PI / 2);
+const rings = new THREE.Group();
+rings.renderOrder = 11;
+scene.add(rings);
+
+// ---------------------------------------------------------------- HUD
+const labels = document.getElementById("labels");
+const rail = document.getElementById("rail");
+const card = document.getElementById("card");
+const planWrap = document.getElementById("planWrap");
+const planCap = document.getElementById("planCap");
+const hint = document.getElementById("hint");
+const spin = document.getElementById("spin");
+
+function chip(id, text) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.dataset.id = id;
+  b.innerHTML = `<i></i>${text}`;
+  b.addEventListener("click", () => (id === "overview" ? goOverview() : goStop(id)));
+  rail.appendChild(b);
+  return b;
+}
+chip("overview", "Overview");
+STOPS.forEach((s) => chip(s.id, s.name));
+
+// plan dots (top render: 1600x2400, 56 ft x 84 ft, centred on 25, 38.5)
+const planPos = (x, y) => [((x - 25) / 56 + 0.5) * 100, (0.5 - (y - 38.5) / 84) * 100];
+for (const s of STOPS) {
+  const d = document.createElement("button");
+  d.className = "dot"; d.type = "button"; d.dataset.id = s.id; d.title = s.name; d.setAttribute("aria-label", s.name);
+  const [l, t] = planPos(s.x, s.y);
+  d.style.left = l + "%"; d.style.top = t + "%";
+  d.addEventListener("click", () => goStop(s.id));
+  planWrap.appendChild(d);
+}
+const cone = document.createElement("div");
+cone.className = "cone"; cone.hidden = true;
+planWrap.appendChild(cone);
+
+// 3D pins (dollhouse) and hotspot labels (panorama)
+const pins = STOPS.map((s) => {
+  const b = document.createElement("button");
+  b.className = "pin"; b.type = "button";
+  b.innerHTML = `<span>${s.name}</span><em></em>`;
+  b.addEventListener("click", () => goStop(s.id));
+  labels.appendChild(b);
+  return { el: b, pos: P(s.pinX ?? s.x, s.pinY ?? s.y, 3), id: s.id };
+});
+let hots = [];
+
+const INFO = `<button class="nbtn ibtn" type="button" data-info aria-label="Show details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button>`;
+let compact = innerWidth <= 640;
+function setCard(id) {
+  if (id === "overview") {
+    card.innerHTML = `<div class="eyebrow">Ball Out Boys Athletics</div>
+      <h1>Building the Foundation of an Elite Athlete</h1>
+      <div class="spec">2 batting cages · weight room · lounge · lobby + offices</div>
+      <p>Drag to orbit the model, then pick a stop to step inside in 360°.</p>
+      <div class="nav"><span class="count">9 stops</span>${INFO}<button class="nbtn primary" type="button" id="startTour">Start the walkthrough</button></div>`;
+    card.querySelector("#startTour").addEventListener("click", () => goStop(STOPS[0].id));
+  } else {
+    const i = STOPS.findIndex((s) => s.id === id), s = STOPS[i];
+    card.innerHTML = `<div class="eyebrow">${s.eyebrow}</div><h1>${s.name}</h1>
+      <div class="spec">${s.spec}</div><p>${s.text}</p>
+      <div class="nav"><span class="count">${i + 1} of ${STOPS.length}</span>${INFO}
+      <button class="nbtn" type="button" data-go="${STOPS[(i + STOPS.length - 1) % STOPS.length].id}">Back</button>
+      <button class="nbtn primary" type="button" data-go="${STOPS[(i + 1) % STOPS.length].id}">Next stop</button></div>`;
+    card.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => goStop(b.dataset.go)));
+  }
+  card.classList.toggle("compact", compact);
+  const ib = card.querySelector("[data-info]");
+  if (ib) ib.addEventListener("click", () => { compact = !compact; card.classList.toggle("compact", compact); fitOffset(); });
+  requestAnimationFrame(fitOffset);
+  rail.querySelectorAll(".chip").forEach((c) => {
+    const on = c.dataset.id === id;
+    c.setAttribute("aria-current", on ? "true" : "false");
+    if (on) c.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  });
+  planWrap.querySelectorAll(".dot").forEach((d) => d.classList.toggle("on", d.dataset.id === id));
+  planCap.textContent = id === "overview" ? "Overview" : byId[id].name.replace("Cage 1 · ", "");
+}
+
+// ---------------------------------------------------------------- tweens
+const tweens = [];
+const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+function tween(ms, fn) {
+  return new Promise((res) => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) ms = Math.min(ms, 200);
+    tweens.push({ t0: performance.now(), ms, fn, res });
+  });
+}
+function runTweens(now) {
+  for (let i = tweens.length - 1; i >= 0; i--) {
+    const tw = tweens[i];
+    const t = Math.min(1, (now - tw.t0) / tw.ms);
+    tw.fn(ease(t), t);
+    if (t >= 1) { tweens.splice(i, 1); tw.res(); }
+  }
+}
+
+// ---------------------------------------------------------------- view state
+let mode = "dollhouse";        // dollhouse | pano | moving
+let current = "overview";
+let yaw = 0, pitch = -4, fov = innerWidth < innerHeight ? 88 : 72;   // pano look (degrees; yaw 0 = toward back wall, 90 = east)
+const savedHome = { pos: new THREE.Vector3(), tgt: new THREE.Vector3() };
+let token = 0;
+
+function lookDir(yw, pt) {
+  const y = THREE.MathUtils.degToRad(yw), p = THREE.MathUtils.degToRad(pt);
+  return new THREE.Vector3(Math.sin(y) * Math.cos(p), Math.sin(p), -Math.cos(y) * Math.cos(p));
+}
+function homeView(top = false) {
+  const a = innerWidth / innerHeight;
+  const vf = THREE.MathUtils.degToRad(40) * (innerHeight / (innerHeight + 2 * offY));
+  const hf = 2 * Math.atan(Math.tan(vf / 2) * a);
+  let dir, halfW, halfH;
+  if (top) { dir = new THREE.Vector3(0, 1, 0.0001); halfW = a < 1 ? 8.6 : 12.5; halfH = a < 1 ? 12.5 : 8.6; }
+  else if (a >= 0.9) { dir = new THREE.Vector3(95, 80, 32); halfW = 14.2; halfH = 9.5; }
+  else { dir = new THREE.Vector3(22, 78, 52); halfW = 10.8; halfH = 13.5; }
+  const dist = Math.max(halfW / Math.tan(hf / 2), halfH / Math.tan(vf / 2)) * 1.08;
+  const tgt = CENTER.clone().add(new THREE.Vector3(0, 0, top || a < 0.9 ? 0.6 : 0));
+  if (top && a >= 1) { /* landscape top view: rotate so the long side runs across */ dir = new THREE.Vector3(0.0001, 1, 0); }
+  return { pos: tgt.clone().add(dir.normalize().multiplyScalar(dist)), tgt };
+}
+
+let offY = 0;
+function fitOffset() {
+  const bottomH = document.querySelector(".bottom").offsetHeight;
+  offY = mode === "dollhouse" || current === "overview" ? Math.max(0, (bottomH - 70) / 2) : 0;
+  applyOffset();
+}
+function applyOffset() {
+  const w = innerWidth, h = innerHeight;
+  if (offY > 1 && current === "overview") camera.setViewOffset(w, h + 2 * offY, 0, 2 * offY, w, h);
+  else camera.clearViewOffset();
+  camera.updateProjectionMatrix();
+}
+
+async function flyTo(pos, tgt, ms, fovTo) {
+  const p0 = camera.position.clone(), t0 = controls.target.clone(), f0 = camera.fov;
+  const my = ++token;
+  await tween(ms, (k) => {
+    if (my !== token) return;
+    camera.position.lerpVectors(p0, pos, k);
+    controls.target.lerpVectors(t0, tgt, k);
+    if (fovTo) { camera.fov = f0 + (fovTo - f0) * k; camera.updateProjectionMatrix(); }
+    camera.lookAt(controls.target);
+  });
+  return my === token;
+}
+
+async function fadePano(to, ms) {
+  const o0 = panoMat.opacity;
+  pano.visible = true;
+  if (model) model.visible = true;
+  await tween(ms, (k) => (panoMat.opacity = o0 + (to - o0) * k));
+  if (to >= 1 && model) model.visible = false;
+  if (to <= 0) pano.visible = false;
+}
+
+function clearHots() { hots.forEach((h) => h.el.remove()); hots = []; rings.clear(); }
+function buildHots(id) {
+  clearHots();
+  for (const nid of NEIGH[id]) {
+    const s = byId[nid];
+    const g = new THREE.Group();
+    const r = new THREE.Mesh(ringGeo, ringMat); r.renderOrder = 12;
+    const d = new THREE.Mesh(discGeo, discMat); d.renderOrder = 11;
+    g.add(d, r);
+    g.position.copy(P(s.x, s.y, s.eye - 5.3 + 0.08));
+    rings.add(g);
+    const b = document.createElement("button");
+    b.className = "pin hot"; b.type = "button";
+    b.innerHTML = `<span>${s.name}</span>`;
+    b.addEventListener("click", () => goStop(nid));
+    labels.appendChild(b);
+    hots.push({ el: b, pos: P(s.x, s.y, 1.6) });
+  }
+}
+
+async function goStop(id) {
+  if (!model) return;
+  const s = byId[id];
+  const from = current;
+  current = id;
+  setCard(id);
+  clearHots();
+  spin.hidden = false;
+  const texP = getTex(id);
+  const eye = P(s.x, s.y, s.eye);
+  if (mode === "dollhouse") {
+    savedHome.pos.copy(camera.position); savedHome.tgt.copy(controls.target);
+    controls.enabled = false;
+    yaw = s.yaw; pitch = -4;
+  } else {
+    // walking between panoramas: face the direction of travel
+    const f = byId[from] || s;
+    if (f && f !== s) yaw = THREE.MathUtils.radToDeg(Math.atan2(s.x - f.x, s.y - f.y));
+    pitch = -4;
+    await fadePano(0, 280);
+  }
+  mode = "moving";
+  applyOffset();
+  pins.forEach((p) => (p.el.hidden = true));
+  const tgt = eye.clone().add(lookDir(yaw, pitch));
+  const ok = await flyTo(eye, tgt, from === "overview" || !byId[from] ? 1500 : 1000, fov);
+  if (!ok || current !== id) return;
+  try {
+    const tex = await texP;
+    if (current !== id) return;
+    panoMat.map = tex; panoMat.needsUpdate = true;
+  } catch (e) { spin.hidden = true; return; }
+  pano.position.copy(eye);
+  spin.hidden = true;
+  mode = "pano";
+  await fadePano(1, 450);
+  if (current !== id) return;
+  buildHots(id);
+  showHint();
+  prefetch(id);
+}
+
+async function goOverview(top = false) {
+  if (!model) return;
+  const wasPano = mode !== "dollhouse";
+  current = "overview";
+  setCard("overview");
+  fitOffset();
+  clearHots();
+  spin.hidden = true;
+  if (wasPano) await fadePano(0, 320);
+  mode = "moving";
+  const v = top ? homeView(true) : (wasPano && savedHome.pos.lengthSq() ? { pos: savedHome.pos.clone(), tgt: savedHome.tgt.clone() } : homeView());
+  const ok = await flyTo(v.pos, v.tgt, 1300, 40);
+  if (!ok) return;
+  mode = "dollhouse";
+  controls.enabled = true;
+  pins.forEach((p) => (p.el.hidden = false));
+}
+
+let hintShown = false;
+function showHint() {
+  if (hintShown) return;
+  hintShown = true;
+  hint.style.opacity = "1";
+  setTimeout(() => (hint.style.opacity = "0"), 3200);
+}
+function prefetch(id) { NEIGH[id].forEach((n) => getTex(n).catch(() => {})); }
+
+// ---------------------------------------------------------------- panorama look controls
+const ptrs = new Map();
+let pinch0 = 0, fov0 = fov;
+renderer.domElement.addEventListener("pointerdown", (e) => {
+  if (mode !== "pano") return;
+  renderer.domElement.setPointerCapture(e.pointerId);
+  ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = Math.hypot(a.x - b.x, a.y - b.y); fov0 = fov; }
+});
+renderer.domElement.addEventListener("pointermove", (e) => {
+  if (mode !== "pano" || !ptrs.has(e.pointerId)) return;
+  const prev = ptrs.get(e.pointerId);
+  const cur = { x: e.clientX, y: e.clientY };
+  ptrs.set(e.pointerId, cur);
+  if (ptrs.size === 1) {
+    const k = fov / innerHeight;
+    yaw -= (cur.x - prev.x) * k;
+    pitch = THREE.MathUtils.clamp(pitch + (cur.y - prev.y) * k, -80, 80);
+  } else if (ptrs.size === 2 && pinch0) {
+    const [a, b] = [...ptrs.values()];
+    fov = THREE.MathUtils.clamp(fov0 * (pinch0 / Math.hypot(a.x - b.x, a.y - b.y)), 35, 100);
+  }
+});
+const endPtr = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch0 = 0; };
+renderer.domElement.addEventListener("pointerup", endPtr);
+renderer.domElement.addEventListener("pointercancel", endPtr);
+renderer.domElement.addEventListener("wheel", (e) => {
+  if (mode !== "pano") return;
+  e.preventDefault();
+  fov = THREE.MathUtils.clamp(fov + e.deltaY * 0.04, 35, 100);
+}, { passive: false });
+addEventListener("keydown", (e) => {
+  if (!document.getElementById("gallery").hidden) { if (e.key === "Escape") closeGallery(); return; }
+  if (mode === "pano") {
+    if (e.key === "ArrowLeft") yaw -= 6;
+    if (e.key === "ArrowRight") yaw += 6;
+    if (e.key === "ArrowUp") pitch = Math.min(80, pitch + 5);
+    if (e.key === "ArrowDown") pitch = Math.max(-80, pitch - 5);
+    if (e.key === "Escape") goOverview();
+  }
+  const i = STOPS.findIndex((s) => s.id === current);
+  if (e.key === "]" ) goStop(STOPS[(i + 1 + STOPS.length) % STOPS.length].id);
+  if (e.key === "[" && i >= 0) goStop(STOPS[(i - 1 + STOPS.length) % STOPS.length].id);
+});
+
+// ---------------------------------------------------------------- buttons
+document.getElementById("btnHome").addEventListener("click", () => { savedHome.pos.set(0, 0, 0); goOverview(false); });
+document.getElementById("btnTop").addEventListener("click", () => goOverview(true));
+const btnPlan = document.getElementById("btnPlan");
+const planEl = document.getElementById("plan");
+btnPlan.addEventListener("click", () => {
+  const on = btnPlan.getAttribute("aria-pressed") !== "true";
+  btnPlan.setAttribute("aria-pressed", on ? "true" : "false");
+  planEl.hidden = !on;
+});
+if (innerWidth < 640) { btnPlan.setAttribute("aria-pressed", "false"); planEl.hidden = true; }
+
+const gallery = document.getElementById("gallery");
+const grid = document.getElementById("grid");
+const lightbox = document.getElementById("lightbox");
+SHOTS.forEach(([f, t, d]) => {
+  const b = document.createElement("button");
+  b.className = "shot"; b.type = "button";
+  b.innerHTML = `<img src="renders/thumb_${f}" alt="${t}" loading="lazy"><span>${t}<small>${d}</small></span>`;
+  b.addEventListener("click", () => {
+    document.getElementById("lbImg").src = `renders/${f}`;
+    document.getElementById("lbImg").alt = t;
+    document.getElementById("lbCap").textContent = t;
+    lightbox.hidden = false;
+  });
+  grid.appendChild(b);
+});
+function closeGallery() { lightbox.hidden = true; gallery.hidden = true; }
+document.getElementById("btnGallery").addEventListener("click", () => (gallery.hidden = false));
+document.getElementById("galClose").addEventListener("click", closeGallery);
+document.getElementById("lbClose").addEventListener("click", () => (lightbox.hidden = true));
+lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.hidden = true; });
+
+// ---------------------------------------------------------------- loop
+const tmp = new THREE.Vector3();
+function place(list, onlyFront = true) {
+  const w = innerWidth, h = innerHeight;
+  for (const p of list) {
+    tmp.copy(p.pos).project(camera);
+    const behind = tmp.z > 1 || tmp.z < -1;
+    const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
+    const off = behind || x < -80 || x > w + 80 || y < -40 || y > h + 40;
+    p.el.style.visibility = off ? "hidden" : "visible";
+    const cx = p.el.classList.contains("hot") ? x : Math.min(Math.max(x, p.el.offsetWidth / 2 + 6), w - p.el.offsetWidth / 2 - 6);
+    if (!off) p.el.style.transform = `translate(${cx}px, ${y}px) translate(-50%, ${p.el.classList.contains("hot") ? "-50%" : "-100%"})`;
+  }
+}
+
+function updateWalls() {
+  tmp.copy(camera.position).sub(CENTER); tmp.y = 0;
+  const horiz = tmp.length();
+  const elev = Math.atan2(camera.position.y - CENTER.y, Math.max(horiz, 0.001));
+  tmp.normalize();
+  for (const w of cutWalls) {
+    // inside the building (walking) keep every wall; outside, drop walls that face the camera
+    const px = camera.position.x / FT, py = -camera.position.z / FT, pz = camera.position.y / FT;
+    const inside = px > 0 && px < 50 && py > 0 && py < 77 && pz < 19;
+    w.obj.visible = inside || elev > 1.35 || w.n.dot(tmp) < 0.3;
+  }
+}
+
+function start() {
+  setCard("overview");
+  fitOffset();
+  const v = homeView();
+  camera.position.copy(v.pos);
+  controls.target.copy(v.tgt);
+  camera.lookAt(v.tgt);
+  setCard("overview");
+  renderer.setAnimationLoop(frame);
+  // warm the cache for the first stops
+  setTimeout(() => getTex(STOPS[0].id).catch(() => {}), 1500);
+}
+
+function frame(now) {
+  runTweens(now);
+  if (mode === "dollhouse") controls.update();
+  if (mode === "pano") {
+    camera.fov += (fov - camera.fov) * 0.25;
+    camera.updateProjectionMatrix();
+    tmp.copy(camera.position).add(lookDir(yaw, pitch));
+    camera.lookAt(tmp);
+  }
+  updateWalls();
+  if (mode === "dollhouse") place(pins);
+  if (hots.length) place(hots);
+  // plan heading cone
+  if (current !== "overview" && mode === "pano") {
+    const s = byId[current];
+    const [l, t] = planPos(s.x, s.y);
+    cone.hidden = false;
+    cone.style.left = l + "%"; cone.style.top = t + "%";
+    cone.style.transform = `rotate(${yaw}deg)`;
+  } else cone.hidden = true;
+  renderer.render(scene, camera);
+}
+
+addEventListener("resize", () => {
+  camera.aspect = innerWidth / innerHeight;
+  fitOffset();
+  renderer.setSize(innerWidth, innerHeight);
+});
+window.__tour = { goStop, goOverview, debugMix(o) { panoMat.opacity = o; if (model) model.visible = true; }, get mode() { return mode; }, setLook(y, p) { yaw = y; pitch = p; } };
+</script>
