@@ -179,7 +179,7 @@ M["medballs"] = [mat(f"MedBall{i}", c, rough=0.7) for i, c in enumerate(MB_COLS)
 M["vend"] = mat("VendFront", "#ffffff", emit_tex="vending.jpg", estr=2.2, rough=0.2)
 M["logo"] = mat("LogoDecal", "#ffffff", tex="logo_wall.png", alpha_tex=True, emit_tex="logo_wall.png", estr=0.35, rough=0.6)
 M["logo_only"] = mat("LogoOnly", "#ffffff", tex="logo.png", alpha_tex=True, emit_tex="logo.png", estr=0.35, rough=0.6)
-M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=6.0, rough=0.4)
+M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.5, rough=0.4)
 M["acrylic"] = mat("Acrylic", "#ffffff", rough=0.05, alpha=0.08)
 M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, emit_tex="banner.png", estr=0.3, rough=0.6)
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
@@ -994,10 +994,14 @@ LX0, LX1 = 6.5, 26.5
 lh = (LX1 - LX0) / lw_aspect
 b.quad((LX0, YLB - 0.03, 17.6 - lh), (LX1, YLB - 0.03, 17.6 - lh), (LX1, YLB - 0.03, 17.6), (LX0, YLB - 0.03, 17.6), M["logo"])
 b.finish()
-b = B("Logo_WestWall", "Decals")
-WY0, WY1 = 22.0, 50.0
-wh = (WY1 - WY0) / lw_aspect
-b.quad((0.03, WY0, 19.2 - wh), (0.03, WY1, 19.2 - wh), (0.03, WY1, 19.2), (0.03, WY0, 19.2), M["logo"])
+# neon logo sign on the black west wall beside Cage 1
+_nw = img("neon.png").size
+NEON_W = 25.0
+NEON_H = NEON_W * _nw[1] / _nw[0]
+NY, NZ1 = 36.0, 18.6
+b = B("LED_Sign_WestWall", "Decals")
+b.quad((0.04, NY - NEON_W / 2, NZ1 - NEON_H), (0.04, NY + NEON_W / 2, NZ1 - NEON_H),
+       (0.04, NY + NEON_W / 2, NZ1), (0.04, NY - NEON_W / 2, NZ1), M["neon"])
 b.finish()
 
 # wall-wash fixtures (top of west wall + lounge back wall) and blue accent strip
@@ -1129,18 +1133,6 @@ for xx in (39.8, 44.4):
 b.finish()
 armchair("LobbyChair1", 48.6, 4.0, -90, M["fabric_dark"])
 armchair("LobbyChair2", 48.6, 6.6, -90, M["fabric_dark"])
-# Feature wall behind the lobby couches (extends the restroom wall west), dark accent paint, LED neon sign
-part("Part_LobbyFeature", 37.4, YR, XR, YR + PT, axis="x")
-solid("LobbyAccentWall", 37.4, YR - 0.03, 0, W, YR, 9.5, M["wall"], "Partitions")
-NEON_W = 7.6
-_nw = img("neon.png").size
-NEON_H = NEON_W * _nw[1] / _nw[0]
-NX = (37.7 + 46.5) / 2
-b = B("LED_Sign_Lobby", "Decals")
-b.quad((NX - NEON_W / 2, YR - 0.12, 4.2), (NX + NEON_W / 2, YR - 0.12, 4.2),
-       (NX + NEON_W / 2, YR - 0.12, 4.2 + NEON_H), (NX - NEON_W / 2, YR - 0.12, 4.2 + NEON_H), M["neon"])
-b.finish()
-
 # merch: clothing rack + wall shelf, x 46.9..49.7, y 8.4..11
 b = B("MerchRack", "Props", bevel=0.01)
 b.box(47.0, 8.4, FL, 47.1, 8.5, 5.4, M["chrome"])
@@ -1250,8 +1242,8 @@ for i, (x, y) in enumerate(HANG):
     area(f"L_hang{i}", x, y, HZ - 0.05, 0.85, 7.8, 420)
 for i, (x, y) in enumerate(TROF):
     area(f"L_trof{i}", x, y, 9.45, 2.0, 4.0, 90)
-_g2 = area("L_neon_room", NX, YR - 0.3, 5.5, NEON_W, 2.4, 14, color=(0.62, 0.74, 1.0))
-_g2.rotation_euler = (math.radians(90), 0, 0)      # faces -y: soft glow on the couches
+_g = area("L_neon_west", 1.2, NY, NZ1 - NEON_H / 2, NEON_H, NEON_W, 110, color=(0.66, 0.78, 1.0))
+_g.rotation_euler = (0, math.radians(-90), 0)      # faces +x: soft glow out over Cage 1
 
 sun_d = bpy.data.lights.new("Sun", "SUN")
 sun_d.energy = 3.2
