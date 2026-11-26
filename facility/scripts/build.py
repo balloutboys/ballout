@@ -1061,11 +1061,11 @@ def office_chair(name, x, y, rot):
 # desk with Coach Ned's chair behind it against the left (west) wall
 desk("Desk_Ned", 22.3, 0.9, 24.7, 4.7, monitor_face=(24.15, 2.8, -90))
 office_chair("Chair_Ned", 21.15, 2.8, 90)
-# guest chair in front of Coach Ned's desk
-office_chair("Chair_Guest", 25.5, 4.4, -90)
-# second desk faces the top (north) wall; its chair sits against the bottom (front) wall, facing north too
-desk("Desk_Extra", 26.4, 2.2, 28.8, 3.5, monitor_face=(27.6, 3.2, 0))
-office_chair("Chair_Extra", 27.6, 1.1, 180)
+# second desk, centred between Coach Ned's desk (x 24.7) and the TV wall (x 28.9); faces the top (north)
+# wall, with its chair against the bottom (front) wall facing north too. Only two chairs in the office.
+X2 = (24.7 + XS) / 2
+desk("Desk_Extra", X2 - 1.2, 2.2, X2 + 1.2, 3.5, monitor_face=(X2, 3.2, 0))
+office_chair("Chair_Extra", X2, 1.1, 180)
 # couch on the back wall facing the desk, coffee table between
 couch("OfficeCouch", 20.1, 6.7, 24.9, 9.25, "-y", M["fabric_blue"])
 b = B("OfficeTable", "Props", bevel=0.03)
@@ -1073,12 +1073,12 @@ b.box(21.3, 5.35, 1.35, 23.7, 6.05, 1.5, M["walnut"])
 b.box(21.4, 5.45, FL, 23.6, 5.95, 1.35, M["black_plastic"])
 b.finish()
 tv("TV_Office", XS - 0.15, 2.8, 6.0, 3.2, 1.85, -90, M["scr_team"])
-# plant
-b = B("OfficePlant", "Props")
-b.cyl(25.6, 8.75, FL, 0.45, 1.2, M["pot"], segs=18)
-for k in range(7):
-    a = k * math.tau / 7
-    b.sphere(25.6 + 0.3 * math.cos(a), 8.75 + 0.3 * math.sin(a), 1.9 + 0.3 * (k % 2), 0.45, M["plant"], seg=8)
+# mini fridge where the plant was (back wall, right of the couch)
+b = B("OfficeFridge", "Props", bevel=0.03)
+b.box(25.05, 7.75, FL, 26.65, 9.25, 2.85, M["black_plastic"])
+b.box(25.1, 7.72, 0.25, 26.6, 7.75, 2.8, M["tv_bezel"])
+b.box(26.35, 7.62, 1.2, 26.45, 7.72, 2.5, M["chrome"])
+b.box(25.15, 7.7, 2.55, 25.9, 7.72, 2.7, M["led_blue"])
 b.finish()
 
 # Storage: x 19.9..28.9, y 9.7..18.5 — shelving with bins
