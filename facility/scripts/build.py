@@ -49,7 +49,7 @@ MATS = {}
 
 
 def mat(name, color="#808080", rough=0.6, metal=0.0, tex=None, normal=None, nstr=0.6,
-        alpha_tex=False, emit=None, estr=0.0, emit_tex=None, trans=0.0, alpha=1.0, coat=0.0, spec=0.5):
+        alpha_tex=False, emit=None, estr=0.0, emit_tex=None, trans=0.0, alpha=1.0, coat=0.0, spec=0.5, emit_pow=0.0):
     m = bpy.data.materials.new(name)
     m.use_nodes = True
     nt = m.node_tree
@@ -79,6 +79,15 @@ def mat(name, color="#808080", rough=0.6, metal=0.0, tex=None, normal=None, nstr
         if not tex:
             nt.links.new(te.outputs["Color"], b.inputs["Base Color"])
         b.inputs["Emission Strength"].default_value = estr
+        if emit_pow:
+            # neon: tubes (alpha ~1) stay bright, the soft halo (low alpha) glows much less
+            pw = nt.nodes.new("ShaderNodeMath"); pw.operation = "POWER"
+            pw.inputs[1].default_value = emit_pow
+            mu = nt.nodes.new("ShaderNodeMath"); mu.operation = "MULTIPLY"
+            mu.inputs[1].default_value = estr
+            nt.links.new(te.outputs["Alpha"], pw.inputs[0])
+            nt.links.new(pw.outputs[0], mu.inputs[0])
+            nt.links.new(mu.outputs[0], b.inputs["Emission Strength"])
     elif emit:
         b.inputs["Emission Color"].default_value = (*lin(emit), 1)
         b.inputs["Emission Strength"].default_value = estr
@@ -179,7 +188,7 @@ M["medballs"] = [mat(f"MedBall{i}", c, rough=0.7) for i, c in enumerate(MB_COLS)
 M["vend"] = mat("VendFront", "#ffffff", emit_tex="vending.jpg", estr=2.2, rough=0.2)
 M["logo"] = mat("LogoDecal", "#ffffff", tex="logo_wall.png", alpha_tex=True, emit_tex="logo_wall.png", estr=0.35, rough=0.6)
 M["logo_only"] = mat("LogoOnly", "#ffffff", tex="logo.png", alpha_tex=True, emit_tex="logo.png", estr=0.35, rough=0.6)
-M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.5, rough=0.4)
+M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.0, rough=0.4, emit_pow=4.0)
 M["acrylic"] = mat("Acrylic", "#ffffff", rough=0.05, alpha=0.08)
 M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, emit_tex="banner.png", estr=0.3, rough=0.6)
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
