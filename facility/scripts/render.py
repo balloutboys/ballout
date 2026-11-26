@@ -11,7 +11,7 @@ F = 0.3048
 bpy.ops.wm.open_mainfile(filepath=blend)
 sc = bpy.context.scene
 
-CUT_E = ["Wall_E_up", "Storefront_up", "Glass_up"]
+CUT_E = ["Wall_E_up", "Storefront_up", "Glass_up", "LED_Sign_Lobby"]   # the sign hangs on the east wall
 CUT_FRONT = ["Storefront_up", "Glass_up"]
 
 VIEWS = {
@@ -24,7 +24,7 @@ VIEWS = {
                 sun=(-0.3, 0.45, -0.84)),
     "weightroom": dict(loc=(64, 10, 34), target=(40, 42, 2), lens=30, hide=CUT_E, ceiling=False, studio=True,
                        sun=(-0.35, 0.5, -0.8)),
-    "lobby": dict(loc=(62, -16, 34), target=(37, 8, 1), lens=30, hide=CUT_E, ceiling=False, studio=True,
+    "lobby": dict(loc=(33, -19, 30), target=(39.5, 7.5, 2.5), lens=27, hide=CUT_FRONT, ceiling=False, studio=True,
                   sun=(-0.35, 0.5, -0.8)),
     "cages": dict(loc=(10, -30, 40), target=(17, 40, 0), lens=34, hide=CUT_FRONT, ceiling=False, studio=True,
                   sun=(-0.4, 0.4, -0.82)),
