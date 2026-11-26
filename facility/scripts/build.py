@@ -179,7 +179,7 @@ M["medballs"] = [mat(f"MedBall{i}", c, rough=0.7) for i, c in enumerate(MB_COLS)
 M["vend"] = mat("VendFront", "#ffffff", emit_tex="vending.jpg", estr=2.2, rough=0.2)
 M["logo"] = mat("LogoDecal", "#ffffff", tex="logo_wall.png", alpha_tex=True, emit_tex="logo_wall.png", estr=0.35, rough=0.6)
 M["logo_only"] = mat("LogoOnly", "#ffffff", tex="logo.png", alpha_tex=True, emit_tex="logo.png", estr=0.35, rough=0.6)
-M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.0, rough=0.4)
+M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=6.0, rough=0.4)
 M["acrylic"] = mat("Acrylic", "#ffffff", rough=0.05, alpha=0.08)
 M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, emit_tex="banner.png", estr=0.3, rough=0.6)
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
@@ -1140,10 +1140,6 @@ b = B("LED_Sign_Lobby", "Decals")
 b.quad((NX - NEON_W / 2, YR - 0.12, 4.2), (NX + NEON_W / 2, YR - 0.12, 4.2),
        (NX + NEON_W / 2, YR - 0.12, 4.2 + NEON_H), (NX - NEON_W / 2, YR - 0.12, 4.2 + NEON_H), M["neon"])
 b.finish()
-# clear acrylic backer + standoffs
-b = B("LED_Sign_Backer", "Decals")
-b.box(NX - NEON_W / 2 - 0.15, YR - 0.1, 4.05, NX + NEON_W / 2 + 0.15, YR - 0.08, 4.35 + NEON_H, M["acrylic"])
-b.finish()
 
 # merch: clothing rack + wall shelf, x 46.9..49.7, y 8.4..11
 b = B("MerchRack", "Props", bevel=0.01)
@@ -1254,9 +1250,7 @@ for i, (x, y) in enumerate(HANG):
     area(f"L_hang{i}", x, y, HZ - 0.05, 0.85, 7.8, 420)
 for i, (x, y) in enumerate(TROF):
     area(f"L_trof{i}", x, y, 9.45, 2.0, 4.0, 90)
-_g = area("L_neon_wall", NX, YR - 0.5, 5.5, NEON_W, 2.4, 18, color=(0.62, 0.74, 1.0))
-_g.rotation_euler = (math.radians(-90), 0, 0)      # faces +y: washes the accent wall around the sign
-_g2 = area("L_neon_room", NX, YR - 0.3, 5.5, NEON_W, 2.4, 10, color=(0.62, 0.74, 1.0))
+_g2 = area("L_neon_room", NX, YR - 0.3, 5.5, NEON_W, 2.4, 14, color=(0.62, 0.74, 1.0))
 _g2.rotation_euler = (math.radians(90), 0, 0)      # faces -y: soft glow on the couches
 
 sun_d = bpy.data.lights.new("Sun", "SUN")
