@@ -29,8 +29,8 @@ VIEWS = {
     "cages": dict(loc=(10, -30, 40), target=(17, 40, 0), lens=34, hide=CUT_FRONT, ceiling=False, studio=True,
                   sun=(-0.4, 0.4, -0.82)),
     # interior eye-level stills (ceiling on)
-    "eye_cage1": dict(loc=(10.2, 66.2, 6.2), target=(10.2, 0, 2.5), lens=20, hide=[], ceiling=True, studio=False),
-    "eye_weight": dict(loc=(34.0, 66.0, 6.0), target=(46, 25, 2.5), lens=18, hide=[], ceiling=True, studio=False),
+    "eye_cage1": dict(loc=(12.6, 64.2, 5.9), target=(9.6, 0, 3.0), lens=22, hide=[], ceiling=True, studio=False),
+    "eye_weight": dict(loc=(37.0, 67.5, 5.8), target=(44.5, 24, 2.5), lens=20, hide=[], ceiling=True, studio=False),
 }
 
 PANOS = {
