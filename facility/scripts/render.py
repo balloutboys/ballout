@@ -36,7 +36,9 @@ VIEWS = {
 PANOS = {
     # name: (x, y, z)  — all rendered facing +y (yaw 0) so the tour can map them consistently
     "p_lobby": (40.0, 3.5, 5.3, 0),
-    "p_office": (25.8, 6.6, 5.3, 0),
+    "p_office": (26.4, 6.4, 5.3, 0),
+    "p_storage": (24.6, 12.8, 5.3, 0),
+    "p_restroom": (44.6, 14.6, 5.3, 0),
     "p_hall": (35.0, 15.6, 5.3, 0),
     "p_cage1_plate": (13.2, 61.0, 5.3, 0),
     "p_cage1_mound": (5.55, 3.0, 6.1, 0),

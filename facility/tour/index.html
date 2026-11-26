@@ -204,14 +204,20 @@ const CENTER = P(25, 38.5, 0);
 
 const STOPS = [
   { id: "lobby", name: "Lobby", x: 40, y: 3.5, eye: 5.3, yaw: 318, eyebrow: "Front entrance",
-    spec: "Reception desk + TV · 2 vending · merch · lounge seating",
-    text: "Athletes and parents check in at the reception desk, with the TV on the wall behind it. A couch, two chairs and the merch rack wait while sessions run." },
-  { id: "office", name: "Coach Ned's Office", x: 25.8, y: 6.6, eye: 5.3, yaw: 245, eyebrow: "Office",
-    spec: "Desk · couch + table · TV · extra desk",
+    spec: "Reception desk + TV · couch + 2 chairs · LED sign · merch",
+    text: "Check in at the reception desk, with the TV on the wall behind it. The couch sits under the lit Ball Out Boys sign, with two chairs across the coffee table and the merch rack in the corner." },
+  { id: "office", name: "Coach Ned's Office", x: 26.4, y: 6.4, eye: 5.3, yaw: 240, eyebrow: "Office",
+    spec: "Desk + chair · guest chair · couch + table · TV",
     text: "Private space for evaluations, parent meetings and planning each athlete's development." },
   { id: "hall", name: "Hallway", x: 35, y: 15.6, eye: 5.3, yaw: 0, eyebrow: "Office block",
     spec: "ADA restroom · vending · storage · weight room door",
     text: "The hall connects the lobby to the ADA restroom, the storage room and the door onto the training floor." },
+  { id: "storage", name: "Storage", x: 24.6, y: 12.8, eye: 5.3, yaw: 300, eyebrow: "Office block",
+    spec: "Shelving · bins · ball buckets",
+    text: "Gear storage off the hallway: shelving for bins and boxes, plus buckets of balls ready for the cages." },
+  { id: "restroom", name: "Restroom", x: 44.6, y: 14.6, eye: 5.3, yaw: 70, eyebrow: "Office block",
+    spec: "ADA restroom · off the hallway",
+    text: "A single ADA restroom between the lobby and the training floor." },
   { id: "weight", name: "Weight Room", x: 38, y: 42, eye: 5.3, yaw: 128, eyebrow: "Strength",
     spec: "2 racks on platforms · DB rack 5–100 lb · 4 benches",
     text: "Rubber floor, open to the cages, so athletes can go from a lift straight into swings or throws." },
@@ -222,7 +228,7 @@ const STOPS = [
     spec: "50″ HitTrax TV · 2 chairs · 2 couches · bat rack + cubbies",
     text: "Gear goes in the cubbies, and the HitTrax screen shows exit velocity and spray charts from the cage." },
   { id: "plate", name: "Cage 1 · Home Plate", x: 13.2, y: 61, eye: 5.3, yaw: 180, eyebrow: "Cage 1 · 65′ × 19.5′",
-    spec: "HitTrax tracking · mirror wall · LED logo sign",
+    spec: "HitTrax tracking · mirror wall · logo wall",
     text: "The batter's view down the bullpen. Live BP, machine work and HitTrax data from one lane." },
   { id: "mound", name: "Cage 1 · Mounds", x: 5.55, y: 3.0, eye: 6.1, yaw: 6, eyebrow: "Bullpen",
     spec: "2 portable mounds · 60′ 6″ to plate",
@@ -232,7 +238,8 @@ const STOPS = [
     text: "Half A runs tee and front toss. Half B runs the machine and short toss. Pull the net back for one long lane." },
 ];
 const NEIGH = {
-  lobby: ["office", "hall"], office: ["lobby", "hall"], hall: ["lobby", "office", "weight"],
+  lobby: ["office", "hall", "restroom"], office: ["lobby", "hall", "storage"], hall: ["lobby", "office", "storage", "restroom", "weight"],
+  storage: ["hall", "office"], restroom: ["hall", "lobby"],
   weight: ["hall", "cable", "cage2"], cable: ["weight", "lounge"], lounge: ["cable", "plate", "cage2"],
   plate: ["lounge", "mound", "cage2"], mound: ["plate", "cage2"], cage2: ["weight", "plate", "mound", "lounge"],
 };
@@ -243,7 +250,7 @@ const SHOTS = [
   ["front.jpg", "From the entrance", "Lobby and offices up front, cages and weight room behind, lounge at the back."],
   ["cages.jpg", "Cages 1 and 2", "Bullpen with two mounds, Cage 2 with the retractable divider."],
   ["weightroom.jpg", "Weight room", "Two racks on platforms, DB rack, benches, cable machine and BSS rack."],
-  ["lobby.jpg", "Lobby and offices", "Reception with the TV behind the desk, vending, merch, Coach Ned's office and the ADA restroom."],
+  ["lobby.jpg", "Lobby and offices", "Reception with the TV behind the desk, couch under the LED sign, Coach Ned's office, storage and the ADA restroom."],
   ["eye_cage1.jpg", "Batter's view", "Standing at home plate in Cage 1, looking out to the mounds."],
   ["eye_weight.jpg", "Weight room floor", "Eye level from the dock end of the weight room."],
   ["top.jpg", "Top view", "Straight down, front entrance at the bottom. 50′ × 77′."],
@@ -481,7 +488,7 @@ function setCard(id) {
       <h1>Building the Foundation of an Elite Athlete</h1>
       <div class="spec">2 batting cages · weight room · lounge · lobby + offices</div>
       <p>Drag to orbit the model, then pick a stop to step inside in 360°.</p>
-      <div class="nav"><span class="count">9 stops</span>${INFO}<button class="nbtn primary" type="button" id="startTour">Start the walkthrough</button></div>`;
+      <div class="nav"><span class="count">${STOPS.length} stops</span>${INFO}<button class="nbtn primary" type="button" id="startTour">Start the walkthrough</button></div>`;
     card.querySelector("#startTour").addEventListener("click", () => goStop(STOPS[0].id));
   } else {
     const i = STOPS.findIndex((s) => s.id === id), s = STOPS[i];

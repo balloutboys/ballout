@@ -190,6 +190,7 @@ M["logo"] = mat("LogoDecal", "#ffffff", tex="logo_wall.png", alpha_tex=True, emi
 M["logo_only"] = mat("LogoOnly", "#ffffff", tex="logo.png", alpha_tex=True, emit_tex="logo.png", estr=0.35, rough=0.6)
 M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.0, rough=0.4, emit_pow=4.0)
 M["acrylic"] = mat("Acrylic", "#ffffff", rough=0.05, alpha=0.08)
+M["logo_wall2"] = mat("LogoWall2", "#ffffff", tex="logo_wall2.png", alpha_tex=True, emit_tex="logo_wall2.png", estr=0.35, rough=0.6)
 M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, emit_tex="banner.png", estr=0.3, rough=0.6)
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
 M["scr_spray"] = mat("ScreenSpray", "#000000", emit_tex="screen_spray.jpg", estr=1.6, rough=0.15)
@@ -971,8 +972,8 @@ def tv(name, x, y, z, w, h, rot, screen):
 
 
 tv("TV_HitTrax", 4.8, YLB - 0.15, 6.2, 3.6, 2.05, 0, M["scr_spray"])
-armchair("LoungeChair1", 8.0, 69.25, 0, M["fabric_dark"], s=0.8)
-armchair("LoungeChair2", 10.15, 69.25, 0, M["fabric_dark"], s=0.8)
+armchair("LoungeChair1", 6.9, 69.25, 0, M["fabric_dark"], s=0.8)
+armchair("LoungeChair2", 9.05, 69.25, 0, M["fabric_dark"], s=0.8)
 couch("LoungeCouch1", 15.0, 67.9, 20.8, 70.25, "-y", M["fabric_blue"])
 couch("LoungeCouch2", 21.4, 67.9, 27.2, 70.25, "-y", M["fabric_blue"])
 
@@ -1003,14 +1004,14 @@ LX0, LX1 = 6.5, 26.5
 lh = (LX1 - LX0) / lw_aspect
 b.quad((LX0, YLB - 0.03, 17.6 - lh), (LX1, YLB - 0.03, 17.6 - lh), (LX1, YLB - 0.03, 17.6), (LX0, YLB - 0.03, 17.6), M["logo"])
 b.finish()
-# neon logo sign on the black west wall beside Cage 1
-_nw = img("neon.png").size
-NEON_W = 25.0
-NEON_H = NEON_W * _nw[1] / _nw[0]
+# logo graphic on the black west wall beside Cage 1
+_lw2 = img("logo_wall2.png").size
+LW2_W = 26.0
+LW2_H = LW2_W * _lw2[1] / _lw2[0]
 NY, NZ1 = 36.0, 18.6
-b = B("LED_Sign_WestWall", "Decals")
-b.quad((0.04, NY - NEON_W / 2, NZ1 - NEON_H), (0.04, NY + NEON_W / 2, NZ1 - NEON_H),
-       (0.04, NY + NEON_W / 2, NZ1), (0.04, NY - NEON_W / 2, NZ1), M["neon"])
+b = B("Logo_WestWall", "Decals")
+b.quad((0.04, NY - LW2_W / 2, NZ1 - LW2_H), (0.04, NY + LW2_W / 2, NZ1 - LW2_H),
+       (0.04, NY + LW2_W / 2, NZ1), (0.04, NY - LW2_W / 2, NZ1), M["logo_wall2"])
 b.finish()
 
 # wall-wash fixtures (top of west wall + lounge back wall) and blue accent strip
@@ -1056,21 +1057,26 @@ def office_chair(name, x, y, rot):
     return b.finish()
 
 
-desk("Desk_Ned", 21.5, 0.6, 24.1, 5.0, monitor_face=(22.7, 2.8, 90))
-office_chair("Chair_Ned", 25.0, 2.8, -90)
-desk("Desk_Extra", 25.0, 0.4, 28.8, 2.0)
-couch("OfficeCouch", 19.95, 5.4, 22.6, 9.25, "+x", M["fabric_blue"])
+# desk with Coach Ned's chair behind it against the left (west) wall
+desk("Desk_Ned", 22.3, 0.9, 24.7, 4.7, monitor_face=(24.15, 2.8, -90))
+office_chair("Chair_Ned", 21.15, 2.8, 90)
+# guest chair in front of the desk, front right
+office_chair("Chair_Guest", 25.75, 2.0, -90)
+# extra desk under the TV on the east wall
+desk("Desk_Extra", 27.2, 1.0, 28.85, 4.6)
+# couch on the back wall facing the desk, coffee table between
+couch("OfficeCouch", 20.1, 6.7, 24.9, 9.25, "-y", M["fabric_blue"])
 b = B("OfficeTable", "Props", bevel=0.03)
-b.box(23.3, 5.9, 1.35, 24.6, 8.4, 1.5, M["walnut"])
-b.box(23.4, 6.0, FL, 24.5, 8.3, 1.35, M["black_plastic"])
+b.box(21.3, 5.35, 1.35, 23.7, 6.05, 1.5, M["walnut"])
+b.box(21.4, 5.45, FL, 23.6, 5.95, 1.35, M["black_plastic"])
 b.finish()
-tv("TV_Office", XS - 0.15, 3.2, 6.0, 3.2, 1.85, -90, M["scr_team"])
+tv("TV_Office", XS - 0.15, 2.8, 6.0, 3.2, 1.85, -90, M["scr_team"])
 # plant
 b = B("OfficePlant", "Props")
-b.cyl(27.8, 8.4, FL, 0.45, 1.2, M["pot"], segs=18)
+b.cyl(25.6, 8.75, FL, 0.45, 1.2, M["pot"], segs=18)
 for k in range(7):
     a = k * math.tau / 7
-    b.sphere(27.8 + 0.3 * math.cos(a), 8.4 + 0.3 * math.sin(a), 1.9 + 0.3 * (k % 2), 0.45, M["plant"], seg=8)
+    b.sphere(25.6 + 0.3 * math.cos(a), 8.75 + 0.3 * math.sin(a), 1.9 + 0.3 * (k % 2), 0.45, M["plant"], seg=8)
 b.finish()
 
 # Storage: x 19.9..28.9, y 9.7..18.5 — shelving with bins
@@ -1110,6 +1116,8 @@ def shelf_run(x0, y0, x1, y1, along="x"):
 
 shelf_run(20.3, 16.4, 27.0, 18.4, "x")
 shelf_run(19.95, 9.8, 21.9, 15.9, "y")
+for bx, by in ((23.3, 15.6), (24.6, 15.7), (25.8, 15.6)):
+    ball_bucket(b, bx, by)
 b.finish()
 
 # Lobby: reception desk (L), TV behind, couches, table, merch, chairs, vending
@@ -1136,30 +1144,35 @@ tv("TV_Lobby", XS + PT + 0.15, 2.94, 6.3, 4.0, 2.3, 90, M["scr_logo"])
 # one couch on the east wall (where the chairs were), facing the coffee table
 couch("LobbyCouch", 47.35, 2.4, 49.95, 7.9, "-x", M["fabric_blue"])
 b = B("LobbyTable", "Props", bevel=0.04)
-b.box(39.6, 5.8, 1.3, 44.8, 7.4, 1.48, M["walnut"])
-for xx in (39.8, 44.4):
+b.box(41.6, 5.8, 1.3, 45.6, 7.4, 1.48, M["walnut"])
+for xx in (41.8, 45.2):
     b.box(xx, 5.9, FL, xx + 0.2, 7.3, 1.3, M["black_plastic"])
 b.finish()
 # two chairs where the couches were, backs to the restroom wall, facing the table
-armchair("LobbyChair1", 40.85, 9.9, 0, M["fabric_dark"])
-armchair("LobbyChair2", 43.55, 9.9, 0, M["fabric_dark"])
-# merch: clothing rack + wall shelf, x 46.9..49.7, y 8.4..11
+armchair("LobbyChair1", 42.95, 9.9, 0, M["fabric_dark"])
+armchair("LobbyChair2", 45.65, 9.9, 0, M["fabric_dark"])
+# merch: hanging shirts only, on a rack in the corner (x 47.6..49.8, y 8.2..10.9)
 b = B("MerchRack", "Props", bevel=0.01)
-b.box(47.0, 8.4, FL, 47.1, 8.5, 5.4, M["chrome"])
-b.box(47.0, 10.9, FL, 47.1, 11.0, 5.4, M["chrome"])
-b.cyl(47.05, 8.4, 5.3, 0.04, 2.6, M["chrome"], axis="y", segs=8)
+b.box(48.65, 8.15, FL, 48.75, 8.25, 5.4, M["chrome"])
+b.box(48.65, 10.85, FL, 48.75, 10.95, 5.4, M["chrome"])
+for yy in (8.2, 10.9):
+    b.box(48.0, yy - 0.05, FL, 49.4, yy + 0.05, 0.1, M["chrome"])
+b.cyl(48.7, 8.2, 5.3, 0.04, 2.7, M["chrome"], axis="y", segs=8)
 cols = [M["shirt_black"], M["shirt_white"], M["shirt_blue"], M["shirt_black"], M["shirt_gray"], M["shirt_blue"], M["shirt_white"]]
 for k, c in enumerate(cols):
-    y = 8.6 + k * 0.33
-    b.box(46.25, y, 2.6, 47.85, y + 0.12, 5.2, c)
-    b.box(46.0, y, 4.3, 48.1, y + 0.12, 5.2, c)
-# wall shelf with folded tees + hats
-b.box(49.0, 8.4, 5.6, W, 11.0, 5.7, M["walnut"])
-b.box(49.0, 8.4, 3.8, W, 11.0, 3.9, M["walnut"])
-for k in range(4):
-    y = 8.55 + k * 0.62
-    b.box(49.15, y, 5.7, W - 0.05, y + 0.5, 5.95, cols[k])
-    b.box(49.15, y, 3.9, W - 0.05, y + 0.5, 4.2, cols[k + 2])
+    y = 8.4 + k * 0.33
+    b.box(47.9, y, 2.6, 49.5, y + 0.12, 5.2, c)
+    b.box(47.65, y, 4.3, 49.75, y + 0.12, 5.2, c)
+b.finish()
+
+# LED neon sign on the east wall, centred over the lobby couch
+_nw = img("neon.png").size
+SIGN_W = 5.6
+SIGN_H = SIGN_W * _nw[1] / _nw[0]
+SIGN_Y, SIGN_Z0 = (2.4 + 7.9) / 2, 4.2
+b = B("LED_Sign_Lobby", "Decals")
+b.quad((W - 0.04, SIGN_Y + SIGN_W / 2, SIGN_Z0), (W - 0.04, SIGN_Y - SIGN_W / 2, SIGN_Z0),
+       (W - 0.04, SIGN_Y - SIGN_W / 2, SIGN_Z0 + SIGN_H), (W - 0.04, SIGN_Y + SIGN_W / 2, SIGN_Z0 + SIGN_H), M["neon"])
 b.finish()
 
 # vending machines (face +x), x 29.3..32.1
@@ -1252,8 +1265,9 @@ for i, (x, y) in enumerate(HANG):
     area(f"L_hang{i}", x, y, HZ - 0.05, 0.85, 7.8, 420)
 for i, (x, y) in enumerate(TROF):
     area(f"L_trof{i}", x, y, 9.45, 2.0, 4.0, 90)
-_g = area("L_neon_west", 1.2, NY, NZ1 - NEON_H / 2, NEON_H, NEON_W, 110, color=(0.66, 0.78, 1.0))
-_g.rotation_euler = (0, math.radians(-90), 0)      # faces +x: soft glow out over Cage 1
+# LED sign over the lobby couch: soft glow onto the couch
+_g = area("L_neon_lobby", W - 0.6, SIGN_Y, SIGN_Z0 + SIGN_H / 2, SIGN_H, SIGN_W, 12, color=(0.66, 0.78, 1.0))
+_g.rotation_euler = (0, math.radians(90), 0)      # faces -x
 
 sun_d = bpy.data.lights.new("Sun", "SUN")
 sun_d.energy = 3.2
