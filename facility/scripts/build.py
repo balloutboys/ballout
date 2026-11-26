@@ -179,6 +179,8 @@ M["medballs"] = [mat(f"MedBall{i}", c, rough=0.7) for i, c in enumerate(MB_COLS)
 M["vend"] = mat("VendFront", "#ffffff", emit_tex="vending.jpg", estr=2.2, rough=0.2)
 M["logo"] = mat("LogoDecal", "#ffffff", tex="logo_wall.png", alpha_tex=True, emit_tex="logo_wall.png", estr=0.35, rough=0.6)
 M["logo_only"] = mat("LogoOnly", "#ffffff", tex="logo.png", alpha_tex=True, emit_tex="logo.png", estr=0.35, rough=0.6)
+M["neon"] = mat("NeonSign", "#ffffff", tex="neon.png", alpha_tex=True, emit_tex="neon.png", estr=4.0, rough=0.4)
+M["acrylic"] = mat("Acrylic", "#ffffff", rough=0.05, alpha=0.08)
 M["banner"] = mat("BannerDecal", "#ffffff", tex="banner.png", alpha_tex=True, emit_tex="banner.png", estr=0.3, rough=0.6)
 M["decal_wr"] = mat("DecalWeightRoom", "#ffffff", tex="decal_weightroom.png", alpha_tex=True, rough=0.7)
 M["scr_spray"] = mat("ScreenSpray", "#000000", emit_tex="screen_spray.jpg", estr=1.6, rough=0.15)
@@ -720,15 +722,15 @@ def batting_tee(b, x, y):
 
 
 b = B("Cage1_Field", "Props")
-home_plate(b, 10.2, 61.8)
-batters_boxes(b, 10.2, 61.8)
+home_plate(b, 10.2, 60.53)
+batters_boxes(b, 10.2, 60.53)
 ball_bucket(b, 12.6, 27.0)
 ball_bucket(b, 7.6, 27.3, full=False)
 b.finish()
 b = B("Cage2_Field", "Props")
-home_plate(b, 26.0, 61.0); batters_boxes(b, 26.0, 61.0)
-home_plate(b, 26.0, 37.9); batters_boxes(b, 26.0, 37.9)
-batting_tee(b, 26.0, 61.5)
+home_plate(b, 26.0, 60.0); batters_boxes(b, 26.0, 60.0)
+home_plate(b, 26.0, 37.0); batters_boxes(b, 26.0, 37.0)
+batting_tee(b, 26.0, 60.5)
 ball_bucket(b, 28.6, 51.5)
 ball_bucket(b, 28.0, 23.2)
 b.finish()
@@ -740,9 +742,9 @@ for (xa, xb, ya, yb, n) in ((1.0, 18.8, 36, 63, 14), (1.0, 6, 3, 30, 6), (20.2, 
     for k in range(n):
         b.sphere(_rnd.uniform(xa, xb), _rnd.uniform(ya, yb), FL + 0.12, 0.12, M["ball"], seg=10)
 b.finish()
-portable_mound("MoundA", 2.0, 9.1, 0.8, 10.9, 2.7)
-portable_mound("MoundB", 11.6, 18.6, 0.8, 10.9, 2.7)
-hittrax("HitTrax", 10.2, 64.4)
+portable_mound("MoundA", 2.0, 9.1, 0.5, 10.6, 1.45)
+portable_mound("MoundB", 11.6, 18.6, 0.5, 10.6, 1.45)
+hittrax("HitTrax", 10.2, 64.55)
 pitching_machine("Machine_Cage1", 10.2, 25.9, 0)
 l_screen("LScreen_Cage1", 10.2, 29.6, 0)
 pitching_machine("Machine_Cage2", 26.0, 21.6, 0)
@@ -1116,7 +1118,8 @@ b.box(-0.75, -0.04, 0.45, 0.75, 0.04, 1.35, M["tv_bezel"])
 b.box(-0.06, 0.0, 0, 0.06, 0.12, 0.45, M["black_plastic"])
 b.pop()
 b.finish()
-tv("TV_Lobby", XS + PT + 0.15, 4.0, 6.3, 4.0, 2.3, 90, M["scr_logo"])
+# centred on the wall behind reception: from the storefront (y=0) to the office door frame (y=5.88)
+tv("TV_Lobby", XS + PT + 0.15, 2.94, 6.3, 4.0, 2.3, 90, M["scr_logo"])
 couch("LobbyCouch1", 37.7, 8.5, 42.0, 11.15, "-y", M["fabric_blue"])
 couch("LobbyCouch2", 42.2, 8.5, 46.5, 11.15, "-y", M["fabric_blue"])
 b = B("LobbyTable", "Props", bevel=0.04)
@@ -1126,11 +1129,20 @@ for xx in (39.8, 44.4):
 b.finish()
 armchair("LobbyChair1", 48.6, 4.0, -90, M["fabric_dark"])
 armchair("LobbyChair2", 48.6, 6.6, -90, M["fabric_dark"])
-tv("TV_LobbyRight", W - 0.15, 2.4, 6.0, 3.4, 1.95, -90, M["scr_swing"])
-solid("Banner_Panel", 37.0, YR - 0.08, 3.9, 47.2, YR, 7.05, M["tv_bezel"], "Decals")
-b = B("Banner_Lobby", "Decals")
-b.quad((37.4, YR - 0.1, 4.3), (46.8, YR - 0.1, 4.3), (46.8, YR - 0.1, 6.65), (37.4, YR - 0.1, 6.65), M["banner"],
-       uv=((0, 0), (1, 0), (1, 1), (0, 1)))
+# Feature wall behind the lobby couches (extends the restroom wall west), dark accent paint, LED neon sign
+part("Part_LobbyFeature", 37.4, YR, XR, YR + PT, axis="x")
+solid("LobbyAccentWall", 37.4, YR - 0.03, 0, W, YR, 9.5, M["wall"], "Partitions")
+NEON_W = 7.6
+_nw = img("neon.png").size
+NEON_H = NEON_W * _nw[1] / _nw[0]
+NX = (37.7 + 46.5) / 2
+b = B("LED_Sign_Lobby", "Decals")
+b.quad((NX - NEON_W / 2, YR - 0.12, 4.2), (NX + NEON_W / 2, YR - 0.12, 4.2),
+       (NX + NEON_W / 2, YR - 0.12, 4.2 + NEON_H), (NX - NEON_W / 2, YR - 0.12, 4.2 + NEON_H), M["neon"])
+b.finish()
+# clear acrylic backer + standoffs
+b = B("LED_Sign_Backer", "Decals")
+b.box(NX - NEON_W / 2 - 0.15, YR - 0.1, 4.05, NX + NEON_W / 2 + 0.15, YR - 0.08, 4.35 + NEON_H, M["acrylic"])
 b.finish()
 
 # merch: clothing rack + wall shelf, x 46.9..49.7, y 8.4..11
@@ -1242,6 +1254,10 @@ for i, (x, y) in enumerate(HANG):
     area(f"L_hang{i}", x, y, HZ - 0.05, 0.85, 7.8, 420)
 for i, (x, y) in enumerate(TROF):
     area(f"L_trof{i}", x, y, 9.45, 2.0, 4.0, 90)
+_g = area("L_neon_wall", NX, YR - 0.5, 5.5, NEON_W, 2.4, 18, color=(0.62, 0.74, 1.0))
+_g.rotation_euler = (math.radians(-90), 0, 0)      # faces +y: washes the accent wall around the sign
+_g2 = area("L_neon_room", NX, YR - 0.3, 5.5, NEON_W, 2.4, 10, color=(0.62, 0.74, 1.0))
+_g2.rotation_euler = (math.radians(90), 0, 0)      # faces -y: soft glow on the couches
 
 sun_d = bpy.data.lights.new("Sun", "SUN")
 sun_d.energy = 3.2
