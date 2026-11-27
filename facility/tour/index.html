@@ -206,7 +206,7 @@ const STOPS = [
   { id: "lobby", name: "Lobby", x: 40, y: 3.5, eye: 5.3, yaw: 318, eyebrow: "Front entrance",
     spec: "Reception desk · plans TV · couch + 2 chairs · LED sign · merch",
     text: "Check in at the reception desk. The TV behind it lists every membership plan and 1-on-1 lessons. The couch sits under the lit Ball Out Boys sign, with two chairs across the coffee table and the merch rack in the corner." },
-  { id: "office", name: "Coach Ned's Office", x: 26.4, y: 6.4, eye: 5.3, yaw: 240, eyebrow: "Office",
+  { id: "office", name: "Coach Ned's Office", x: 26.4, y: 6.4, eye: 5.3, yaw: 258, pitch: -20, eyebrow: "Office",
     spec: "Your desk · second desk · couch + table · TV · mini fridge",
     text: "Private space for evaluations, parent meetings and planning each athlete's development." },
   { id: "hall", name: "Hallway", x: 35, y: 15.6, eye: 5.3, yaw: 0, eyebrow: "Office block",
@@ -624,12 +624,12 @@ async function goStop(id) {
   if (mode === "dollhouse") {
     savedHome.pos.copy(camera.position); savedHome.tgt.copy(controls.target);
     controls.enabled = false;
-    yaw = s.yaw; pitch = -4;
+    yaw = s.yaw; pitch = s.pitch ?? -4;
   } else {
     // walking between panoramas: face the direction of travel
     const f = byId[from] || s;
     if (f && f !== s) yaw = THREE.MathUtils.radToDeg(Math.atan2(s.x - f.x, s.y - f.y));
-    pitch = -4;
+    pitch = s.pitch ?? -4;
     await fadePano(0, 280);
   }
   mode = "moving";
